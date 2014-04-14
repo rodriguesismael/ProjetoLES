@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : framework-config.xml
+    Created on : 1 de Novembro de 2007, 12:30
+    Author     : Matheus Ferrari
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE config SYSTEM "framework-config.dtd">
+<config>
+    <logics>
+        <!-- Marca -->
+        <logic name="ListarMarca" type="negocio.marca.ListarMarca"></logic>
+    </logics>
+</config>

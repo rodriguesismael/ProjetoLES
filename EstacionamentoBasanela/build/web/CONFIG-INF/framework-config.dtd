@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : framework-config.dtd
+      Created on : 1 de Novembro de 2007, 12:30
+    Author     : Matheus Ferrari
+    Description:
+        Purpose of the document follows.
+
+-->
+
+<!ELEMENT config (logics)>
+<!ELEMENT logics (logic+)>
+<!ELEMENT logic  ANY>
+<!ATTLIST logic name ID #REQUIRED>
+<!ATTLIST logic typeRequest ID #REQUIRED>
+<!ATTLIST logic type CDATA #REQUIRED>
