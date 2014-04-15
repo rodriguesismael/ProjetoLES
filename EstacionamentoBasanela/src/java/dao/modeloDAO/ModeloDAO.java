@@ -140,13 +140,14 @@ public class ModeloDAO {
             stmt.setInt(1, modelo.getMarca().getCodMarca());
             rs = stmt.executeQuery();
             while(rs.next()){
-                modelo.setDescricao(rs.getString("descricao"));
+                Modelo nModelo = new Modelo();
+                nModelo.setDescricao(rs.getString("descricao"));
                 Marca marca = new Marca();
                 marca.setCodMarca(rs.getInt("codMarca"));
                 MarcaDAO mDao = new MarcaDAO();
                 marca = mDao.selectById(marca);
-                modelo.setMarca(marca);
-                lista.add(modelo);
+                nModelo.setMarca(marca);
+                lista.add(nModelo);
             }
         }catch(SQLException e){
             throw e;
