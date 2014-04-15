@@ -19,8 +19,8 @@ public class EstadoDAO {
     //public static final String INSERT="";
     //public static final String UPDATE="";
     //public static final String DELETE="";
-    public static final String SELECTALL="SELECT uf,descricao FROM Estado";
-    public static final String SELECTBYID="SELECT uf,descricao FROM Estado WHERE codEstado = ?";
+    public static final String SELECTALL="SELECT codEstado,uf,descricao FROM Estado";
+    public static final String SELECTBYID="SELECT codEstado,uf,descricao FROM Estado WHERE codEstado = ?";
     
     
     public List<Estado> selectAll() throws SQLException{
@@ -42,7 +42,7 @@ public class EstadoDAO {
       }catch(SQLException e){
           throw e;
       }finally{
-          ConnectionFactory.closeAll(con,stmt);
+          ConnectionFactory.closeAll(con,stmt,rs);
       }
       return lista;
     }
@@ -63,7 +63,7 @@ public class EstadoDAO {
         } catch (SQLException e){
             throw e;
         } finally {
-            ConnectionFactory.closeAll(con);
+            ConnectionFactory.closeAll(con,stmt,rs);
         }
         
         return estado;
