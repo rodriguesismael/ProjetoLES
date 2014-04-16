@@ -12,7 +12,18 @@ import java.util.List;
  * @author Ismael
  */
 public class Cliente {
-    private int codCliente;
+    private int codCliente,periodo;
+    /**o atributo periodo está no diagrama do banco
+     * mas não no de classes
+     ****/
+
+    public int getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(int periodo) {
+        this.periodo = periodo;
+    }
     private String nome,endereco,telefone,celular;
     private Estado estado;
     private Cidade cidade;

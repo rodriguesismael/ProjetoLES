@@ -4,9 +4,13 @@
  */
 package dao.clienteXveiculoDAO;
 
+import com.sun.media.sound.DLSModulator;
 import modelo.clienteXveiculo.ClienteXveiculo;
 //import dao.cliente.Cliente;
 import modelo.veiculo.Veiculo;
+import dao.veiculoDAO.VeiculoDAO;
+import modelo.cliente.Cliente;
+import dao.clienteDAO.ClienteDAO;
 import dao.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -57,7 +61,7 @@ public class ClienteXveiculoDAO {
         }
     }
 
-    public List<ClienteXveiculo> selectAll(){
+    public List<ClienteXveiculo> selectAll() throws SQLException{
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -67,11 +71,25 @@ public class ClienteXveiculoDAO {
             stmt = con.prepareStatement(SELECTALL);
             rs = stmt.executeQuery();
             while(rs.next()){
-                Cliente cliente = new Cliente();
                 ClienteXveiculo clienteXveiculo = new ClienteXveiculo();
-                clienteXveiculo.setCliente(cliente.se);
+                Cliente cliente = new Cliente();
+                cliente.setCodCliente(rs.getInt("codCliente"));
+                ClienteDAO cliDAO = new ClienteDAO();
+                cliente = cliDAO.selectById(cliente);
+                clienteXveiculo.setCliente(cliente);
+                Veiculo veiculo = new Veiculo();
+                veiculo.setPlaca(rs.getString("placa"));
+                VeiculoDAO veiculoDAO = new VeiculoDAO();
+                veiculo = veiculoDAO.selectById(veiculo);
+                clienteXveiculo.setVeiculo(veiculo);
+                
+                lista.add(clienteXveiculo);
                 
             }
+        }catch(SQLException e){
+            throw e;
+        }finally{
+            ConnectionFactory.closeAll(con, stmt, rs);
         }
         return lista;
     }

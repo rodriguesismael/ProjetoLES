@@ -11,31 +11,31 @@ import java.util.Date;
  */
 public class Fatura {
     private int codFatura;
-    private Date dataVencimento, dataPagamento;
+    private String dataVencimento, dataPagamento;
     private boolean status;
     private Movimento movimento;
 
     public int getCodFatura() {
         return codFatura;
     }
-
+    
     public void setCodFatura(int codFatura) {
         this.codFatura = codFatura;
     }
 
-    public Date getDataVencimento() {
+    public String getDataVencimento() {
         return dataVencimento;
     }
 
-    public void setDataVencimento(Date dataVencimento) {
+    public void setDataVencimento(String dataVencimento) {
         this.dataVencimento = dataVencimento;
     }
 
-    public Date getDataPagamento() {
+    public String getDataPagamento() {
         return dataPagamento;
     }
 
-    public void setDataPagamento(Date dataPagamento) {
+    public void setDataPagamento(String dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
 
@@ -55,4 +55,13 @@ public class Fatura {
         this.movimento = movimento;
     }
     
+    /*public boolean estaPago(){
+        return this.status;
+    }
+    
+    public void darBaixa(){
+        this.status = true;
+        Date h = new Date();
+        this.dataPagamento = h.toString();
+    }*/
 }
