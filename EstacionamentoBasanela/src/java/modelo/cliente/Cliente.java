@@ -3,20 +3,23 @@
  * and open the template in the editor.
  */
 package modelo.cliente;
+
 import modelo.estado.*;
 import modelo.cidade.*;
 import modelo.veiculo.*;
 import java.util.List;
+
 /**
  *
  * @author Ismael
  */
 public class Cliente {
-    private int codCliente,periodo;
-    /**o atributo periodo está no diagrama do banco
-     * mas não no de classes
-     ****/
 
+    private int codCliente, periodo;
+
+    /**
+     * o atributo periodo está no diagrama do banco mas não no de classes **
+     */
     public int getPeriodo() {
         return periodo;
     }
@@ -24,10 +27,18 @@ public class Cliente {
     public void setPeriodo(int periodo) {
         this.periodo = periodo;
     }
-    private String nome,endereco,telefone,celular;
+    private String nome, endereco, telefone, celular;
     private Estado estado;
     private Cidade cidade;
     private List<Veiculo> listaVeiculo;
+
+    public List<Veiculo> getListaVeiculo() {
+        return listaVeiculo;
+    }
+
+    public void setListaVeiculo(List<Veiculo> listaVeiculo) {
+        this.listaVeiculo = listaVeiculo;
+    }
 
     public int getCodCliente() {
         return codCliente;
@@ -84,8 +95,5 @@ public class Cliente {
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
-    
-        
-            
-    
+
 }
