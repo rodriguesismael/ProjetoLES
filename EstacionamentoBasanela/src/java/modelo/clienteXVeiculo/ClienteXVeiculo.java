@@ -1,8 +1,7 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Classe ClienteXVeiculo
  */
-package modelo.clienteXveiculo;
+package modelo.clienteXVeiculo;
 
 import modelo.cliente.Cliente;
 import modelo.veiculo.Veiculo;
@@ -11,7 +10,8 @@ import modelo.veiculo.Veiculo;
  *
  * @author Ismael
  */
-public class ClienteXveiculo {
+public class ClienteXVeiculo {
+
     private Cliente cliente;
     private Veiculo veiculo;
 
@@ -30,6 +30,4 @@ public class ClienteXveiculo {
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
     }
-    
-    
 }

@@ -1,24 +1,26 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Classe Fatura
  */
 package modelo.fatura;
+
 import modelo.movimento.Movimento;
-import java.util.Date;       
+
 /**
  *
  * @author Ismael
  */
 public class Fatura {
+
     private int codFatura;
-    private String dataVencimento, dataPagamento;
+    private String dataVencimento;
+    private String dataPagamento;
     private boolean status;
     private Movimento movimento;
 
     public int getCodFatura() {
         return codFatura;
     }
-    
+
     public void setCodFatura(int codFatura) {
         this.codFatura = codFatura;
     }
@@ -54,14 +56,14 @@ public class Fatura {
     public void setMovimento(Movimento movimento) {
         this.movimento = movimento;
     }
-    
+
     /*public boolean estaPago(){
-        return this.status;
-    }
+     return this.status;
+     }
     
-    public void darBaixa(){
-        this.status = true;
-        Date h = new Date();
-        this.dataPagamento = h.toString();
-    }*/
+     public void darBaixa(){
+     this.status = true;
+     Date h = new Date();
+     this.dataPagamento = h.toString();
+     }*/
 }

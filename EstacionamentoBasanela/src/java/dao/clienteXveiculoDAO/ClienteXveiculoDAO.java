@@ -4,7 +4,7 @@
  */
 package dao.clienteXveiculoDAO;
 
-import modelo.clienteXveiculo.ClienteXveiculo;
+import modelo.clienteXVeiculo.ClienteXVeiculo;
 //import dao.cliente.Cliente;
 import modelo.veiculo.Veiculo;
 import dao.veiculoDAO.VeiculoDAO;
@@ -29,7 +29,7 @@ public class ClienteXveiculoDAO {
     public static final String SELECTBYCLIENTE = "";
     public static final String SELECTBYVVEICULO = "";
 
-    public void insert(ClienteXveiculo clienteXveiculo) throws SQLException {
+    public void insert(ClienteXVeiculo clienteXveiculo) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -45,7 +45,7 @@ public class ClienteXveiculoDAO {
         }
     }
 
-    public void delete(ClienteXveiculo clienteXveiculo) throws SQLException {
+    public void delete(ClienteXVeiculo clienteXveiculo) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         try {
@@ -60,17 +60,17 @@ public class ClienteXveiculoDAO {
         }
     }
 
-    public List<ClienteXveiculo> selectAll() throws SQLException {
+    public List<ClienteXVeiculo> selectAll() throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<ClienteXveiculo> lista = null;
+        List<ClienteXVeiculo> lista = null;
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTALL);
             rs = stmt.executeQuery();
             while (rs.next()) {
-                ClienteXveiculo clienteXveiculo = new ClienteXveiculo();
+                ClienteXVeiculo clienteXveiculo = new ClienteXVeiculo();
                 Cliente cliente = new Cliente();
                 cliente.setCodCliente(rs.getInt("codCliente"));
                 ClienteDAO cliDAO = new ClienteDAO();
@@ -93,7 +93,7 @@ public class ClienteXveiculoDAO {
         return lista;
     }
 
-    public List<Veiculo> selectByCliente(ClienteXveiculo clienteXVeiculo) throws SQLException {
+    public List<Veiculo> selectByCliente(ClienteXVeiculo clienteXVeiculo) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;

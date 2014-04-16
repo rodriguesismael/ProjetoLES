@@ -1,14 +1,16 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Classe Modelo
  */
 package modelo.modelo;
-import modelo.marca.*;
+
+import modelo.marca.Marca;
+
 /**
  *
  * @author Ismael
  */
 public class Modelo {
+
     private int codModelo;
     private Marca marca;
     private String descricao;
@@ -36,5 +38,4 @@ public class Modelo {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
 }

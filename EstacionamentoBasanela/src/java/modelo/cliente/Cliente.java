@@ -1,13 +1,12 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Classe Cliente
  */
 package modelo.cliente;
 
-import modelo.estado.*;
-import modelo.cidade.*;
-import modelo.veiculo.*;
 import java.util.List;
+import modelo.cidade.Cidade;
+import modelo.estado.Estado;
+import modelo.veiculo.Veiculo;
 
 /**
  *
@@ -15,7 +14,12 @@ import java.util.List;
  */
 public class Cliente {
 
-    private int codCliente, periodo;
+    private int codCliente;
+    private int periodo;
+    private String nome, endereco, telefone, celular;
+    private Estado estado;
+    private Cidade cidade;
+    private List<Veiculo> listaVeiculo;
 
     /**
      * o atributo periodo está no diagrama do banco mas não no de classes **
@@ -27,10 +31,6 @@ public class Cliente {
     public void setPeriodo(int periodo) {
         this.periodo = periodo;
     }
-    private String nome, endereco, telefone, celular;
-    private Estado estado;
-    private Cidade cidade;
-    private List<Veiculo> listaVeiculo;
 
     public List<Veiculo> getListaVeiculo() {
         return listaVeiculo;

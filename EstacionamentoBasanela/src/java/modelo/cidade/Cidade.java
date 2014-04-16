@@ -1,14 +1,16 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Classe Cidade
  */
 package modelo.cidade;
+
 import modelo.estado.Estado;
+
 /**
  *
  * @author Ismael
  */
 public class Cidade {
+
     private int codCidade;
     private Estado estado;
     private String descricao;
@@ -36,5 +38,5 @@ public class Cidade {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
+
 }

@@ -1,19 +1,21 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Classe Movimento
  */
 package modelo.movimento;
+
 import modelo.veiculo.Veiculo;
 import modelo.cliente.Cliente;
-import java.util.Date;
+
 /**
  *
  * @author Ismael
  *
  */
 public class Movimento {
+
     private int codMovimento;
-    private String data_inicio, data_termino;
+    private String data_inicio;
+    private String data_termino;
     private Double valor;
     private Veiculo veiculo;
     private Cliente cliente;
@@ -65,5 +67,4 @@ public class Movimento {
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
     }
-    
 }

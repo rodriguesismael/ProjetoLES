@@ -1,16 +1,19 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Classe Veiculo
  */
 package modelo.veiculo;
+
 import modelo.marca.Marca;
 import modelo.modelo.Modelo;
+
 /**
  *
  * @author Ismael
  */
 public class Veiculo {
-    private String placa, tipo;
+
+    private String placa;
+    private String tipo;
     private Marca marca;
     private Modelo modelo;
 
@@ -45,5 +48,4 @@ public class Veiculo {
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
     }
-    
 }
