@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import modelo.estado.Estado;
 /**
@@ -27,7 +28,7 @@ public class EstadoDAO {
       Connection con = null;
       PreparedStatement stmt = null;
       ResultSet rs = null;
-      List<Estado> lista = null;
+      List<Estado> lista = new ArrayList<Estado>();
       try{
           con = ConnectionFactory.getConexao();
           stmt = con.prepareStatement(SELECTALL);

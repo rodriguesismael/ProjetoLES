@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import modelo.clienteXVeiculo.ClienteXVeiculo;
 
@@ -31,9 +32,12 @@ public class ClienteDAO {
     public static final String DELETE = "DELETE FROM Cliente WHERE codCliente = ?";
     public static final String SELECTALL = "SELECT codCliente,nome,endereco,codEstado,codCidade,telefone"
             + "celular, periodo FROM Cliente";
-    public static final String SELECTBYID = SELECTALL + " WHERE codCliente = ?";
-    public static final String SELECTBYESTADO = SELECTALL + " WHERE codEstado = ?";
-    public static final String SELECTBYCIDADE = SELECTALL + " WHERE codCidade = ?";
+    public static final String SELECTBYID = "SELECT codCliente,nome,endereco,codEstado,codCidade,telefone"
+            + "celular, periodo FROM Cliente WHERE codCliente = ?";
+    public static final String SELECTBYESTADO = "SELECT codCliente,nome,endereco,codEstado,codCidade,telefone"
+            + "celular, periodo FROM Cliente WHERE codEstado = ?";
+    public static final String SELECTBYCIDADE = "SELECT codCliente,nome,endereco,codEstado,codCidade,telefone"
+            + "celular, periodo FROM Cliente WHERE codCidade = ?";
 
     public void insert(Cliente cliente) throws SQLException {
         Connection con = null;
@@ -103,7 +107,7 @@ public class ClienteDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Cliente> lista = null;
+        List<Cliente> lista = new ArrayList<Cliente>();
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTALL);
@@ -171,6 +175,11 @@ public class ClienteDAO {
                 cliente.setTelefone(rs.getString("telefone"));
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setPeriodo(rs.getInt("periodo"));
+                
+                ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
+                ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
+                clienteXVeiculo.setCliente(cliente);
+                cliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
             }
         } catch (SQLException e) {
             throw e;
@@ -185,18 +194,19 @@ public class ClienteDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Cliente> lista = null;
+        List<Cliente> lista = new ArrayList<Cliente>();
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYESTADO);
             stmt.setInt(1, cliente.getEstado().getCodEstado());
             rs = stmt.executeQuery();
+            Estado estado = new Estado();
+            estado.setCodEstado(cliente.getEstado().getCodEstado());
+            EstadoDAO estadoDAO = new EstadoDAO();
+            estado = estadoDAO.selectById(estado);
             while (rs.next()) {
                 Cliente nCliente = new Cliente();
-                Estado estado = new Estado();
-                estado.setCodEstado(rs.getInt("codEstado"));
-                EstadoDAO estadoDAO = new EstadoDAO();
-                estado = estadoDAO.selectById(estado);
+
                 Cidade cidade = new Cidade();
                 cidade.setCodCidade(rs.getInt("codCidade"));
                 CidadeDAO cidadeDAO = new CidadeDAO();
@@ -210,6 +220,12 @@ public class ClienteDAO {
                 nCliente.setTelefone(rs.getString("telefone"));
                 nCliente.setCelular(rs.getString("celular"));
                 nCliente.setPeriodo(rs.getInt("periodo"));
+                
+                ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
+                ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
+                clienteXVeiculo.setCliente(nCliente);
+                nCliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
+                
                 lista.add(nCliente);
 
             }
@@ -226,22 +242,24 @@ public class ClienteDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Cliente> lista = null;
+        List<Cliente> lista = new ArrayList<Cliente>();
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYCIDADE);
             stmt.setInt(1, cliente.getCidade().getCodCidade());
-            rs = stmt.executeQuery();
+            //Cidade de um mesmo estado
+            Estado estado = new Estado();
+            estado.setCodEstado(cliente.getEstado().getCodEstado());
+            EstadoDAO estadoDAO = new EstadoDAO();
+            estado = estadoDAO.selectById(estado);
+            Cidade cidade = new Cidade();
+            cidade.setCodCidade(cliente.getCidade().getCodCidade());
+            CidadeDAO cidadeDAO = new CidadeDAO();
+            cidade = cidadeDAO.selectById(cidade);            
+            
+            rs = stmt.executeQuery();            
             while (rs.next()) {
                 Cliente nCliente = new Cliente();
-                Estado estado = new Estado();
-                estado.setCodEstado(rs.getInt("codEstado"));
-                EstadoDAO estadoDAO = new EstadoDAO();
-                estado = estadoDAO.selectById(estado);
-                Cidade cidade = new Cidade();
-                cidade.setCodCidade(rs.getInt("codCidade"));
-                CidadeDAO cidadeDAO = new CidadeDAO();
-                cidade = cidadeDAO.selectById(cidade);
 
                 nCliente.setCodCliente(rs.getInt("codCliente"));
                 nCliente.setNome(rs.getString("nome"));
@@ -251,6 +269,11 @@ public class ClienteDAO {
                 nCliente.setTelefone(rs.getString("telefone"));
                 nCliente.setCelular(rs.getString("celular"));
                 nCliente.setPeriodo(rs.getInt("periodo"));
+                ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
+                ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
+                clienteXVeiculo.setCliente(nCliente);
+                nCliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));                
+                
                 lista.add(nCliente);
 
             }

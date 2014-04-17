@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -64,7 +65,7 @@ public class ClienteXveiculoDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<ClienteXVeiculo> lista = null;
+        List<ClienteXVeiculo> lista = new ArrayList<ClienteXVeiculo>();
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTALL);
@@ -97,7 +98,7 @@ public class ClienteXveiculoDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Veiculo> lista = null;
+        List<Veiculo> lista = new ArrayList<Veiculo>();
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYCLIENTE);

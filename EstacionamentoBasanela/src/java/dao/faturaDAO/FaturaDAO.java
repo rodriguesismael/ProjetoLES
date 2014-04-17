@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -23,7 +24,8 @@ import java.util.List;
 public class FaturaDAO {
     public static final String INSERT="INSERT INTO Fatura (codMovimento,dataVencimento,status) VALUES(?,?,?)";
     public static final String SELECTALL = "SELECT codFatura,codMovimento,dataVencimento,dataPagamento FROM Fatura";
-    public static final String SELECTBYID = SELECTALL + "WHERE codFatura = ?" ;
+    public static final String SELECTBYID = "SELECT codFatura,codMovimento,dataVencimento,dataPagamento FROM Fatura "
+            + "WHERE codFatura = ?" ;
     //public static final String SELECTBYVEICULO = SELECTALL + "WHERE codMovimento  = ?" ;
     
     public void insert(Fatura fatura) throws SQLException{
@@ -48,7 +50,7 @@ public class FaturaDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Fatura> lista = null;
+        List<Fatura> lista = new ArrayList<Fatura>();
         try{
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTALL);

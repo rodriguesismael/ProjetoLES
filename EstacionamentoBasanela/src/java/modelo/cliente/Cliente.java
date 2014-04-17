@@ -16,7 +16,10 @@ public class Cliente {
 
     private int codCliente;
     private int periodo;
-    private String nome, endereco, telefone, celular;
+    private String nome;
+    private String endereco;
+    private String telefone;
+    private String celular;
     private Estado estado;
     private Cidade cidade;
     private List<Veiculo> listaVeiculo;

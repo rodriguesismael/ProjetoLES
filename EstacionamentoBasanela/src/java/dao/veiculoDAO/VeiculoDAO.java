@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import modelo.marca.Marca;
 import modelo.modelo.Modelo;
@@ -26,9 +27,9 @@ public class VeiculoDAO {
     public static final String UPDATE ="UPDATE Veiculo SET tipo = ?,codMarca = ?,codModelo = ? WHERE placa = ?";
     public static final String DELETE ="DELETE FROM Veiculo WHERE placa = ?";
     public static final String SELECTALL ="SELECT placa,tipo,codMarca,codModelo FROM Veciulo";
-    public static final String SELECTBYID = SELECTALL+" WHERE placa = ?";
-    public static final String SELECTBYMARCA = SELECTALL+" WHERE codMarca = ?";
-    public static final String SELECTBYMODELO = SELECTALL+" WHERE codModelo = ?";
+    public static final String SELECTBYID = "SELECT placa,tipo,codMarca,codModelo FROM Veciulo WHERE placa = ?";
+    public static final String SELECTBYMARCA = "SELECT placa,tipo,codMarca,codModelo FROM Veciulo WHERE codMarca = ?";
+    public static final String SELECTBYMODELO = "SELECT placa,tipo,codMarca,codModelo FROM Veciulo WHERE codModelo = ?";
     
     public void insert(Veiculo veiculo) throws SQLException{
         Connection con = null;
@@ -90,7 +91,7 @@ public class VeiculoDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Veiculo> lista = null;
+        List<Veiculo> lista = new ArrayList<Veiculo>();
         try{
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTALL);
@@ -158,18 +159,19 @@ public class VeiculoDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Veiculo> lista = null;
+        List<Veiculo> lista = new ArrayList<Veiculo>();
         try{
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYMARCA);
             stmt.setInt(1, veiculo.getMarca().getCodMarca());
             rs = stmt.executeQuery();
+            
+            Marca marca = new Marca();
+            marca.setCodMarca(veiculo.getMarca().getCodMarca());
+            MarcaDAO mDAO = new MarcaDAO();
+            marca = mDAO.selectById(marca);            
             while(rs.next()){
                 Veiculo nVeiculo = new Veiculo();
-                Marca marca = new Marca();
-                marca.setCodMarca(rs.getInt("codMarca"));
-                MarcaDAO mDAO = new MarcaDAO();
-                marca = mDAO.selectById(marca);
                 
                 Modelo modelo = new Modelo();
                 modelo.setCodModelo(rs.getInt("codModelo"));
@@ -194,23 +196,23 @@ public class VeiculoDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Veiculo> lista = null;
+        List<Veiculo> lista = new ArrayList<Veiculo>();
         try{
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYMODELO);
             stmt.setInt(1, veiculo.getModelo().getCodModelo());
             rs = stmt.executeQuery();
+
+            Modelo modelo = new Modelo();
+            modelo.setCodModelo(veiculo.getModelo().getCodModelo());
+            ModeloDAO mdDAO = new ModeloDAO();
+            modelo = mdDAO.selectById(modelo);            
             while(rs.next()){
                 Veiculo nVeiculo = new Veiculo();
                 Marca marca = new Marca();
                 marca.setCodMarca(rs.getInt("codMarca"));
                 MarcaDAO mDAO = new MarcaDAO();
-                marca = mDAO.selectById(marca);
-                
-                Modelo modelo = new Modelo();
-                modelo.setCodModelo(rs.getInt("codModelo"));
-                ModeloDAO mdDAO = new ModeloDAO();
-                modelo = mdDAO.selectById(modelo);
+                marca = mDAO.selectById(marca);               
                 
                 nVeiculo.setMarca(marca);
                 nVeiculo.setModelo(modelo);

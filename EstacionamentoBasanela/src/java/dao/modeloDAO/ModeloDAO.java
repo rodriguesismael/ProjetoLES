@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import modelo.marca.Marca;
 /**
@@ -23,8 +24,8 @@ public class ModeloDAO {
     public static final String UPDATE = "UPDATE Modelo SET codMarca = ?, descricao = ? WHERE codModelo=?";
     public static final String DELETE = "DELETE FROM Modelo WHERE codModelo = ?";
     public static final String SELECTALL = "SELECT codModelo, codMarca, descricao FROM Modelo";
-    public static final String SELECTBYID = SELECTALL+" WHERE codModelo = ?";
-    public static final String SELECTBYMARCA = SELECTALL+" WHERE codMarca = ?";
+    public static final String SELECTBYID = "SELECT codModelo, codMarca, descricao FROM Modelo WHERE codModelo = ?";
+    public static final String SELECTBYMARCA = "SELECT codModelo, codMarca, descricao FROM Modelo WHERE codMarca = ?";
     
     
     public void insert(Modelo modelo) throws SQLException{
@@ -81,7 +82,7 @@ public class ModeloDAO {
        Connection con = null;
        PreparedStatement stmt = null;
        ResultSet rs = null;
-       List<Modelo> lista = null;
+       List<Modelo> lista = new ArrayList<Modelo>();
        try{
            con = ConnectionFactory.getConexao();
            stmt = con.prepareStatement(SELECTALL);
@@ -113,6 +114,7 @@ public class ModeloDAO {
             stmt = con.prepareStatement(SELECTBYID);
             stmt.setInt(1, modelo.getCodModelo());
             rs = stmt.executeQuery();
+            
             if(rs.next()){
                 modelo.setDescricao(rs.getString("descricao"));
                 Marca marca = new Marca();
@@ -133,19 +135,20 @@ public class ModeloDAO {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Modelo> lista = null;
+        List<Modelo> lista = new ArrayList<Modelo>();
         try{
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYMARCA);
             stmt.setInt(1, modelo.getMarca().getCodMarca());
             rs = stmt.executeQuery();
+            
+            Marca marca = new Marca();
+            marca.setCodMarca(modelo.getMarca().getCodMarca());
+            MarcaDAO mDao = new MarcaDAO();
+            marca = mDao.selectById(marca);
             while(rs.next()){
                 Modelo nModelo = new Modelo();
                 nModelo.setDescricao(rs.getString("descricao"));
-                Marca marca = new Marca();
-                marca.setCodMarca(rs.getInt("codMarca"));
-                MarcaDAO mDao = new MarcaDAO();
-                marca = mDao.selectById(marca);
                 nModelo.setMarca(marca);
                 lista.add(nModelo);
             }
