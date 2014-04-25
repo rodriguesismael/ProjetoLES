@@ -20,12 +20,12 @@ import modelo.estado.Estado;
  */
 public class CidadeDAO {
 
-    public static final String INSERT = "INSERT INTO Cidade (codEsdado,descricao) VALUES (?,?)";
-    public static final String UPDATE = "UPDATE Cidade SET codEstado = ?, descricao = ? WHERE codCidade=?";
+    public static final String INSERT = "INSERT INTO Cidade (codEsdado, descricao) VALUES (?,?)";
+    public static final String UPDATE = "UPDATE Cidade SET codEstado = ?, descricao = ? WHERE codCidade = ?";
     public static final String DELETE = "DELETE FROM Cidade WHERE codCidade = ?";
-    public static final String SELECTALL = "SELECT codCidade, codEsdado, descricao FROM Cidade";
+    public static final String SELECTALL = "SELECT codCidade, codEsdado, descricao FROM Cidade ORDER BY descricao";
     public static final String SELECTBYID = "SELECT codCidade, codEsdado, descricao FROM Cidade WHERE codCidade = ?";
-    public static final String SELECTBYESTADO = "SELECT codCidade, codEsdado, descricao FROM Cidade WHERE codEstado = ?";
+    public static final String SELECTBYESTADO = "SELECT codCidade, codEsdado, descricao FROM Cidade WHERE codEstado = ? ORDER BY descricao";
 
     public void insert(Cidade cidade) throws SQLException {
         Connection con = null;
@@ -36,8 +36,8 @@ public class CidadeDAO {
             stmt.setInt(1, cidade.getEstado().getCodEstado());
             stmt.setString(2, cidade.getDescricao());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -53,8 +53,8 @@ public class CidadeDAO {
             stmt.setString(2, cidade.getDescricao());
             stmt.setInt(3, cidade.getCodCidade());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -68,8 +68,8 @@ public class CidadeDAO {
             stmt = con.prepareStatement(DELETE);
             stmt.setInt(1, cidade.getCodCidade());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -86,12 +86,13 @@ public class CidadeDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Cidade cidade = new Cidade();
-                Estado estado = new Estado();
-                estado.setCodEstado(rs.getInt("codEstado"));
-                EstadoDAO estadoDAO = new EstadoDAO();
-                estado = estadoDAO.selectById(estado);
                 cidade.setCodCidade(rs.getInt("codCidade"));
+                Estado estado = new Estado();
+                EstadoDAO estadoDAO = new EstadoDAO();
+                estado.setCodEstado(rs.getInt("codEstado"));
+                estado = estadoDAO.selectById(estado);
                 cidade.setEstado(estado);
+                cidade.setDescricao(rs.getString("descricao"));
                 lista.add(cidade);
             }
         } catch (SQLException ex) {
@@ -112,12 +113,13 @@ public class CidadeDAO {
             stmt.setInt(1, cidade.getCodCidade());
             rs = stmt.executeQuery();
             if (rs.next()) {
-                Estado estado = new Estado();
-                estado.setCodEstado(rs.getInt("codEstado"));
-                EstadoDAO estadoDAO = new EstadoDAO();
-                estado = estadoDAO.selectById(estado);
                 cidade.setCodCidade(rs.getInt("codCidade"));
+                Estado estado = new Estado();
+                EstadoDAO estadoDAO = new EstadoDAO();
+                estado.setCodEstado(rs.getInt("codEstado"));
+                estado = estadoDAO.selectById(estado);
                 cidade.setEstado(estado);
+                cidade.setDescricao(rs.getString("descricao"));
             }
         } catch (SQLException ex) {
             throw ex;
@@ -146,8 +148,8 @@ public class CidadeDAO {
             while (rs.next()) {
                 Cidade nCidade = new Cidade();
                 nCidade.setCodCidade(rs.getInt("codCidade"));
-                nCidade.setDescricao((rs.getString("descricao")));
                 nCidade.setEstado(estado);
+                nCidade.setDescricao((rs.getString("descricao")));
                 lista.add(nCidade);
             }
         } catch (SQLException ex) {

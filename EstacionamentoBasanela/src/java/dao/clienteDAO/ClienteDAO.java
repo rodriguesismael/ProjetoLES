@@ -10,7 +10,6 @@ import modelo.estado.Estado;
 import dao.cidadeDAO.CidadeDAO;
 import dao.clienteXveiculoDAO.ClienteXveiculoDAO;
 import modelo.cidade.Cidade;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +24,7 @@ import modelo.clienteXVeiculo.ClienteXVeiculo;
  */
 public class ClienteDAO {
 
-    public static final String INSERT = "INSERT INTO Cliente VALUES(?,?,?,?,?,?,?,?)";
+    public static final String INSERT = "INSERT INTO Cliente () VALUES(?,?,?,?,?,?,?,?)";
     public static final String UPDATE = "UPDATE Cliente SET nome = ?,endereco= ?,codEstado = ?,"
             + " codCidade=?, telefone = ?, celular = ?, periodo = ? "
             + " WHERE codCliente = ?";
@@ -175,7 +174,7 @@ public class ClienteDAO {
                 cliente.setTelefone(rs.getString("telefone"));
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setPeriodo(rs.getInt("periodo"));
-                
+
                 ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
                 ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
                 clienteXVeiculo.setCliente(cliente);
@@ -220,12 +219,12 @@ public class ClienteDAO {
                 nCliente.setTelefone(rs.getString("telefone"));
                 nCliente.setCelular(rs.getString("celular"));
                 nCliente.setPeriodo(rs.getInt("periodo"));
-                
+
                 ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
                 ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
                 clienteXVeiculo.setCliente(nCliente);
                 nCliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
-                
+
                 lista.add(nCliente);
 
             }
@@ -255,9 +254,9 @@ public class ClienteDAO {
             Cidade cidade = new Cidade();
             cidade.setCodCidade(cliente.getCidade().getCodCidade());
             CidadeDAO cidadeDAO = new CidadeDAO();
-            cidade = cidadeDAO.selectById(cidade);            
-            
-            rs = stmt.executeQuery();            
+            cidade = cidadeDAO.selectById(cidade);
+
+            rs = stmt.executeQuery();
             while (rs.next()) {
                 Cliente nCliente = new Cliente();
 
@@ -272,8 +271,8 @@ public class ClienteDAO {
                 ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
                 ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
                 clienteXVeiculo.setCliente(nCliente);
-                nCliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));                
-                
+                nCliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
+
                 lista.add(nCliente);
 
             }
