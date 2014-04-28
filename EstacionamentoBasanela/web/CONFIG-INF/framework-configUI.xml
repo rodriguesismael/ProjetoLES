@@ -10,7 +10,7 @@
 <!DOCTYPE config SYSTEM "framework-config.dtd">
 <config>
     <logics>
-        <!-- Exemplo -->
-        <logic name="LógicaDeNegócio" type="PacoteLógicaDeNegócio"></logic>
+        <!-- Login -->
+        <logic name="EfetuarLogin" type="negocio.outro.EfetuarLogin"></logic>
     </logics>
 </config>

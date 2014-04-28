@@ -1,6 +1,6 @@
 <%-- 
     Document   : index
-    Created on : 12/04/2014, 13:05:14
+    Created on : 25/04/2014, 17:27:14
     Author     : Alvaro Augusto Roberto
 --%>
 
@@ -11,9 +11,30 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Estacionamento Basanela</title>
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="css/default.css"/>
+        <!-- JS -->
+        <script type="text/javascript" src="jquery/jquery_1.11.0/jquery_1.11.0.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/init.js"></script>
+        <script type="text/javascript" src="js/initLogin.js"></script>
     </head>
     <body>
-        <h1>Estacionamento Basanela</h1>
+        <div id="conteudo">
+            <form id="formLogin" action="javascript:;">
+                <div class="form-group">
+                    <label for="input_operador">Operador</label>
+                    <input type="text" class="form-control" id="input_operador" name="input_operador"/>
+                </div>
+                <div class="form-group">
+                    <label for="input_senha">Senha</label>
+                    <input type="password" class="form-control input-sm" id="input_senha" name="input_senha"/>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Entrar" onclick="efetuarLogin()"/>
+            </form>
+        </div>
     </body>
 </html>

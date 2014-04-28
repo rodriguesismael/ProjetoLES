@@ -1,9 +1,9 @@
 //Efetuar login
 function efetuarLogin() {
-    if ($("#input_operador").val().trim().equals("")) {
+    if ($("#input_operador").val().trim() == "") {
         alert('Preencha o campo operador!', 'Atenção');
         $("#input_operador").focus();
-    } else if ($("#input_senha").val().trim("")) {
+    } else if ($("#input_senha").val().trim() == "") {
         alert('Preencha o campo senha!', 'Atenção!');
         $("#input_senha").focus();
     } else {
