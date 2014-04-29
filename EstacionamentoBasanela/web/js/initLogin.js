@@ -1,5 +1,22 @@
+//Acoes a serem executadas apos carregar pagina
+$(document).ready(function() {
+    $("#input_operador").focus();
+    $("#input_operador").keypress(function(e) {
+        var tecla = (ee.keyCode() ? e.keyCode() : e.which());
+        if (tecla === 13) {
+            efetuarLogin();
+        }
+    });
+    $("#input_senha").keypress(function(e) {
+        var tecla = (ee.keyCode() ? e.keyCode() : e.which());
+        if (tecla === 13) {
+            efetuarLogin();
+        }
+    });
+});
+
 //Efetuar login
-function efetuarLogin() {
+function efetuarLoginRIGHT() {
     if ($("#input_operador").val().trim() == "") {
         alert('Preencha o campo operador!', 'Atenção');
         $("#input_operador").focus();
@@ -26,8 +43,8 @@ function efetuarLogin() {
                         dataType: "html",
                         async: false,
                         success: function(html) {
-                            $("#conteudo").html("");
-                            $("#conteudo").html(html);
+                            $("html").html("");
+                            $("html").html(html);
                         }
                     });
                 }
@@ -42,6 +59,10 @@ function efetuarLogin() {
     }
 }
 
+function efetuarLogin() {
+    enviar("FormHome");
+}
+
 //Efetuar logoff
 function efetuarLogoff() {
     confirm('Deseja realmente sair do sistema?', 'Confirmação de Logoff', function(r) {
@@ -53,8 +74,8 @@ function efetuarLogoff() {
                 dataType: "html",
                 async: false,
                 success: function(html) {
-                    $("#conteudo").html("");
-                    $("#conteudo").html(html);
+                    $("html").html("");
+                    $("html").html(html);
                 }
             });
         }

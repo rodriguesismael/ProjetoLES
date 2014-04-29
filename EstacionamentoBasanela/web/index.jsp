@@ -23,7 +23,10 @@
         <script type="text/javascript" src="js/initLogin.js"></script>
     </head>
     <body>
-        <div id="conteudo">
+        <div id="header">
+            <h1><strong>Estacionamento Basanela</strong></h1>
+        </div>
+        <div id="boxLogin">
             <form id="formLogin" action="javascript:;">
                 <div class="form-group">
                     <label for="input_operador">Operador</label>

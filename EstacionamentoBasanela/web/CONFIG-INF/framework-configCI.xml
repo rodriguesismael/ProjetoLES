@@ -10,7 +10,7 @@
 <!DOCTYPE config SYSTEM "framework-config.dtd">
 <config>
     <logics>
-        <!-- Marca -->
-        <logic name="ListarMarca" type="negocio.marca.ListarMarca"></logic>
+        <!-- Outro -->
+        <logic name="FormHome" type="negocio.outro.FormHome"></logic>
     </logics>
 </config>

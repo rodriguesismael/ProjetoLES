@@ -7,8 +7,8 @@ function enviar(regraNegocio) {
         dataType: "html",
         async: true,
         success: function(html) {
-            $("#conteudo").html("");
-            $("#conteudo").html(html);
+            $("body").html("");
+            $("body").html(html);
         }
     });
 }
