@@ -30,9 +30,61 @@ form#formLogin {
 }
 
 /* -- HOME -- */
-div#conteudo {
+div#top {
     width: 80%;
     margin: 0 auto;
-    min-height: 20px;
-    background-color: red;
+    height: 200px;
+}
+
+#topLeft {
+    width: 25%;
+    height: 100%;
+    background-color: green;
+    float: left;
+}
+
+#topCenter {
+    width: 48%;
+    height: 100%;
+    background-color: blue;
+    float: left;
+    margin-left: 1%;
+}
+
+#topRight {
+    width: 25%;
+    height: 100%;
+    background-color: green;
+    float: left;
+    margin-left: 1%;
+}
+
+div#bottom {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+    height: 200px;
+}
+
+#bottomLeft {
+    width: 25%;
+    height: 100%;
+    background-color: green;
+    float: left;
+}
+
+#bottomCenter {
+    width: 48%;
+    height: 100%;
+    background-color: blue;
+    float: left;
+    margin-left: 1%;
+}
+
+#bottomRight {
+    width: 25%;
+    height: 100%;
+    background-color: green;
+    float: left;
+    margin-left: 1%;
 }

@@ -14,13 +14,13 @@
 
         <!-- JS -->
         <script type="text/javascript">
-            function showModal(){
+            function showModal() {
                 var html = "";
                 html += '<div class="modal-dialog">';
                 html += '<div class="modal-content">';
                 html += '<div class="modal-header">';
                 html += '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
-                html += '<h4 class="modal-title" id="myModalLabel">Modal title</h4>';
+                html += '<h4 class="modal-title">Veiculo Encontrado</h4>';
                 html += '</div>';
                 html += '<div class="modal-body">';
                 html += '...';
@@ -37,14 +37,35 @@
         </script>
     </head>
     <body>
-        <div id="myModal" class="modal fade">
+        <!-- Modal Veiculo -->
+        <div id="modal_veiculo" class="modal fade">
+        </div>
+        <!-- Modal Cliente -->
+        <div id="modal_cliente" class="modal fade">
         </div>
 
         <div id="header">
             <h1><strong>Estacionamento Basanela</strong></h1>
         </div>
         <div id="conteudo">
-            <input type="button" onclick="showModal()" value="Try it!"/>
+            <!-- Topo -->
+            <div id="top">
+                <div id="topLeft">
+                </div>
+                <div id="topCenter">
+                </div>
+                <div id="topRight">
+                </div>
+            </div>
+            <!-- Base -->
+            <div id="bottom">
+                <div id="bottomLeft">
+                </div>
+                <div id="bottomCenter">
+                </div>
+                <div id="bottomRight">
+                </div>
+            </div>
         </div>
     </body>
 </html>
