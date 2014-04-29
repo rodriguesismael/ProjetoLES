@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +14,8 @@
         <!-- CSS -->
 
         <!-- JS -->
+        <script type="text/javascript" src="js/cliente/initCliente.js"></script>
+        <script type="text/javascript" src="js/veiculo/initVeiculo.js"></script>
         <script type="text/javascript">
             function showModal() {
                 var html = "";
