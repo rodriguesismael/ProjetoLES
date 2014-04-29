@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS estacionamento;
+USE estacionamento;
 CREATE TABLE Marca(
 	codMarca INT NOT NULL auto_increment,
     descricao VARCHAR(200) NOT NULL,
@@ -117,7 +119,7 @@ CREATE TRIGGER Cliente_AI FOR Cliente ACTIVE
 SET TERM ;%*/
 
 CREATE TABLE ClienteXVeiculo(
-	codCliente INT NOT NULL,
+	codCliente varchar(11) NOT NULL,
 	placa VARCHAR(8) NOT NULL,
 	FOREIGN KEY (codCliente) REFERENCES Cliente(codCliente),
 	FOREIGN KEY (placa) REFERENCES Veiculo(placa)
