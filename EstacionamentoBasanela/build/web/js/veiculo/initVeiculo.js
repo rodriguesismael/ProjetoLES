@@ -43,3 +43,56 @@ function cadastrarVeiculo() {
         }
     });
 }
+
+function buscarVeiculo() {
+    if ($("#input_placa").val().trim() == "") {
+        alertify.alert("A PLACA nao foi digitada!", function() {
+            $("#input_placa").focus();
+        });
+        return;
+    }
+    if ($("#input_placa").val().size() < 8) {
+        alertify.alert("Placa invalida!", function() {
+            $("#input_placa").focus();
+        });
+        return;
+    }
+    $.ajax({
+        url: "Controller?name=BuscarVeiculo",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            placa: $("#input_placa").val()
+        },
+        dataType: "json",
+        async: false,
+        success: function(json) {
+            var html = "";
+            html += "<div class=\"modal-dialog\">";
+            html += "<div class=\"modal-content\">";
+            html += "<div class=\"modal-header\">";
+            html += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
+            if (json.existeVeiculo) {
+                html += "<h4 class=\"modal-title\">Veiculo Cadastrado</h4>";
+                html += "</div>";
+                html += "<div class=\"modal-body\">";
+                html += "conteudo";
+                html += "</div>";
+                html += "<div class=\"modal-footer\">";
+                html += "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>";
+                if (json.emMovimento) {
+                    html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"registrarSaida()\">Registrar Saida</button>";
+                } else {
+                    html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"registrarEntrada()\">Registrar Entrada</button>";
+                }
+                html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"datalharVeiculo()\">Detalhes</button>";
+                html += "</div>";
+            } else {
+                html += "<h4 class=\"modal-title\">Veiculo Nao Cadastrado</h4>";
+            }
+            $("#modal_veiculo").html("");
+            $("#modal_veiculo").html(html);
+            $("#modal_veiculo").modal();
+        }
+    });
+}
