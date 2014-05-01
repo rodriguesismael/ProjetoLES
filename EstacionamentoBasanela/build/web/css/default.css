@@ -88,3 +88,15 @@ div#bottom {
     float: left;
     margin-left: 1%;
 }
+
+/*--LISTAS--*/
+/* -- LOGIN -- */
+div#boxLista {
+    margin: 0 auto;
+    margin-top: 15%;
+    width: 80%;
+    padding: 20px;
+    background-color: #DDDDDD;
+    border-radius: 5px;
+    box-shadow: 0em 0em 3px #000; 
+}

@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Estacionamento Basanela</title>
+        <title>Estacionamento Basanella</title>
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="jquery/alertify_0.3.11/css/alertify.core.css"/>
@@ -27,7 +27,7 @@
     </head>
     <body>
         <div id="header">
-            <h1><strong>Estacionamento Basanela</strong></h1>
+            <h1><strong>Estacionamento Basanella</strong></h1>
         </div>
         <div id="boxLogin">
             <form id="formLogin" action="javascript:;">

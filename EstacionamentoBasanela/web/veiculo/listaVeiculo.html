@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Estacionamento Basanella</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="../jquery/alertify_0.3.11/css/alertify.core.css"/>
+        <link rel="stylesheet" type="text/css" href="../jquery/alertify_0.3.11/css/alertify.bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="../datatable/media/css/jquery.dataTables.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/default.css"/>
+        <style type="text/css">
+            div.dataTables_length label {
+                    width: 460px;
+                    float: left;
+                    text-align: left;
+            }
+
+            div.dataTables_length select {
+                    width: 75px;
+            }
+
+            div.dataTables_filter label {
+                    float: right;
+                    width: 460px;
+            }
+
+            div.dataTables_info {
+                    padding-top: 8px;
+            }
+
+            div.dataTables_paginate {
+                    float: right;
+                    margin: 0;
+            }
+
+            table {
+                    margin: 1em 0;
+                    clear: both;
+            }
+
+            table.dataTable th:active {
+                    outline: none;
+            }            
+            
+        </style>
+        <!-- JS -->
+        <script type="text/javascript" src="../jquery/jquery_1.11.0/jquery_1.11.0.js"></script>
+        <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="../jquery/alertify_0.3.11/js/alertify.js"></script>
+        <script type="text/javascript" src="../js/init.js"></script>
+        <script type="text/javascript" src="../datatable/media/js/jquery.dataTables.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#table_listaVeiculo").dataTable({
+                    "sDom": "<'row'<'span8'l><'span8'f>r>t<'row'<'span8'i><'span8'p>>"
+                });
+            })
+        </script>
+    </head>
+    <body>
+        <div id="header">
+            <h1><strong>Estacionamento Basanella</strong></h1>
+        </div>        
+        <div id="boxLista">
+            <table id="table_listaVeiculo">
+                <thead>
+                    <tr>
+                        <th>Placa</th>
+                        <th>Tipo</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DXX-3590</td>
+                        <td>Carro</td>
+                        <td>Chevrolet</td>
+                        <td>Corsa Sedan</td>
+                        <td><a>Alterar</a> <a>Excluir</a></td>
+                    </tr>
+                    <tr>
+                        <td>TPM-0666</td>
+                        <td>MOTO</td>
+                        <td>HONDA</td>
+                        <td>Twister</td>
+                        <td><a>Alterar</a> <a>Excluir</a></td>
+                    </tr>                    
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
