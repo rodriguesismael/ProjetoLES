@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Estacionamento Basanella</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS -->
+        <link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="../jquery/alertify_0.3.11/css/alertify.core.css"/>
+        <link rel="stylesheet" type="text/css" href="../jquery/alertify_0.3.11/css/alertify.bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/default.css"/>
+        <!-- JS -->
+        <script type="text/javascript" src="../jquery/jquery_1.11.0/jquery_1.11.0.js"></script>
+        <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="../jquery/alertify_0.3.11/js/alertify.js"></script>
+        <script type="text/javascript" src="../js/init.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <h1><strong>Estacionamento Basanella</strong></h1>
+        </div>        
+        <div id="boxFatura">
+            <div id="movimentoInfo">
+                <strong>Veículo:</strong> Corsa Sendan/DXX-3590<br>
+                <strong>Modalidade:</strong> Mensal<br>
+                <strong>Período:</strong> Manhã(01/04/2014 à 01/05/2014)
+            </div>
+            <div id="faturaInfo">
+                <form id="formLogin" action="javascript:;">
+                    <div class="form-group">
+                        <label for="input_operador">Valor</label>
+                        <div class="input-group">
+                          <span class="input-group-addon">R$</span>
+                          <input type="text" class="form-control" disabled="disabled" id="input_valor" name="input_valor" value="65,00"/>
+                        </div>
+                        <input type="hidden" id="input_codPreco" name="input_codPreco" value="codPreco"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="input_senha">Diferença</label><br>
+                        <input type="radio" id="radio_desconto" name="radio_diferenca"/> Desconto
+                        <input type="radio" id="radio_acrescimo" name="radio_diferenca"/> Acréscimo
+                        <div class="input-group">
+                          <span class="input-group-addon">R$</span>
+                          <input type="text" class="form-control" id="input_diferenca" name="input_diferenca"/>
+                        </div>                        
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Dar Baixa" onclick=""/>
+                </form>                
+            </div>
+
+        </div>
+    </body>
+</html>
