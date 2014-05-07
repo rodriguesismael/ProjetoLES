@@ -16,7 +16,7 @@ $(document).ready(function() {
 });
 
 //Efetuar login
-function efetuarLoginRIGHT() {
+function efetuarLogin() {
     if ($("#input_operador").val().trim() == "") {
         alertify.alert("O campo OPERADOR nao foi preenchido!", function() {
             $("#input_operador").focus();
@@ -40,48 +40,24 @@ function efetuarLoginRIGHT() {
         dataType: "json",
         async: false,
         success: function(json) {
-            if (json.status === true) {
-                $.ajax({
-                    url: "Controller?name=FormHome",
-                    type: "POST",
-                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                    dataType: "html",
-                    async: false,
-                    success: function(html) {
-                        $("html").html("");
-                        $("html").html(html);
-                    }
-                });
+            if (json.status == true) {
+                enviar("FormHome");
             }
             else {
-                alertify.alert("Operador e/ou senha incorretos!");
-                $("#input_operador").attr("value", "");
-                $("#input_senha").attr("value", "");
-                $("#input_operador").focus();
+                alertify.alert("Operador e/ou senha incorretos!", function() {
+                    $("#input_operador").val("");
+                    $("#input_senha").val("");
+                    $("#input_operador").focus();
+                    return;
+                });
             }
         }
     });
 }
 
-function efetuarLogin() {
-    if ($("#input_operador").val().trim() == "") {
-        alertify.alert("O campo OPERADOR nao foi preenchido!", function() {
-            $("#input_operador").focus();
-        });
-        return;
-    }
-    if ($("#input_senha").val().trim() == "") {
-        alertify.alert("O campo SENHA nao foi preenchido!", function() {
-            $("#input_senha").focus();
-        });
-        return;
-    }
-    enviar("FormHome");
-}
-
 //Efetuar logoff
 function efetuarLogoff() {
-    confirm('Deseja realmente sair do sistema?', 'Confirmação de Logoff', function(r) {
+    alertify.confirm("Deseja realmente sair do sistema?", function(r) {
         if (r) {
             $.ajax({
                 url: "Controller?name=EfetuarLogoff",

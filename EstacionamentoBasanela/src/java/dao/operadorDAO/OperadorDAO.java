@@ -17,13 +17,13 @@ import modelo.tipoAcesso.TipoAcesso;
  * @author Alvaro Augusto Roberto
  */
 public class OperadorDAO {
-    
+
     private final String INSERT = "";
     private final String UPDATE = "";
     private final String SELECTALL = "";
     private final String SELECTBYID = "";
-    private final String LOGIN = "";
-    
+    private final String LOGIN = "SELECT codOperador, codTipoAcesso, nome, login FROM Operador WHERE login = ? and senha = PASSWORD(?)";
+
     public Operador login(Operador operador) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -31,17 +31,18 @@ public class OperadorDAO {
         con = ConnectionFactory.getConexao();
         try {
             stmt = con.prepareStatement(LOGIN);
+            stmt.setString(1, operador.getLogin());
+            stmt.setString(2, operador.getSenha());
             rs = stmt.executeQuery();
             if (rs.next()) {
                 operador.setCodOperador(rs.getInt("codOperador"));
-                operador.setNome(rs.getString("nome"));
-                operador.setLogin(rs.getString("login"));
-                operador.setSenha(rs.getString("senha"));
                 TipoAcesso tipoAcesso = new TipoAcesso();
                 TipoAcessoDAO tipoAcessoDAO = new TipoAcessoDAO();
                 tipoAcesso.setCodTipoAcesso(rs.getInt("codTipoAcesso"));
-                tipoAcesso = tipoAcessoDAO.selectByID(tipoAcesso);
+                tipoAcesso = tipoAcessoDAO.selectById(tipoAcesso);
                 operador.setTipoAcesso(tipoAcesso);
+                operador.setNome(rs.getString("nome"));
+                operador.setLogin(rs.getString("login"));
             }
         } catch (SQLException ex) {
             throw ex;

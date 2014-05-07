@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.operador.Operador;
 
 /**
@@ -19,8 +20,9 @@ import modelo.operador.Operador;
  * @author Alvaro Augusto Roberto
  */
 public class EfetuarLogin implements UpdateInterface {
-    
+
     public void executa(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
         PrintWriter out = null;
         try {
             out = response.getWriter();
@@ -39,6 +41,9 @@ public class EfetuarLogin implements UpdateInterface {
         boolean status = false;
         if (operador.getCodOperador() != 0) {
             status = true;
+            session.setAttribute("loggedIn", true);
+        } else {
+            session.setAttribute("loggedIn", false);
         }
         out.print("{\"status\":" + status + "}");
     }

@@ -37,13 +37,13 @@ public class BuscarVeiculo implements UpdateInterface {
         } catch (SQLException ex) {
             Logger.getLogger(BuscarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (veiculo.getMarca().getCodMarca() != 0) { //Veiculo existe no BD
+        if (veiculo.getTipo() != 0) { //Veiculo existe no BD
             json += true + ", ";
             json += "\"veiculo\": [{";
-            json += "\"placa\": " + veiculo.getPlaca() + ", ";
+            json += "\"placa\": \"" + veiculo.getPlaca() + "\", ";
             json += "\"tipo\": " + veiculo.getTipo() + ", ";
-            json += "\"marca\": " + veiculo.getMarca().getDescricao() + ", ";
-            json += "\"modelo\": " + veiculo.getModelo().getDescricao();
+            json += "\"marca\": \"" + veiculo.getMarca().getDescricao() + "\", ";
+            json += "\"modelo\": \"" + veiculo.getModelo().getDescricao() + "\"";
             json += "}], ";
             json += "\"emMovimento\": ";
 
