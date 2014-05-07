@@ -7,7 +7,7 @@ import modelo.marca.Marca;
 
 /**
  *
- * @author Ismael
+ * @author Ismael Rodrigues
  */
 public class Modelo {
 

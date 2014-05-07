@@ -8,12 +8,12 @@ import modelo.modelo.Modelo;
 
 /**
  *
- * @author Ismael
+ * @author Ismael Rodrigues
  */
 public class Veiculo {
 
     private String placa;
-    private String tipo;
+    private int tipo;
     private Marca marca;
     private Modelo modelo;
 
@@ -25,11 +25,11 @@ public class Veiculo {
         this.placa = placa;
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 

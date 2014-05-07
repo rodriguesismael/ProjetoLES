@@ -31,6 +31,9 @@
             <!-- Topo -->
             <div id="top">
                 <div id="topLeft">
+                    <button type="button" class="btn btn-primary" onclick="enviar('FormCadVeiculoAvulso')">Cadastrar Veiculo Avulso</button>
+                    <button type="button" class="btn btn-primary" onclick="enviar('FormCadVeiculoMensal')">Cadastrar Veiculo Mensal</button>
+                    <button type="button" class="btn btn-primary" onclick="enviar('ListarVeiculo')">Listar Veiculos</button>
                 </div>
                 <div id="topCenter">
                 </div>

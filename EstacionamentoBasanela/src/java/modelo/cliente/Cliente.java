@@ -10,38 +10,19 @@ import modelo.veiculo.Veiculo;
 
 /**
  *
- * @author Ismael
+ * @author Ismael Rodrigues
  */
 public class Cliente {
 
     private int codCliente;
-    private int periodo;
     private String nome;
     private String endereco;
-    private String telefone;
-    private String celular;
     private Estado estado;
     private Cidade cidade;
+    private String telefone;
+    private String celular;
+    private int periodo;
     private List<Veiculo> listaVeiculo;
-
-    /**
-     * o atributo periodo está no diagrama do banco mas não no de classes **
-     */
-    public int getPeriodo() {
-        return periodo;
-    }
-
-    public void setPeriodo(int periodo) {
-        this.periodo = periodo;
-    }
-
-    public List<Veiculo> getListaVeiculo() {
-        return listaVeiculo;
-    }
-
-    public void setListaVeiculo(List<Veiculo> listaVeiculo) {
-        this.listaVeiculo = listaVeiculo;
-    }
 
     public int getCodCliente() {
         return codCliente;
@@ -67,22 +48,6 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
     public Estado getEstado() {
         return estado;
     }
@@ -99,4 +64,35 @@ public class Cliente {
         this.cidade = cidade;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getCelular() {
+        return celular;
+    }
+
+    public void setCelular(String celular) {
+        this.celular = celular;
+    }
+
+    public int getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(int periodo) {
+        this.periodo = periodo;
+    }
+
+    public List<Veiculo> getListaVeiculo() {
+        return listaVeiculo;
+    }
+
+    public void setListaVeiculo(List<Veiculo> listaVeiculo) {
+        this.listaVeiculo = listaVeiculo;
+    }
 }

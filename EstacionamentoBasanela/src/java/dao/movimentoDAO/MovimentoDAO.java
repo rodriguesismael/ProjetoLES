@@ -1,9 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Classe MovimentoDAO
  */
-
 package dao.movimentoDAO;
 
 import dao.ConnectionFactory;
@@ -24,195 +21,168 @@ import java.util.List;
  * @author ismael
  */
 public class MovimentoDAO {
-    public static final String INSERT="INSERT INTO Movimento (codCliente, placa, dataInicio, dataTermino) VALUES(?,?,?,?)";
-    public static final String SELECTALL="SELECT codMovimento,codCliente,placa,dataInicio,dataTermino FROM Movimento";
-    public static final String SELECTBYID= "SELECT codMovimento,codCliente,placa,dataInicio,dataTermino FROM Movimento "
-            + "WHERE codMovimento = ?";
-    public static final String SELECTBYCLIENTE= "SELECT codMovimento,codCliente,placa,dataInicio,dataTermino FROM Movimento "
-            + "WHERE codCliente = ?";
-    public static final String SELECTBYVEICULO= "SELECT codMovimento,codCliente,placa,dataInicio,dataTermino FROM Movimento "
-            + "WHERE placa = ?";
-    
-    public void insert(Movimento movimento) throws SQLException{
+
+    public static final String INSERT = "INSERT INTO Movimento (codCliente, placa, dataInicio, dataTermino) VALUES(?,?,?,?)";
+    public static final String SELECTALL = "SELECT codMovimento, codCliente, placa, dataInicio, dataTermino FROM Movimento";
+    public static final String SELECTBYID = "SELECT codMovimento, codCliente, placa, dataInicio, dataTermino FROM Movimento WHERE codMovimento = ?";
+    public static final String SELECTBYCLIENTE = "SELECT codMovimento, codCliente, placa, dataInicio, dataTermino FROM Movimento WHERE codCliente = ?";
+    public static final String SELECTBYVEICULO = "SELECT codMovimento, codCliente, placa, dataInicio, dataTermino FROM Movimento WHERE placa = ?";
+
+    public void insert(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
-        try{
+        try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(INSERT);
-            //tratar para o valor padrao de id de cliente ser 0 quando for veiculo avulso
-            if(movimento.getCliente() == null)
-                stmt.setInt(1, 0);
-            else
-                stmt.setInt(1, movimento.getCliente().getCodCliente());
+            stmt.setInt(1, movimento.getCliente().getCodCliente());
             stmt.setString(2, movimento.getVeiculo().getPlaca());
-            stmt.setString(3, movimento.getData_inicio());
-            stmt.setString(4, movimento.getData_termino());
+            stmt.setString(3, movimento.getDataInicio());
+            stmt.setString(4, movimento.getDataTermino());
             stmt.executeUpdate();
-                    
-        }catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
-        }finally{
-            ConnectionFactory.closeAll(con,stmt);
-        }  
+        } finally {
+            ConnectionFactory.closeAll(con, stmt);
+        }
     }
-    
-    public List<Movimento> selectAll() throws SQLException{
+
+    public List<Movimento> selectAll() throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Movimento> lista = new ArrayList<Movimento>();
-        try{
+        try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTALL);
             rs = stmt.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Movimento movimento = new Movimento();
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
-                movimento.setData_inicio(rs.getString("dataInicio"));
-                movimento.setData_termino(rs.getString("dataTermino"));
-                Veiculo veiculo = new Veiculo();
-                veiculo.setPlaca(rs.getString("placa"));
-                VeiculoDAO veiculoDAO = new VeiculoDAO();
-                veiculo = veiculoDAO.selectById(veiculo);
-                movimento.setVeiculo(veiculo);                
-                if(rs.getInt("codCliente") != 0){
-                    Cliente cliente = new Cliente();
-                    cliente.setCodCliente(rs.getInt("codCliente"));
-                    ClienteDAO cliDAO = new ClienteDAO();
-                    cliente = cliDAO.selectById(cliente);
-                    movimento.setCliente(cliente);
-                }else{
-                    movimento.setCliente(null);
+                Cliente cliente = new Cliente();
+                ClienteDAO clienteDAO = new ClienteDAO();
+                cliente.setCodCliente(rs.getInt("codCliente"));
+                if (cliente.getCodCliente() != 0) {
+                    cliente = clienteDAO.selectById(cliente);
                 }
+                movimento.setCliente(cliente);
+                Veiculo veiculo = new Veiculo();
+                VeiculoDAO veiculoDAO = new VeiculoDAO();
+                veiculo.setPlaca(rs.getString("placa"));
+                veiculo = veiculoDAO.selectById(veiculo);
+                movimento.setVeiculo(veiculo);
+                movimento.setDataInicio(rs.getString("dataInicio"));
+                movimento.setDataTermino(rs.getString("dataTermino"));
                 lista.add(movimento);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
-        }finally{
+        } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
         return lista;
     }
-    
-    public Movimento selectById(Movimento movimento) throws SQLException{
+
+    public Movimento selectById(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        try{
+        try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYID);
             stmt.setInt(1, movimento.getCodMovimento());
             rs = stmt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
-                movimento.setData_inicio(rs.getString("dataInicio"));
-                movimento.setData_termino(rs.getString("dataTermino"));
-                Veiculo veiculo = new Veiculo();
-                veiculo.setPlaca(rs.getString("placa"));
-                VeiculoDAO veiculoDAO = new VeiculoDAO();
-                veiculo = veiculoDAO.selectById(veiculo);
-                movimento.setVeiculo(veiculo);                
-                if(rs.getInt("codCliente") != 0){
-                    Cliente cliente = new Cliente();
-                    cliente.setCodCliente(rs.getInt("codCliente"));
-                    ClienteDAO cliDAO = new ClienteDAO();
-                    cliente = cliDAO.selectById(cliente);
-                    movimento.setCliente(cliente);
-                }else{
-                    movimento.setCliente(null);
+                Cliente cliente = new Cliente();
+                ClienteDAO clienteDAO = new ClienteDAO();
+                cliente.setCodCliente(rs.getInt("codCliente"));
+                if (cliente.getCodCliente() != 0) {
+                    cliente = clienteDAO.selectById(cliente);
                 }
+                movimento.setCliente(cliente);
+                Veiculo veiculo = new Veiculo();
+                VeiculoDAO veiculoDAO = new VeiculoDAO();
+                veiculo.setPlaca(rs.getString("placa"));
+                veiculo = veiculoDAO.selectById(veiculo);
+                movimento.setVeiculo(veiculo);
+                movimento.setDataInicio(rs.getString("dataInicio"));
+                movimento.setDataTermino(rs.getString("dataTermino"));
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
-        }finally{
+        } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
         return movimento;
-    }    
-    
-    public List<Movimento> selectByCliente(Movimento movimento) throws SQLException{
+    }
+
+    public List<Movimento> selectByCliente(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Movimento> lista = new ArrayList<Movimento>();
-        try{
+        try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYCLIENTE);
             stmt.setInt(1, movimento.getCliente().getCodCliente());
             rs = stmt.executeQuery();
             Cliente cliente = new Cliente();
+            ClienteDAO clienteDAO = new ClienteDAO();
             cliente.setCodCliente(movimento.getCliente().getCodCliente());
-            ClienteDAO cliDAO = new ClienteDAO();
-            cliente = cliDAO.selectById(cliente);
-            while(rs.next()){
-                Movimento nMovimento = new Movimento();
-                nMovimento.setCodMovimento(rs.getInt("codMovimento"));
-                nMovimento.setData_inicio(rs.getString("dataInicio"));
-                nMovimento.setData_termino(rs.getString("dataTermino"));
+            cliente = clienteDAO.selectById(cliente);
+            while (rs.next()) {
+                Movimento novoMovimento = new Movimento();
+                novoMovimento.setCodMovimento(rs.getInt("codMovimento"));
+                novoMovimento.setCliente(cliente);
                 Veiculo veiculo = new Veiculo();
-                veiculo.setPlaca(rs.getString("placa"));
                 VeiculoDAO veiculoDAO = new VeiculoDAO();
+                veiculo.setPlaca(rs.getString("placa"));
                 veiculo = veiculoDAO.selectById(veiculo);
-                nMovimento.setVeiculo(veiculo);
-                nMovimento.setCliente(cliente);
-                /*
-                if(rs.getInt("codCliente") != 0){
-                    Cliente cliente = new Cliente();
-                    cliente.setCodCliente(rs.getInt("codCliente"));
-                    ClienteDAO cliDAO = new ClienteDAO();
-                    cliente = cliDAO.selectById(cliente);
-                    
-                }else{
-                    nMovimento.setCliente(null);
-                }*/
-                lista.add(nMovimento);
+                novoMovimento.setVeiculo(veiculo);
+                novoMovimento.setDataInicio(rs.getString("dataInicio"));
+                novoMovimento.setDataTermino(rs.getString("dataTermino"));
+                lista.add(novoMovimento);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
-        }finally{
+        } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
         return lista;
-    }    
-       
-    public List<Movimento> selectByVeiculo(Movimento movimento) throws SQLException{
+    }
+
+    public List<Movimento> selectByVeiculo(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Movimento> lista = null;
-        try{
+        List<Movimento> lista = new ArrayList<Movimento>();
+        try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYVEICULO);
             stmt.setString(1, movimento.getVeiculo().getPlaca());
             rs = stmt.executeQuery();
-            
             Veiculo veiculo = new Veiculo();
-            veiculo.setPlaca(movimento.getVeiculo().getPlaca());
             VeiculoDAO veiculoDAO = new VeiculoDAO();
+            veiculo.setPlaca(movimento.getVeiculo().getPlaca());
             veiculo = veiculoDAO.selectById(veiculo);
-            
-            while(rs.next()){
-                Movimento nMovimento = new Movimento();
-                nMovimento.setCodMovimento(rs.getInt("codMovimento"));
-                nMovimento.setData_inicio(rs.getString("dataInicio"));
-                nMovimento.setData_termino(rs.getString("dataTermino"));
-                nMovimento.setVeiculo(veiculo);                
-                if(rs.getInt("codCliente") != 0){
-                    Cliente cliente = new Cliente();
-                    cliente.setCodCliente(rs.getInt("codCliente"));
-                    ClienteDAO cliDAO = new ClienteDAO();
-                    cliente = cliDAO.selectById(cliente);
-                    nMovimento.setCliente(cliente);
-                }else{
-                    nMovimento.setCliente(null);
+            while (rs.next()) {
+                Movimento novoMovimento = new Movimento();
+                novoMovimento.setCodMovimento(rs.getInt("codMovimento"));
+                novoMovimento.setDataInicio(rs.getString("dataInicio"));
+                novoMovimento.setDataTermino(rs.getString("dataTermino"));
+                Cliente cliente = new Cliente();
+                ClienteDAO clienteDAO = new ClienteDAO();
+                cliente.setCodCliente(rs.getInt("codCliente"));
+                if (cliente.getCodCliente() != 0) {
+                    cliente = clienteDAO.selectById(cliente);
                 }
-                lista.add(nMovimento);
+                lista.add(novoMovimento);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             throw e;
-        }finally{
+        } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
         return lista;
-    }    
+    }
 }

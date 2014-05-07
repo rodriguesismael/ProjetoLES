@@ -17,18 +17,18 @@ import modelo.marca.Marca;
  *
  * @author Alvaro Augusto Roberto
  */
-public class FormCadVeiculo implements ControllerInterface {
+public class FormCadVeiculoAvulso implements ControllerInterface {
 
     private List<Marca> listaMarca;
 
     public String call(HttpServletRequest request, HttpServletResponse response) {
-        MarcaDAO marcaDAO = new MarcaDAO();
+        /*MarcaDAO marcaDAO = new MarcaDAO();
         try {
             listaMarca = marcaDAO.selectAll();
         } catch (SQLException ex) {
             Logger.getLogger(FormCadVeiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.setAttribute("listaMarca", listaMarca);
-        return "veiculo/formCadVeiculo.jsp";
+        request.setAttribute("listaMarca", listaMarca);*/
+        return "veiculo/formCadVeiculoAvulso.jsp";
     }
 }

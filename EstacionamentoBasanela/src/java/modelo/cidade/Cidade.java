@@ -7,7 +7,7 @@ import modelo.estado.Estado;
 
 /**
  *
- * @author Ismael
+ * @author Ismael Rodrigues
  */
 public class Cidade {
 
@@ -38,5 +38,4 @@ public class Cidade {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
 }

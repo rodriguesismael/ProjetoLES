@@ -17,7 +17,7 @@ import negocio.outro.EfetuarLogin;
 
 /**
  *
- * @author Alvaro
+ * @author Alvaro Augusto Roberto
  */
 public class BuscarVeiculo implements UpdateInterface {
 

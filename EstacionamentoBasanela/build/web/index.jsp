@@ -15,12 +15,14 @@
         <title>Estacionamento Basanella</title>
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="jquery/dataTables_1.9.4/css/dataTables.css"/>
         <link rel="stylesheet" type="text/css" href="jquery/alertify_0.3.11/css/alertify.core.css"/>
         <link rel="stylesheet" type="text/css" href="jquery/alertify_0.3.11/css/alertify.bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="css/default.css"/>
         <!-- JS -->
         <script type="text/javascript" src="jquery/jquery_1.11.0/jquery_1.11.0.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="jquery/dataTables_1.9.4/js/dataTables.js"></script>
         <script type="text/javascript" src="jquery/alertify_0.3.11/js/alertify.js"></script>
         <script type="text/javascript" src="js/init.js"></script>
         <script type="text/javascript" src="js/initLogin.js"></script>

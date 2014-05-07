@@ -14,19 +14,10 @@ import modelo.cliente.Cliente;
 public class Movimento {
 
     private int codMovimento;
-    private String data_inicio;
-    private String data_termino;
-    private Double valor;
-    private Veiculo veiculo;
     private Cliente cliente;
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+    private Veiculo veiculo;
+    private String dataInicio;
+    private String dataTermino;
 
     public int getCodMovimento() {
         return codMovimento;
@@ -36,28 +27,12 @@ public class Movimento {
         this.codMovimento = codMovimento;
     }
 
-    public String getData_inicio() {
-        return data_inicio;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setData_inicio(String data_inicio) {
-        this.data_inicio = data_inicio;
-    }
-
-    public String getData_termino() {
-        return data_termino;
-    }
-
-    public void setData_termino(String data_termino) {
-        this.data_termino = data_termino;
-    }
-
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Veiculo getVeiculo() {
@@ -66,5 +41,21 @@ public class Movimento {
 
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
+    }
+
+    public String getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public String getDataTermino() {
+        return dataTermino;
+    }
+
+    public void setDataTermino(String dataTermino) {
+        this.dataTermino = dataTermino;
     }
 }

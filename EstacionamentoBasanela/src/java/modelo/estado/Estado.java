@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author Ismael
+ * @author Ismael Rodrigues
  */
 public class Estado {
 
@@ -16,14 +16,6 @@ public class Estado {
     private String uf;
     private String descricao;
     private List<Cidade> listaCidade;
-
-    public List<Cidade> getListaCidade() {
-        return listaCidade;
-    }
-
-    public void setListaCidade(List<Cidade> listaCidade) {
-        this.listaCidade = listaCidade;
-    }
 
     public int getCodEstado() {
         return codEstado;
@@ -47,5 +39,13 @@ public class Estado {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public List<Cidade> getListaCidade() {
+        return listaCidade;
+    }
+
+    public void setListaCidade(List<Cidade> listaCidade) {
+        this.listaCidade = listaCidade;
     }
 }
