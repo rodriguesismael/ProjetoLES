@@ -3,8 +3,6 @@
  */
 package modelo.operador;
 
-import modelo.tipoAcesso.TipoAcesso;
-
 /**
  *
  * @author Alvaro Augusto Roberto
@@ -15,7 +13,8 @@ public class Operador {
     private String nome;
     private String login;
     private String senha;
-    private TipoAcesso tipoAcesso;
+    private Boolean administrador;
+    private Boolean status;
 
     public int getCodOperador() {
         return codOperador;
@@ -49,11 +48,19 @@ public class Operador {
         this.senha = senha;
     }
 
-    public TipoAcesso getTipoAcesso() {
-        return tipoAcesso;
+    public Boolean isAdministrador() {
+        return administrador;
     }
 
-    public void setTipoAcesso(TipoAcesso tipoAcesso) {
-        this.tipoAcesso = tipoAcesso;
+    public void setAdministrador(Boolean administrador) {
+        this.administrador = administrador;
+    }
+
+    public Boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

@@ -17,6 +17,7 @@ public class EfetuarLogoff implements ControllerInterface {
     public String call(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         session.setAttribute("loggedIn", false);
+        session.setAttribute("administrador", false);
         return "index.jsp";
     }
 }

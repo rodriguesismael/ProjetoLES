@@ -1,98 +1,45 @@
-CREATE DATABASE IF NOT EXISTS estacionamento;
-USE estacionamento;
-CREATE TABLE Marca(
-	codMarca INT NOT NULL auto_increment,
-    descricao VARCHAR(200) NOT NULL,
-	PRIMARY KEY (codMarca)
+--
+-- Criacao da tabela Operador
+--
+CREATE TABLE Operador (
+	codOperador INT NOT NULL AUTO_INCREMENT,
+	nome VARCHAR(200) NOT NULL,
+	login VARCHAR(20) NOT NULL,
+	senha VARCHAR(32) NOT NULL,
+	administrador BIT NOT NULL,
+	status BIT NOT NULL,
+	PRIMARY KEY (codOperador)
 );
+-- ------------------------------------------------------------------------
 
-/*CREATE GENERATOR gnMarca;
-
-SET GENERATOR gnMarca TO 0;
-
-SET TERM %;
-CREATE TRIGGER Marca_AI FOR Marca ACTIVE
-	BEFORE INSERT POSITION 0
-	AS
-		BEGIN
-			NEW.codMarca = GEN_ID(gnMarca, 1);
-		END %
-SET TERM ;%*/
-
-CREATE TABLE Modelo(
-	codModelo INT NOT NULL auto_increment,
-	codMarca INT NOT NULL,
-	descricao VARCHAR(200) NOT NULL,
-	PRIMARY KEY (codModelo),
-	FOREIGN KEY (codMarca) REFERENCES Marca(codMarca)
-);
-
-/*CREATE GENERATOR gnModelo;
-
-SET GENERATOR gnModelo TO 0;
-
-SET TERM %;
-CREATE TRIGGER Modelo_AI FOR Modelo ACTIVE
-	BEFORE INSERT POSITION 0
-	AS
-		BEGIN
-			NEW.codModelo = GEN_ID(gnModelo, 1);
-		END %
-SET TERM ;%*/
-
-CREATE TABLE Veiculo(
-	placa VARCHAR(8) NOT NULL,
-	tipo VARCHAR(1) NOT NULL,
-	codMarca INT NOT NULL,
-	codModelo INT NOT NULL,
-	PRIMARY KEY (placa),
-	FOREIGN KEY (codMarca) REFERENCES Marca(codMarca),
-	FOREIGN KEY (codModelo) REFERENCES Modelo(codModelo)
-);
-
-CREATE TABLE Estado(
-	codEstado INT NOT NULL auto_increment,
+--
+-- Criacao da tabela Estado
+--
+CREATE TABLE Estado (
+	codEstado INT NOT NULL AUTO_INCREMENT,
 	uf VARCHAR(2) NOT NULL,
 	descricao VARCHAR(200) NOT NULL,
 	PRIMARY KEY (codEstado)
 );
+-- ------------------------------------------------------------------------
 
-/*CREATE GENERATOR gnEstado;
-
-SET GENERATOR gnEstado TO 0;
-
-SET TERM %;
-CREATE TRIGGER Estado_AI FOR Estado ACTIVE
-	BEFORE INSERT POSITION 0
-	AS
-		BEGIN
-			NEW.codEstado = GEN_ID(gnEstado, 1);
-		END %
-SET TERM ;%*/
-
-CREATE TABLE Cidade(
-	codCidade INT NOT NULL auto_increment,
+--
+-- Criacao da tabela Cidade
+--
+CREATE TABLE Cidade (
+	codCidade INT NOT NULL AUTO_INCREMENT,
 	codEstado INT NOT NULL,
 	descricao VARCHAR(200) NOT NULL,
 	PRIMARY KEY (codCidade),
 	FOREIGN KEY (codEstado) REFERENCES Estado(codEstado)
 );
+-- ------------------------------------------------------------------------
 
-/*CREATE GENERATOR gnCidade;
-
-SET GENERATOR gnCidade TO 0;
-
-SET TERM %;
-CREATE TRIGGER Cidade_AI FOR Cidade ACTIVE
-	BEFORE INSERT POSITION 0
-	AS
-		BEGIN
-			NEW.codCidade = GEN_ID(gnCidade, 1);
-		END %
-SET TERM ;%*/
-
+--
+-- Criacao da tabela Cliente
+--
 CREATE TABLE Cliente(
-	codCliente VARCHAR(11) NOT NULL,
+	cpf VARCHAR(14) NOT NULL,
 	nome VARCHAR(200) NOT NULL,
 	endereco VARCHAR(200) NOT NULL,
 	codEstado INT NOT NULL,
@@ -100,56 +47,76 @@ CREATE TABLE Cliente(
 	telefone VARCHAR(13) NOT NULL,
 	celular VARCHAR(14) DEFAULT NULL,
 	periodo INT NOT NULL,
-	PRIMARY KEY (codCliente),
+	status BIT NOT NULL,
+	PRIMARY KEY (cpf),
 	FOREIGN KEY (codEstado) REFERENCES Estado(codEstado),
 	FOREIGN KEY (codCidade) REFERENCES Cidade(codCidade)
 );
+-- ------------------------------------------------------------------------
 
-/*CREATE GENERATOR gnCliente;
+--
+-- Criacao da tabela Marca
+--
+CREATE TABLE Marca (
+	codMarca INT NOT NULL AUTO_INCREMENT,
+    descricao VARCHAR(200) NOT NULL,
+	PRIMARY KEY (codMarca)
+);
+-- ------------------------------------------------------------------------
 
-SET GENERATOR gnCliente TO 0;
+--
+-- Criacao da tabela Modelo
+--
+CREATE TABLE Modelo (
+	codModelo INT NOT NULL AUTO_INCREMENT,
+	codMarca INT NOT NULL,
+	descricao VARCHAR(200) NOT NULL,
+	PRIMARY KEY (codModelo),
+	FOREIGN KEY (codMarca) REFERENCES Marca(codMarca)
+);
+-- ------------------------------------------------------------------------
 
-SET TERM %;
-CREATE TRIGGER Cliente_AI FOR Cliente ACTIVE
-	BEFORE INSERT POSITION 0
-	AS
-		BEGIN
-			NEW.codCliente = GEN_ID(gnCliente, 1);
-		END %
-SET TERM ;%*/
-
-CREATE TABLE ClienteXVeiculo(
-	codCliente varchar(11) NOT NULL,
+--
+-- Criacao da tabela Veiculo
+--
+CREATE TABLE Veiculo (
 	placa VARCHAR(8) NOT NULL,
-	FOREIGN KEY (codCliente) REFERENCES Cliente(codCliente),
+	tipoVeiculo BIT NOT NULL,
+	codMarca INT NOT NULL,
+	codModelo INT NOT NULL,
+	PRIMARY KEY (placa),
+	FOREIGN KEY (codMarca) REFERENCES Marca(codMarca),
+	FOREIGN KEY (codModelo) REFERENCES Modelo(codModelo)
+);
+-- ------------------------------------------------------------------------
+
+--
+-- Criacao da tabela ClienteXVeiculo
+--
+CREATE TABLE ClienteXVeiculo(
+	cpf varchar(14) NOT NULL,
+	placa VARCHAR(8) NOT NULL,
+	FOREIGN KEY (cpf) REFERENCES Cliente(cpf),
 	FOREIGN KEY (placa) REFERENCES Veiculo(placa)
 );
+-- ------------------------------------------------------------------------
 
+--
+-- Criacao da tabela Movimento
+--
 CREATE TABLE Movimento (
-	codMovimento INT NOT NULL auto_increment,
-	codCliente INT DEFAULT NULL,
+	codMovimento INT NOT NULL AUTO_INCREMENT,
+	cpf VARCHAR(14) DEFAULT NULL,
 	placa VARCHAR(8) NOT NULL,
 	dataInicio DATE NOT NULL,
 	dataTermino DATE DEFAULT NULL,
 	PRIMARY KEY (codMovimento),
-	FOREIGN KEY (codCliente) REFERENCES Cliente(codCliente),
+	FOREIGN KEY (cpf) REFERENCES Cliente(cpf),
 	FOREIGN KEY (placa) REFERENCES Veiculo(placa)
 );
+-- ------------------------------------------------------------------------
 
-/*CREATE GENERATOR gnMovimento;
-
-SET GENERATOR gnMovimento TO 0;
-
-SET TERM %;
-CREATE TRIGGER Movimento_AI FOR Movimento ACTIVE
-	BEFORE INSERT POSITION 0
-	AS
-		BEGIN
-			NEW.codMovimento = GEN_ID(gnMovimento, 1);
-		END %
-SET TERM ;%*/
-
-CREATE TABLE Fatura (
+/*CREATE TABLE Fatura (
 	codFatura INT NOT NULL auto_increment,
 	codMovimento INT NOT NULL,
 	dataVencimento DATE,
@@ -157,17 +124,4 @@ CREATE TABLE Fatura (
 	status INT NOT NULL,
 	PRIMARY KEY (codFatura),
 	FOREIGN KEY (codMovimento) REFERENCES Movimento(codMovimento)
-);
-
-/*CREATE GENERATOR gnFatura;
-
-SET GENERATOR gnFatura TO 0;
-
-SET TERM %;
-CREATE TRIGGER Fatura_AI FOR Fatura ACTIVE
-	BEFORE INSERT POSITION 0
-	AS
-		BEGIN
-			NEW.codFatura = GEN_ID(gnFatura, 1);
-		END %
-SET TERM ;%*/
+);*/
