@@ -25,6 +25,7 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
         <script type="text/javascript" src="jquery/dataTables_1.9.4/js/dataTables.js"></script>
         <script type="text/javascript" src="jquery/alertify_0.3.11/js/alertify.js"></script>
+        <script type="text/javascript" src="jquery/maskedInput/jquery.maskedinput.js"></script>
         <script type="text/javascript" src="js/init.js"></script>
         <script type="text/javascript" src="js/initLogin.js"></script>
     </head>
@@ -36,11 +37,11 @@
             <form id="formLogin" action="javascript:;">
                 <div class="form-group">
                     <label for="input_operador">Operador</label>
-                    <input type="text" class="form-control" id="input_operador" name="input_operador"/>
+                    <input type="text" class="form-control" id="input_operador" name="input_operador" maxlength="20"/>
                 </div>
                 <div class="form-group">
                     <label for="input_senha">Senha</label>
-                    <input type="password" class="form-control input-sm" id="input_senha" name="input_senha"/>
+                    <input type="password" class="form-control input-sm" id="input_senha" name="input_senha" maxlength="10"/>
                 </div>
                 <input type="submit" class="btn btn-primary" value="Entrar" onclick="efetuarLogin()"/>
             </form>

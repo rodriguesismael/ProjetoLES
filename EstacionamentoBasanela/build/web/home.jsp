@@ -16,6 +16,13 @@
         <!-- JS -->
         <script type="text/javascript" src="js/cliente/initCliente.js"></script>
         <script type="text/javascript" src="js/veiculo/initVeiculo.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#input_veiculo").mask("aaa-9999");
+                $("#input_cliente").mask("999.999.999-99");
+            });
+
+        </script>
     </head>
     <body>
         <c:choose>
@@ -35,7 +42,7 @@
                     <div id="top">
                         <div id="topLeft">
                             <div class="input-group">
-                                <input type="text" class="form-control"/>
+                                <input type="text" class="form-control" id="input_veiculo" name="input_veiculo" placeholder="XXX-0123"/>
                                 <span class="input-group-btn">
                                     <button type="button" onclick="javascript:;" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                                 </span>
@@ -44,7 +51,7 @@
                         </div>
                         <div id="topRight">
                             <div class="input-group">
-                                <input type="text" class="form-control"/>
+                                <input type="text" class="form-control" id="input_cliente" name="input_cliente" placeholder="000.000.000-00"/>
                                 <span class="input-group-btn">
                                     <button type="button" onclick="javascript:;" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                                 </span>
