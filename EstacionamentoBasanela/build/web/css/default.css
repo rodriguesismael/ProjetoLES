@@ -31,62 +31,74 @@ form#formLogin {
 
 /* -- HOME -- */
 div#top {
-    width: 80%;
+    width: 900px;
+    height: 150px;
     margin: 0 auto;
-    height: 200px;
 }
 
 #topLeft {
-    width: 25%;
+    width: 445px;
     height: 100%;
-    background-color: green;
+    background-color: #C1CDC1;
     float: left;
-}
-
-#topCenter {
-    width: 48%;
-    height: 100%;
-    background-color: blue;
-    float: left;
-    margin-left: 1%;
 }
 
 #topRight {
-    width: 25%;
+    width: 445px;
     height: 100%;
-    background-color: green;
+    background-color: #C6E2FF;
     float: left;
-    margin-left: 1%;
+    margin-left: 10px;
+}
+
+#topLeft .input-group, #topRight .input-group {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+#topLeft h3, #topRight h3 {
+    float: right;
+    margin-top: 25px;
+    margin-right: 10px;
 }
 
 div#bottom {
-    width: 80%;
+    width: 900px;
+    height: 150px;
     margin: 0 auto;
     margin-top: 10px;
-    height: 200px;
 }
 
-#bottomLeft {
-    width: 25%;
+#bottomLeft1 {
+    width: 217.5px;
     height: 100%;
     background-color: green;
     float: left;
 }
 
-#bottomCenter {
-    width: 48%;
-    height: 100%;
-    background-color: blue;
-    float: left;
-    margin-left: 1%;
-}
-
-#bottomRight {
-    width: 25%;
+#bottomLeft2 {
+    width: 217.5px;
     height: 100%;
     background-color: green;
     float: left;
-    margin-left: 1%;
+    margin-left: 10px;
+}
+
+#bottomRight1 {
+    width: 217.5px;
+    height: 100%;
+    background-color: green;
+    float: left;
+    margin-left: 10px;
+}
+
+#bottomRight2 {
+    width: 217.5px;
+    height: 100%;
+    background-color: green;
+    float: left;
+    margin-left: 10px;
 }
 
 /*--LISTAS--*/

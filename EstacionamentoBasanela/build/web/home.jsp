@@ -34,22 +34,33 @@
                     <!-- Topo -->
                     <div id="top">
                         <div id="topLeft">
-                            <button type="button" class="btn btn-primary" onclick="enviar('FormCadVeiculoAvulso')">Cadastrar Veiculo Avulso</button>
-                            <button type="button" class="btn btn-primary" onclick="enviar('FormCadVeiculoMensal')">Cadastrar Veiculo Mensal</button>
-                            <button type="button" class="btn btn-primary" onclick="enviar('ListarVeiculo')">Listar Veiculos</button>
-                        </div>
-                        <div id="topCenter">
+                            <div class="input-group">
+                                <input type="text" class="form-control"/>
+                                <span class="input-group-btn">
+                                    <button type="button" onclick="javascript:;" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </span>
+                            </div>
+                            <h3>Consulta de Veiculo</h3>
                         </div>
                         <div id="topRight">
+                            <div class="input-group">
+                                <input type="text" class="form-control"/>
+                                <span class="input-group-btn">
+                                    <button type="button" onclick="javascript:;" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                                </span>
+                            </div>
+                            <h3>Consulta de Cliente</h3>
                         </div>
                     </div>
                     <!-- Base -->
                     <div id="bottom">
-                        <div id="bottomLeft">
+                        <div id="bottomLeft1">
                         </div>
-                        <div id="bottomCenter">
+                        <div id="bottomLeft2">
                         </div>
-                        <div id="bottomRight">
+                        <div id="bottomRight1">
+                        </div>
+                        <div id="bottomRight1">
                         </div>
                     </div>
                 </div>

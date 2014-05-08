@@ -15,6 +15,7 @@
         <title>Estacionamento Basanella</title>
         <!-- CSS -->
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.css"/>
         <link rel="stylesheet" type="text/css" href="jquery/dataTables_1.9.4/css/dataTables.css"/>
         <link rel="stylesheet" type="text/css" href="jquery/alertify_0.3.11/css/alertify.core.css"/>
         <link rel="stylesheet" type="text/css" href="jquery/alertify_0.3.11/css/alertify.bootstrap.css"/>
