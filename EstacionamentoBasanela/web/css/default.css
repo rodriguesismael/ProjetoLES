@@ -1,3 +1,11 @@
+#barra-progresso{
+    width: 300px;
+    margin: 0 auto;
+    display: none;
+}
+
+
+
 /* -- HEADER -- */
 div#header {
     background-color: #4d4d4d;

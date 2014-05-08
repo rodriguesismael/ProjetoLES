@@ -23,6 +23,7 @@
         <!-- JS -->
         <script type="text/javascript" src="jquery/jquery_1.11.0/jquery_1.11.0.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+        <script type="text/javascript" src="jquery/blockui/js/blockui.js"></script>
         <script type="text/javascript" src="jquery/dataTables_1.9.4/js/dataTables.js"></script>
         <script type="text/javascript" src="jquery/alertify_0.3.11/js/alertify.js"></script>
         <script type="text/javascript" src="jquery/maskedInput/jquery.maskedinput.js"></script>
@@ -30,6 +31,9 @@
         <script type="text/javascript" src="js/initLogin.js"></script>
     </head>
     <body>
+        <div id="barra-progresso" class="progress progress-striped active">
+            <div class="progress-bar" style="width: 100%"></div>
+        </div>
         <div id="header">
             <h1><strong>Estacionamento Basanella</strong></h1>
         </div>

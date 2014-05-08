@@ -1,4 +1,11 @@
 --
+-- Criando base de dados caso nao exista
+--
+CREATE DATABASE IF NOT EXISTS basanelapark;
+USE basanelapark;
+--------------------------------------------------------------------------
+
+--
 -- Criacao da tabela Operador
 --
 CREATE TABLE Operador (

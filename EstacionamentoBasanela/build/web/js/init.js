@@ -1,5 +1,6 @@
 //Função responsável por chamar uma regra de negócio sem parametro
 function enviar(regraNegocio) {
+    block();
     $.ajax({
         url: "Controller?name=" + regraNegocio,
         type: "POST",
@@ -10,5 +11,19 @@ function enviar(regraNegocio) {
             $("body").html("");
             $("body").html(html);
         }
+    });
+}
+
+function block() {
+    $(document).ajaxStart(function() {
+        $.blockUI({
+            message: $("#barra-progresso"),
+            css: {
+                border: "none",
+                backgroundColor: "transparent"
+            }
+        });
+    }).ajaxStop(function() {
+        $.unblockUI();
     });
 }
