@@ -40,8 +40,8 @@ public class EstadoDAO {
               estado.setDescricao("descricao");
               lista.add(estado);
           }
-      }catch(SQLException e){
-          throw e;
+      }catch(SQLException ex){
+          throw ex;
       }finally{
           ConnectionFactory.closeAll(con,stmt,rs);
       }
@@ -61,8 +61,8 @@ public class EstadoDAO {
                 estado.setUf(rs.getString("uf"));
                 estado.setDescricao(rs.getString("descricao"));
             }
-        } catch (SQLException e){
-            throw e;
+        } catch (SQLException ex){
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con,stmt,rs);
         }

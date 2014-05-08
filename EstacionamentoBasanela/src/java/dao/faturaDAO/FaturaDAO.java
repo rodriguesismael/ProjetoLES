@@ -39,8 +39,8 @@ public class FaturaDAO {
             //fatura é gerada om status de 0: não paga
             stmt.setInt(3, 0);
             stmt.executeUpdate();
-        }catch(SQLException e){
-            throw e;
+        }catch(SQLException ex){
+            throw ex;
         }finally{
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -68,8 +68,8 @@ public class FaturaDAO {
                 lista.add(fatura);
                        
             }
-        }catch(SQLException e){
-            throw e;
+        }catch(SQLException ex){
+            throw ex;
         }finally{
             ConnectionFactory.closeAll(con, stmt, rs);
         }

@@ -26,9 +26,8 @@ public class ClienteXveiculoDAO {
 
     public static final String INSERT = "INSERT INTO ClienteXVeiculo (codCliente,placa) VALUES(?,?)";
     public static final String DELETE = "DELETE FROM ClienteXVeiculo WHERE codCliente = ?";
-    public static final String SELECTALL = "SELECT ";
-    public static final String SELECTBYCLIENTE = "";
-    public static final String SELECTBYVVEICULO = "";
+    public static final String SELECTALL = "SELECT * FROM ClienteXVeiculo";
+    public static final String SELECTBYCLIENTE = "SELECT * FROM ClienteXVeiculo WHERE codCliente = ?";
 
     public void insert(ClienteXVeiculo clienteXveiculo) throws SQLException {
         Connection con = null;
@@ -39,8 +38,8 @@ public class ClienteXveiculoDAO {
             stmt.setInt(1, clienteXveiculo.getCliente().getCodCliente());
             stmt.setString(2, clienteXveiculo.getVeiculo().getPlaca());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -54,8 +53,8 @@ public class ClienteXveiculoDAO {
             stmt = con.prepareStatement(DELETE);
             stmt.setInt(1, clienteXveiculo.getCliente().getCodCliente());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -86,8 +85,8 @@ public class ClienteXveiculoDAO {
                 lista.add(clienteXveiculo);
 
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -111,8 +110,8 @@ public class ClienteXveiculoDAO {
                 veiculo = veiculoDAO.selectById(veiculo);
                 lista.add(veiculo);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }

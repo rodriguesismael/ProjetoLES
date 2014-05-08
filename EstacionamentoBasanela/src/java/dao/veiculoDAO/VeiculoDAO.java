@@ -59,8 +59,8 @@ public class VeiculoDAO {
             stmt.setInt(3, veiculo.getModelo().getCodModelo());
             stmt.setString(4, veiculo.getPlaca());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -105,8 +105,8 @@ public class VeiculoDAO {
                 veiculo.setModelo(modelo);
                 lista.add(veiculo);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -136,8 +136,8 @@ public class VeiculoDAO {
                 modelo = modeloDAO.selectById(modelo);
                 veiculo.setModelo(modelo);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -170,8 +170,8 @@ public class VeiculoDAO {
                 novoVeiculo.setModelo(modelo);
                 lista.add(novoVeiculo);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }

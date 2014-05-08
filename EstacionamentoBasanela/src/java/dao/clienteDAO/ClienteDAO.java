@@ -55,8 +55,8 @@ public class ClienteDAO {
 
             stmt.executeUpdate();
 
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -79,8 +79,8 @@ public class ClienteDAO {
 
             stmt.executeUpdate();
 
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -95,8 +95,8 @@ public class ClienteDAO {
             stmt.setInt(1, cliente.getCodCliente());
             stmt.executeUpdate();
 
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -138,8 +138,8 @@ public class ClienteDAO {
                 cliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXveiculo));
                 lista.add(cliente);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -180,8 +180,8 @@ public class ClienteDAO {
                 clienteXVeiculo.setCliente(cliente);
                 cliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -228,8 +228,8 @@ public class ClienteDAO {
                 lista.add(nCliente);
 
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -276,8 +276,8 @@ public class ClienteDAO {
                 lista.add(nCliente);
 
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }

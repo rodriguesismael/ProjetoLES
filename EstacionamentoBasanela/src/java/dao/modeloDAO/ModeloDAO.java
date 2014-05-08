@@ -39,8 +39,8 @@ public class ModeloDAO {
             stmt.setInt(1, modelo.getMarca().getCodMarca());
             stmt.setString(2, modelo.getDescricao());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -57,8 +57,8 @@ public class ModeloDAO {
             stmt.setString(2, modelo.getDescricao());
             stmt.setInt(3, modelo.getCodModelo());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -72,8 +72,8 @@ public class ModeloDAO {
             stmt = con.prepareStatement(DELETE);
             stmt.setInt(1, modelo.getCodModelo());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -98,8 +98,8 @@ public class ModeloDAO {
                 modelo.setMarca(marca);
                 lista.add(modelo);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -125,8 +125,8 @@ public class ModeloDAO {
                 modelo.setMarca(marca);
                 modelo.setDescricao(rs.getString("descricao"));
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -154,8 +154,8 @@ public class ModeloDAO {
                 nModelo.setMarca(marca);
                 lista.add(nModelo);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }

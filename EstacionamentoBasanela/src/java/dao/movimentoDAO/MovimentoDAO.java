@@ -39,8 +39,8 @@ public class MovimentoDAO {
             stmt.setString(3, movimento.getDataInicio());
             stmt.setString(4, movimento.getDataTermino());
             stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
@@ -74,8 +74,8 @@ public class MovimentoDAO {
                 movimento.setDataTermino(rs.getString("dataTermino"));
                 lista.add(movimento);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -108,8 +108,8 @@ public class MovimentoDAO {
                 movimento.setDataInicio(rs.getString("dataInicio"));
                 movimento.setDataTermino(rs.getString("dataTermino"));
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -143,8 +143,8 @@ public class MovimentoDAO {
                 novoMovimento.setDataTermino(rs.getString("dataTermino"));
                 lista.add(novoMovimento);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
@@ -170,16 +170,18 @@ public class MovimentoDAO {
                 novoMovimento.setCodMovimento(rs.getInt("codMovimento"));
                 novoMovimento.setDataInicio(rs.getString("dataInicio"));
                 novoMovimento.setDataTermino(rs.getString("dataTermino"));
+                novoMovimento.setVeiculo(veiculo);
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
                 cliente.setCodCliente(rs.getInt("codCliente"));
                 if (cliente.getCodCliente() != 0) {
                     cliente = clienteDAO.selectById(cliente);
+                    novoMovimento.setCliente(cliente);
                 }
                 lista.add(novoMovimento);
             }
-        } catch (SQLException e) {
-            throw e;
+        } catch (SQLException ex) {
+            throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
