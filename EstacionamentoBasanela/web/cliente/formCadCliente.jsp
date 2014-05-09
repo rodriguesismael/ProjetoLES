@@ -1,9 +1,8 @@
 <%-- 
-    Document   : formCadVeiculoMensal
-    Created on : May 6, 2014, 10:21:56 AM
-    Author     : Alvaro Augusto Roberto
+    Document   : formCadCliente
+    Created on : May 9, 2014, 10:46:00 AM
+    Author     : ismael
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -14,25 +13,18 @@
         <!-- JS -->
         <script type="text/javascript" src="js/veiculo/initVeiculo.js"></script>
         <script type="text/javascript" src="js/marca/initMarca.js"></script>
-        <script type="text/javascript" src="js/cliente/initCliente.js"></script>
         <script type="text/javascript" src="js/modelo/initModelo.js"></script>
     </head>
     <body>
         <c:choose>
             <c:when test="${sessionScope['loggedIn'] eq true}">
-                <!-- Modal Marca de Veiculo -->
-                <div id="modal_marcaVeiculo" class="modal fade">
-                </div>
-                <!-- Modal Modelo de Veiculo -->
-                <div id="modal_modeloVeiculo" class="modal fade">
-                </div>
-                <!-- Modal Cliente -->
-                <div id="modal_cliente" class="modal fade">
+                <!-- Modal de Veiculo do cliente-->
+                <div id="modal_veiculo" class="modal fade">
                 </div>
                 <div id="header">
                     <h1><strong>Estacionamento Basanela</strong></h1>
                 </div>
-                <h1>Cadastro de Veiculo Mensal</h1>
+                <h1>Cadastro de Cliente</h1>
                 <hr/>
                 <form action="javascript:;">
                     <div id="formCadVeiculoEsquerda">
@@ -49,7 +41,7 @@
                             </select>
                         </div>
                     </div>
-                    <div id="formCadVeiculoDireita">
+                    <div id="formCadVeiculoDireita" class="form-group">
                         <div class="form-group">
                             <label for="select_marca">Marca</label>
                             <div class="input-group">
@@ -84,25 +76,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="select_cliente">Proprietario</label>
-                        <div class="input-group">
-                            <select class="form-control" id="select_cliente" name="select_cliente">
-                                <option value="nada"><-- selecione --></option>
-                                <c:forEach var="cliente" items="${listaCliente}">
-                                    <option value="${cliente.codCliente}">${cliente.descricao}</option>
-                                </c:forEach>
-                            </select>
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="modalCadModelo()">Inserir</a></li>
-                                    <li><a href="modalAltModelo()">Alterar</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="cadastrarVeiculoMensal()">Cadastrar</button>
+                    <button type="button" class="btn btn-primary" onclick="cadastrarVeiculoAvulso()">Cadastrar</button>
                     <button type="button" class="btn btn-default" onclick="enviar('FormHome')">Cancelar</button>
                 </form>
             </c:when>

@@ -1,9 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Classe BuscarCliente
  */
-
 package negocio.cliente;
 
 import controller.UpdateInterface;
@@ -17,15 +14,64 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import negocio.outro.EfetuarLogin;
 
 /**
  *
- * @author ismael
+ * @author Ismael Rodrigues
  */
-public class BuscarCliente implements UpdateInterface{
-    
-    public void executa(HttpServletRequest request, HttpServletResponse response){
+public class BuscarCliente implements UpdateInterface {
+
+    public void executa(HttpServletRequest request, HttpServletResponse response) {
+        PrintWriter out = null;
+        try {
+            out = response.getWriter();
+        } catch (IOException exc) {
+            Logger.getLogger(EfetuarLogin.class.getName()).log(Level.SEVERE, null, exc);
+        }
+
+        Cliente cliente = new Cliente();
+        ClienteDAO clienteDao = new ClienteDAO();
+
+        cliente.setCpf(request.getParameter("cpf"));
+        try {
+            clienteDao.selectById(cliente);
+        } catch (SQLException ex) {
+            Logger.getLogger(BuscarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+<<<<<<< HEAD
+        String json = "{\"existeCliente\":";
+        if (cliente.getCpf() != null) {
+            json += true + ",";
+            json += "\"cpf\":\"" + cliente.getCpf() + "\"";
+            json += "\"nome\":\"" + cliente.getNome() + "\"";
+            json += "\"endereco\":\"" + cliente.getEndereco() + "\"";
+            json += "\"estado\":\"" + cliente.getEstado().getUf() + "\"";
+            json += "\"cidade\":\"" + cliente.getCidade().getDescricao() + "\"";
+            json += "\"telefone\":\"" + cliente.getTelefone() + "\"";
+            json += "\"celular\":\"" + cliente.getCelular() + "\"";
+            json += "\"periodo\":\"" + cliente.getPeriodo() + "\"";
+            json += "\"cpf\":\"" + cliente.getCpf() + "\"";
+=======
         
+        String json = "{\"existeCliente\": ";
+
+        if (cliente.getPeriodo()!= 0) {
+            json += true + ", ";
+            json += "\"cliente\":[{";
+            json += "\"cpf\":\"" + cliente.getCpf()+ "\", ";
+            json += "\"nome\":\"" + cliente.getNome() + "\", ";
+            json += "\"endereco\":\"" + cliente.getEndereco() + "\", ";
+            json += "\"estado\":\"" + cliente.getEstado().getUf() + "\", ";
+            json += "\"cidade\":\"" + cliente.getCidade().getDescricao() + "\", ";
+            json += "\"telefone\":\"" + cliente.getTelefone() + "\", ";
+            json += "\"celular\":\"" + cliente.getCelular() + "\", ";
+            json += "\"periodo\":\"" + cliente.getPeriodo() + "\"}]";
+        }else{
+            json += false +"}";
+>>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
+        }
+        
+        out.print(json);
     }
 }

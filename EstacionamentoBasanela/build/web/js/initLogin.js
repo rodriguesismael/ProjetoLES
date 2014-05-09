@@ -29,7 +29,6 @@ function efetuarLogin() {
         });
         return;
     }
-    block();
     $.ajax({
         url: "Controller?name=EfetuarLogin",
         type: "POST",
@@ -60,7 +59,6 @@ function efetuarLogin() {
 function efetuarLogoff() {
     alertify.confirm("Deseja realmente sair do sistema?", function(r) {
         if (r) {
-            block();
             $.ajax({
                 url: "Controller?name=EfetuarLogoff",
                 type: "POST",

@@ -16,5 +16,7 @@
         <logic name="ListarVeiculo" type="negocio.veiculo.ListarVeiculo"></logic>
         <!-- Outro -->
         <logic name="FormHome" type="negocio.outro.FormHome"></logic>
+        <!-- Movimento -->
+        <logic name="RegistrarEntrada" type="negocio.movimento.RegistrarEntrada"></logic>
     </logics>
 </config>

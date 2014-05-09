@@ -12,7 +12,14 @@
     <logics>
         <!-- Login -->
         <logic name="EfetuarLogin" type="negocio.outro.EfetuarLogin"></logic>
+        <!-- Veiculo -->
         <logic name="BuscarVeiculo" type="negocio.veiculo.BuscarVeiculo"></logic>
         <logic name="CadastrarVeiculo" type="negocio.veiculo.CadastrarVeiculo"></logic>
+        <!-- Modelo -->
+        <logic name="BuscarModelo" type="negocio.modelo.BuscarModelo"></logic>
+        
+        <!-- Cliente-->
+        <logic name="BuscarCliente" type="negocio.cliente.BuscarCliente"></logic>
+
     </logics>
 </config>

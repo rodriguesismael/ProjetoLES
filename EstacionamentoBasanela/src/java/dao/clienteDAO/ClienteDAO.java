@@ -20,22 +20,21 @@ import modelo.clienteXVeiculo.ClienteXVeiculo;
 
 /**
  *
- * @author ismael
+ * @author Ismael Rodrigues
  */
 public class ClienteDAO {
 
     public static final String INSERT = "INSERT INTO Cliente () VALUES(?,?,?,?,?,?,?,?)";
     public static final String UPDATE = "UPDATE Cliente SET nome = ?,endereco= ?,codEstado = ?,"
             + " codCidade=?, telefone = ?, celular = ?, periodo = ? "
-            + " WHERE codCliente = ?";
-    public static final String DELETE = "DELETE FROM Cliente WHERE codCliente = ?";
-    public static final String SELECTALL = "SELECT codCliente,nome,endereco,codEstado,codCidade,telefone"
+            + " WHERE cpf = ?";
+    public static final String DELETE = "DELETE FROM Cliente WHERE cpf = ?";
+    public static final String SELECTALL = "SELECT cpf,nome,endereco,codEstado,codCidade,telefone,"
             + "celular, periodo FROM Cliente";
-    public static final String SELECTBYID = "SELECT codCliente,nome,endereco,codEstado,codCidade,telefone"
-            + "celular, periodo FROM Cliente WHERE codCliente = ?";
-    public static final String SELECTBYESTADO = "SELECT codCliente,nome,endereco,codEstado,codCidade,telefone"
+    public static final String SELECTBYID = "SELECT cpf, nome, endereco, codEstado, codCidade, telefone, celular, periodo FROM Cliente WHERE cpf = ?";
+    public static final String SELECTBYESTADO = "SELECT cpf,nome,endereco,codEstado,codCidade,telefone,"
             + "celular, periodo FROM Cliente WHERE codEstado = ?";
-    public static final String SELECTBYCIDADE = "SELECT codCliente,nome,endereco,codEstado,codCidade,telefone"
+    public static final String SELECTBYCIDADE = "SELECT cpf,nome,endereco,codEstado,codCidade,telefone,"
             + "celular, periodo FROM Cliente WHERE codCidade = ?";
 
     public void insert(Cliente cliente) throws SQLException {
@@ -44,7 +43,7 @@ public class ClienteDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(INSERT);
-            stmt.setInt(1, cliente.getCodCliente());
+            stmt.setString(1, cliente.getCpf());
             stmt.setString(2, cliente.getNome());
             stmt.setString(3, cliente.getEndereco());
             stmt.setInt(4, cliente.getEstado().getCodEstado());
@@ -75,7 +74,7 @@ public class ClienteDAO {
             stmt.setString(5, cliente.getTelefone());
             stmt.setString(6, cliente.getCelular());
             stmt.setInt(7, cliente.getPeriodo());
-            stmt.setInt(8, cliente.getCodCliente());
+            stmt.setString(8, cliente.getCpf());
 
             stmt.executeUpdate();
 
@@ -92,7 +91,7 @@ public class ClienteDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(DELETE);
-            stmt.setInt(1, cliente.getCodCliente());
+            stmt.setString(1, cliente.getCpf());
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
@@ -123,7 +122,11 @@ public class ClienteDAO {
                 CidadeDAO cidadeDAO = new CidadeDAO();
                 cidade = cidadeDAO.selectById(cidade);
 
-                cliente.setCodCliente(rs.getInt("codCliente"));
+<<<<<<< HEAD
+                cliente.setCpf(rs.getString("cpf"));
+=======
+                cliente.setCpf(rs.getString("codCliente"));
+>>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setEstado(estado);
@@ -154,27 +157,35 @@ public class ClienteDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYID);
-            stmt.setInt(1, cliente.getCodCliente());
+            stmt.setString(1, cliente.getCpf());
             rs = stmt.executeQuery();
             if (rs.next()) {
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setEndereco(rs.getString("endereco"));
                 Estado estado = new Estado();
                 estado.setCodEstado(rs.getInt("codEstado"));
                 EstadoDAO estadoDAO = new EstadoDAO();
-                estado = estadoDAO.selectById(estado);
+                estado = estadoDAO.selectById(estado);                
+                cliente.setEstado(estado);
                 Cidade cidade = new Cidade();
                 cidade.setCodCidade(rs.getInt("codCidade"));
                 CidadeDAO cidadeDAO = new CidadeDAO();
+<<<<<<< HEAD
                 cidade = cidadeDAO.selectById(cidade);
 
-                cliente.setCodCliente(rs.getInt("codCliente"));
+                cliente.setCpf(rs.getString("cpf"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setEstado(estado);
+=======
+                cidade = cidadeDAO.selectById(cidade);                
+>>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
                 cliente.setCidade(cidade);
                 cliente.setTelefone(rs.getString("telefone"));
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setPeriodo(rs.getInt("periodo"));
-
+                
                 ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
                 ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
                 clienteXVeiculo.setCliente(cliente);
@@ -211,7 +222,11 @@ public class ClienteDAO {
                 CidadeDAO cidadeDAO = new CidadeDAO();
                 cidade = cidadeDAO.selectById(cidade);
 
-                nCliente.setCodCliente(rs.getInt("codCliente"));
+<<<<<<< HEAD
+                nCliente.setCpf(rs.getString("cpf"));
+=======
+                nCliente.setCpf(rs.getString("codCliente"));
+>>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
                 nCliente.setNome(rs.getString("nome"));
                 nCliente.setEndereco(rs.getString("endereco"));
                 nCliente.setEstado(estado);
@@ -260,7 +275,11 @@ public class ClienteDAO {
             while (rs.next()) {
                 Cliente nCliente = new Cliente();
 
-                nCliente.setCodCliente(rs.getInt("codCliente"));
+<<<<<<< HEAD
+                nCliente.setCpf(rs.getString("cpf"));
+=======
+                nCliente.setCpf(rs.getString("codCliente"));
+>>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
                 nCliente.setNome(rs.getString("nome"));
                 nCliente.setEndereco(rs.getString("endereco"));
                 nCliente.setEstado(estado);
