@@ -61,7 +61,11 @@ public class MovimentoDAO {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
+<<<<<<< HEAD
                 cliente.setCpf(rs.getString("cpf"));
+=======
+                cliente.setCpf(rs.getString("codCliente"));
+>>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
                 if (cliente.getCpf() != null) {
                     cliente = clienteDAO.selectById(cliente);
                 }
@@ -96,8 +100,13 @@ public class MovimentoDAO {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
+<<<<<<< HEAD
                 cliente.setCpf(rs.getString("cpf"));
                 if (cliente.getCpf() != null) {
+=======
+                cliente.setCpf(rs.getString("codCliente"));
+                if (cliente.getCpf()!= null) {
+>>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
                     cliente = clienteDAO.selectById(cliente);
                 }
                 movimento.setCliente(cliente);
@@ -174,8 +183,13 @@ public class MovimentoDAO {
                 novoMovimento.setVeiculo(veiculo);
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
+<<<<<<< HEAD
                 cliente.setCpf(rs.getString("cpf"));
                 if (cliente.getCpf() != null) {
+=======
+                cliente.setCpf(rs.getString("codCliente"));
+                if (cliente.getCpf()!= null) {
+>>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
                     cliente = clienteDAO.selectById(cliente);
                     novoMovimento.setCliente(cliente);
                 }

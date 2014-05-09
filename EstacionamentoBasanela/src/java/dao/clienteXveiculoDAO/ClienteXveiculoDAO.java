@@ -24,9 +24,9 @@ import java.util.List;
 public class ClienteXveiculoDAO {
 
     public static final String INSERT = "INSERT INTO ClienteXVeiculo (codCliente,placa) VALUES(?,?)";
-    public static final String DELETE = "DELETE FROM ClienteXVeiculo WHERE codCliente = ?";
+    public static final String DELETE = "DELETE FROM ClienteXVeiculo WHERE cpf = ?";
     public static final String SELECTALL = "SELECT * FROM ClienteXVeiculo";
-    public static final String SELECTBYCLIENTE = "SELECT * FROM ClienteXVeiculo WHERE codCliente = ?";
+    public static final String SELECTBYCLIENTE = "SELECT * FROM ClienteXVeiculo WHERE cpf = ?";
 
     public void insert(ClienteXVeiculo clienteXveiculo) throws SQLException {
         Connection con = null;
@@ -71,7 +71,11 @@ public class ClienteXveiculoDAO {
             while (rs.next()) {
                 ClienteXVeiculo clienteXveiculo = new ClienteXVeiculo();
                 Cliente cliente = new Cliente();
+<<<<<<< HEAD
                 cliente.setCpf(rs.getString("cpf"));
+=======
+                cliente.setCpf(rs.getString("codCliente"));
+>>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
                 ClienteDAO cliDAO = new ClienteDAO();
                 cliente = cliDAO.selectById(cliente);
                 clienteXveiculo.setCliente(cliente);
