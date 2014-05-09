@@ -35,7 +35,7 @@ public class MovimentoDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(INSERT);
-            stmt.setInt(1, movimento.getCliente().getCodCliente());
+            stmt.setString(1, movimento.getCliente().getCpf());
             stmt.setString(2, movimento.getVeiculo().getPlaca());
             stmt.setString(3, movimento.getDataInicio());
             stmt.setString(4, movimento.getDataTermino());
@@ -61,8 +61,8 @@ public class MovimentoDAO {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
-                cliente.setCodCliente(rs.getInt("codCliente"));
-                if (cliente.getCodCliente() != 0) {
+                cliente.setCpf(rs.getString("codCliente"));
+                if (cliente.getCpf() != null) {
                     cliente = clienteDAO.selectById(cliente);
                 }
                 movimento.setCliente(cliente);
@@ -96,8 +96,8 @@ public class MovimentoDAO {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
-                cliente.setCodCliente(rs.getInt("codCliente"));
-                if (cliente.getCodCliente() != 0) {
+                cliente.setCpf(rs.getString("codCliente"));
+                if (cliente.getCpf()!= null) {
                     cliente = clienteDAO.selectById(cliente);
                 }
                 movimento.setCliente(cliente);
@@ -125,11 +125,11 @@ public class MovimentoDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYCLIENTE);
-            stmt.setInt(1, movimento.getCliente().getCodCliente());
+            stmt.setString(1, movimento.getCliente().getCpf());
             rs = stmt.executeQuery();
             Cliente cliente = new Cliente();
             ClienteDAO clienteDAO = new ClienteDAO();
-            cliente.setCodCliente(movimento.getCliente().getCodCliente());
+            cliente.setCpf(movimento.getCliente().getCpf());
             cliente = clienteDAO.selectById(cliente);
             while (rs.next()) {
                 Movimento novoMovimento = new Movimento();
@@ -174,8 +174,8 @@ public class MovimentoDAO {
                 novoMovimento.setVeiculo(veiculo);
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
-                cliente.setCodCliente(rs.getInt("codCliente"));
-                if (cliente.getCodCliente() != 0) {
+                cliente.setCpf(rs.getString("codCliente"));
+                if (cliente.getCpf()!= null) {
                     cliente = clienteDAO.selectById(cliente);
                     novoMovimento.setCliente(cliente);
                 }
