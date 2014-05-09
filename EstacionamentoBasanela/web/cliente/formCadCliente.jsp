@@ -24,7 +24,7 @@
                 <div id="header">
                     <h1><strong>Estacionamento Basanela</strong></h1>
                 </div>
-                <h1>Cadastro de Veiculo Avulso</h1>
+                <h1>Cadastro de Cliente</h1>
                 <hr/>
                 <form action="javascript:;">
                     <div id="formCadVeiculoEsquerda">
