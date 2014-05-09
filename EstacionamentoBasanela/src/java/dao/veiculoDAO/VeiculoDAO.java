@@ -22,7 +22,7 @@ import modelo.modelo.Modelo;
  */
 public class VeiculoDAO {
 
-    public static final String INSERT = "INSERT INTO Veiculo (placa, tipo, codMarca, codModelo) VALUES (?,?,?,?)";
+    public static final String INSERT = "INSERT INTO Veiculo (placa, tipoVeiculo, codMarca, codModelo) VALUES (?,?,?,?)";
     public static final String UPDATE = "UPDATE Veiculo SET tipo = ?, codMarca = ?, codModelo = ? WHERE placa = ?";
     //public static final String DELETE = "DELETE FROM Veiculo WHERE placa = ?";
     public static final String SELECTALL = "SELECT placa, tipo, codMarca, codModelo FROM Veiculo";

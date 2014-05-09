@@ -9,7 +9,6 @@ function buscarVeiculo() {
         });
         return;
     }
-    block();
     $.ajax({
         url: "Controller?name=BuscarVeiculo",
         type: "POST",

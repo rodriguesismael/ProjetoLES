@@ -13,9 +13,9 @@
         <title>Estacionamento Basanela</title>
         <!-- JS -->
         <script type="text/javascript" src="js/veiculo/initVeiculo.js"></script>
-        <script type="text/javascript" src="js/marcaVeiculo/initMarcaVeiculo.js"></script>
+        <script type="text/javascript" src="js/marca/initMarca.js"></script>
         <script type="text/javascript" src="js/cliente/initCliente.js"></script>
-        <script type="text/javascript" src="js/modeloVeiculo/initModeloVeiculo.js"></script>
+        <script type="text/javascript" src="js/modelo/initModelo.js"></script>
     </head>
     <body>
         <c:choose>
@@ -43,9 +43,9 @@
                         <div class="form-group">
                             <label for="select_tipo">Tipo</label>
                             <select class="form-control" id="select_tipo" name="select_tipo">
-                                <option id="nada"><-- selecione --></option>
-                                <option id="1">Carro</option>
-                                <option id="2">Moto</option>
+                                <option value="nada"><-- selecione --></option>
+                                <option value="1">Carro</option>
+                                <option value="2">Moto</option>
                             </select>
                         </div>
                     </div>
@@ -54,9 +54,9 @@
                             <label for="select_marca">Marca</label>
                             <div class="input-group">
                                 <select class="form-control" id="select_marca" name="select_marca" onchange="buscarModelo()">
-                                    <option id="nada"><-- selecione --></option>
+                                    <option value="nada"><-- selecione --></option>
                                     <c:forEach var="marca" items="${listaMarca}">
-                                        <option id="${marca.codMarca}">${marca.descricao}</option>
+                                        <option value="${marca.codMarca}">${marca.descricao}</option>
                                     </c:forEach>
                                 </select>
                                 <div class="input-group-btn">
@@ -72,7 +72,7 @@
                             <label for="select_modelo">Modelo</label>
                             <div class="input-group">
                                 <select class="form-control" id="select_modelo" name="select_modelo" disabled>
-                                    <option id="nada"><-- selecione --></option>
+                                    <option value="nada"><-- selecione --></option>
                                 </select>
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
@@ -88,9 +88,9 @@
                         <label for="select_cliente">Proprietario</label>
                         <div class="input-group">
                             <select class="form-control" id="select_cliente" name="select_cliente">
-                                <option id="nada"><-- selecione --></option>
+                                <option value="nada"><-- selecione --></option>
                                 <c:forEach var="cliente" items="${listaCliente}">
-                                    <option id="${cliente.codCliente}">${cliente.descricao}</option>
+                                    <option value="${cliente.codCliente}">${cliente.descricao}</option>
                                 </c:forEach>
                             </select>
                             <div class="input-group-btn">

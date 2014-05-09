@@ -27,7 +27,7 @@ public class ModeloDAO {
     public static final String DELETE = "DELETE FROM Modelo WHERE codModelo = ?";
     public static final String SELECTALL = "SELECT codModelo, codMarca, descricao FROM Modelo";
     public static final String SELECTBYID = "SELECT codModelo, codMarca, descricao FROM Modelo WHERE codModelo = ?";
-    public static final String SELECTBYMARCA = "SELECT codModelo, codMarca, descricao FROM Modelo WHERE codMarca = ?";
+    public static final String SELECTBYMARCA = "SELECT codModelo, descricao FROM Modelo WHERE codMarca = ?";
 
     public void insert(Modelo modelo) throws SQLException {
         Connection con = null;
@@ -115,7 +115,6 @@ public class ModeloDAO {
             stmt = con.prepareStatement(SELECTBYID);
             stmt.setInt(1, modelo.getCodModelo());
             rs = stmt.executeQuery();
-
             if (rs.next()) {
                 modelo.setCodModelo(rs.getInt("codModelo"));
                 Marca marca = new Marca();
@@ -143,16 +142,16 @@ public class ModeloDAO {
             stmt = con.prepareStatement(SELECTBYMARCA);
             stmt.setInt(1, modelo.getMarca().getCodMarca());
             rs = stmt.executeQuery();
-
             Marca marca = new Marca();
+            MarcaDAO marcaDAO = new MarcaDAO();
             marca.setCodMarca(modelo.getMarca().getCodMarca());
-            MarcaDAO mDao = new MarcaDAO();
-            marca = mDao.selectById(marca);
+            marca = marcaDAO.selectById(marca);
             while (rs.next()) {
-                Modelo nModelo = new Modelo();
-                nModelo.setDescricao(rs.getString("descricao"));
-                nModelo.setMarca(marca);
-                lista.add(nModelo);
+                Modelo m = new Modelo();
+                m.setCodModelo(rs.getInt("codModelo"));
+                m.setDescricao(rs.getString("descricao"));
+                m.setMarca(marca);
+                lista.add(m);
             }
         } catch (SQLException ex) {
             throw ex;
