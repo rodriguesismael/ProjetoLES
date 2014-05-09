@@ -20,7 +20,7 @@ import modelo.clienteXVeiculo.ClienteXVeiculo;
 
 /**
  *
- * @author ismael
+ * @author Ismael Rodrigues
  */
 public class ClienteDAO {
 
@@ -44,7 +44,7 @@ public class ClienteDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(INSERT);
-            stmt.setInt(1, cliente.getCodCliente());
+            stmt.setString(1, cliente.getCpf());
             stmt.setString(2, cliente.getNome());
             stmt.setString(3, cliente.getEndereco());
             stmt.setInt(4, cliente.getEstado().getCodEstado());
@@ -75,7 +75,7 @@ public class ClienteDAO {
             stmt.setString(5, cliente.getTelefone());
             stmt.setString(6, cliente.getCelular());
             stmt.setInt(7, cliente.getPeriodo());
-            stmt.setInt(8, cliente.getCodCliente());
+            stmt.setString(8, cliente.getCpf());
 
             stmt.executeUpdate();
 
@@ -92,7 +92,7 @@ public class ClienteDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(DELETE);
-            stmt.setInt(1, cliente.getCodCliente());
+            stmt.setString(1, cliente.getCpf());
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
@@ -123,7 +123,7 @@ public class ClienteDAO {
                 CidadeDAO cidadeDAO = new CidadeDAO();
                 cidade = cidadeDAO.selectById(cidade);
 
-                cliente.setCodCliente(rs.getInt("codCliente"));
+                cliente.setCpf(rs.getString("cpf"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setEstado(estado);
@@ -154,7 +154,7 @@ public class ClienteDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYID);
-            stmt.setInt(1, cliente.getCodCliente());
+            stmt.setString(1, cliente.getCpf());
             rs = stmt.executeQuery();
             if (rs.next()) {
                 Estado estado = new Estado();
@@ -166,7 +166,7 @@ public class ClienteDAO {
                 CidadeDAO cidadeDAO = new CidadeDAO();
                 cidade = cidadeDAO.selectById(cidade);
 
-                cliente.setCodCliente(rs.getInt("codCliente"));
+                cliente.setCpf(rs.getString("cpf"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setEstado(estado);
@@ -211,7 +211,7 @@ public class ClienteDAO {
                 CidadeDAO cidadeDAO = new CidadeDAO();
                 cidade = cidadeDAO.selectById(cidade);
 
-                nCliente.setCodCliente(rs.getInt("codCliente"));
+                nCliente.setCpf(rs.getString("cpf"));
                 nCliente.setNome(rs.getString("nome"));
                 nCliente.setEndereco(rs.getString("endereco"));
                 nCliente.setEstado(estado);
@@ -260,7 +260,7 @@ public class ClienteDAO {
             while (rs.next()) {
                 Cliente nCliente = new Cliente();
 
-                nCliente.setCodCliente(rs.getInt("codCliente"));
+                nCliente.setCpf(rs.getString("cpf"));
                 nCliente.setNome(rs.getString("nome"));
                 nCliente.setEndereco(rs.getString("endereco"));
                 nCliente.setEstado(estado);

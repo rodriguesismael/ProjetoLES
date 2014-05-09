@@ -42,7 +42,7 @@ function buscarVeiculo() {
                 if (json.emMovimento) { //Se o veiculo estiver em um movimento nao encerrado, exibir botao registrar saida
                     html += "<button type=\"button\" class=\"btn btn-primary\">Registrar Saida</button>";
                 } else { //Se o veiculo nao estiver em um movimento, exibir botao registrar entrada
-                    html += "<button type=\"button\" class=\"btn btn-primary\">Registrar Entrada</button>";
+                    html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"registrarEntrada()\">Registrar Entrada</button>";
                 }
                 html += "</div>";
                 html += "</div>";

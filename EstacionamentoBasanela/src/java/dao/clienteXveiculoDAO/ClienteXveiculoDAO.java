@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Classe ClienteXVeiculoDAO
  */
 package dao.clienteXveiculoDAO;
 
@@ -35,7 +34,7 @@ public class ClienteXveiculoDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(INSERT);
-            stmt.setInt(1, clienteXveiculo.getCliente().getCodCliente());
+            stmt.setString(1, clienteXveiculo.getCliente().getCpf());
             stmt.setString(2, clienteXveiculo.getVeiculo().getPlaca());
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -51,7 +50,7 @@ public class ClienteXveiculoDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(DELETE);
-            stmt.setInt(1, clienteXveiculo.getCliente().getCodCliente());
+            stmt.setString(1, clienteXveiculo.getCliente().getCpf());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             throw ex;
@@ -72,7 +71,7 @@ public class ClienteXveiculoDAO {
             while (rs.next()) {
                 ClienteXVeiculo clienteXveiculo = new ClienteXVeiculo();
                 Cliente cliente = new Cliente();
-                cliente.setCodCliente(rs.getInt("codCliente"));
+                cliente.setCpf(rs.getString("cpf"));
                 ClienteDAO cliDAO = new ClienteDAO();
                 cliente = cliDAO.selectById(cliente);
                 clienteXveiculo.setCliente(cliente);
@@ -101,7 +100,7 @@ public class ClienteXveiculoDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYCLIENTE);
-            stmt.setInt(1, clienteXVeiculo.getCliente().getCodCliente());
+            stmt.setString(1, clienteXVeiculo.getCliente().getCpf());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Veiculo veiculo = new Veiculo();

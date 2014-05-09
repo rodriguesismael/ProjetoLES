@@ -33,16 +33,16 @@ public class BuscarCliente implements UpdateInterface {
         Cliente cliente = new Cliente();
         ClienteDAO clienteDao = new ClienteDAO();
 
-        cliente.setCodCliente(Integer.parseInt(request.getParameter("cpf")));
+        cliente.setCpf(request.getParameter("cpf"));
         try {
             clienteDao.selectById(cliente);
         } catch (SQLException ex) {
             Logger.getLogger(BuscarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         String json = "{\"existeCliente\":";
-        if (cliente.getCodCliente() != 0) {
+        if (cliente.getCpf() != null) {
             json += true + ",";
-            json += "\"cpf\":\"" + cliente.getCodCliente() + "\"";
+            json += "\"cpf\":\"" + cliente.getCpf() + "\"";
             json += "\"nome\":\"" + cliente.getNome() + "\"";
             json += "\"endereco\":\"" + cliente.getEndereco() + "\"";
             json += "\"estado\":\"" + cliente.getEstado().getUf() + "\"";
@@ -50,7 +50,7 @@ public class BuscarCliente implements UpdateInterface {
             json += "\"telefone\":\"" + cliente.getTelefone() + "\"";
             json += "\"celular\":\"" + cliente.getCelular() + "\"";
             json += "\"periodo\":\"" + cliente.getPeriodo() + "\"";
-            json += "\"cpf\":\"" + cliente.getCodCliente() + "\"";
+            json += "\"cpf\":\"" + cliente.getCpf() + "\"";
         }
     }
 }
