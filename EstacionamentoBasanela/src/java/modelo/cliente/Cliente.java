@@ -14,7 +14,7 @@ import modelo.veiculo.Veiculo;
  */
 public class Cliente {
 
-    private int codCliente;
+    private String cpf;
     private String nome;
     private String endereco;
     private Estado estado;
@@ -24,12 +24,12 @@ public class Cliente {
     private int periodo;
     private List<Veiculo> listaVeiculo;
 
-    public int getCodCliente() {
-        return codCliente;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCodCliente(int codCliente) {
-        this.codCliente = codCliente;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getNome() {

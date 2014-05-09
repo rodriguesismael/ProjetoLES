@@ -35,14 +35,15 @@ function cadastrarVeiculoAvulso() {
                         type: "POST",
                         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                         data: {
-                            placa: json.placa
+                            placa: json.placa,
+                            cpf:  null
                         },
                         dataType: "html",
                         async: false,
                         success: function(html) {
                             $("body").html("");
                             $("body").html(html);
-                            alerify.log("Entrada cadastrada com sucesso!", success, 300);
+                            alerify.log("Entrada cadastrada com sucesso!", "success", 5000);
                         }
                     });
                 } else {//Caso a resposta seja nao
