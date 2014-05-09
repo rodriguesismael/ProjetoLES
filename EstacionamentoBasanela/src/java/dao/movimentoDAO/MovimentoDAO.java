@@ -27,6 +27,7 @@ public class MovimentoDAO {
     public static final String SELECTBYID = "SELECT codMovimento, codCliente, placa, dataInicio, dataTermino FROM Movimento WHERE codMovimento = ?";
     public static final String SELECTBYCLIENTE = "SELECT codMovimento, codCliente, placa, dataInicio, dataTermino FROM Movimento WHERE codCliente = ?";
     public static final String SELECTBYVEICULO = "SELECT codMovimento, codCliente, placa, dataInicio, dataTermino FROM Movimento WHERE placa = ?";
+    public static final String SELECTEMMOVIMENTO = "SELECT codMovimento FROM Movimento WHERE placa = ? AND dataTermino IS NULL";
 
     public void insert(Movimento movimento) throws SQLException {
         Connection con = null;
@@ -180,11 +181,32 @@ public class MovimentoDAO {
                 }
                 lista.add(novoMovimento);
             }
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            ConnectionFactory.closeAll(con, stmt, rs);
+        }
+        return lista;
+    }
+
+    public boolean selectEmMovimento(Movimento movimento) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean retorno = false;
+        try {
+            con = ConnectionFactory.getConexao();
+            stmt = con.prepareStatement(SELECTEMMOVIMENTO);
+            stmt.setString(1, movimento.getVeiculo().getPlaca());
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                retorno = true;
+            }
         } catch (SQLException ex) {
             throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
-        return lista;
+        return retorno;
     }
 }

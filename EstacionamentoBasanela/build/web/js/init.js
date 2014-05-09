@@ -14,6 +14,24 @@ function enviar(regraNegocio) {
     });
 }
 
+function enviarParametro(regraNegocio, parametro) {
+    block();
+    $.ajax({
+        url: "Controller?name=" + regraNegocio,
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: "html",
+        data: {
+            id: parametro
+        },
+        async: true,
+        success: function(html) {
+            $("body").html("");
+            $("body").html(html);
+        }
+    });
+}
+
 function block() {
     $(document).ajaxStart(function() {
         $.blockUI({

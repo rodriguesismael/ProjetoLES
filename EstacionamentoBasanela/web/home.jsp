@@ -15,8 +15,6 @@
 
         <!-- JS -->
         <script type="text/javascript" src="js/initHome.js"></script>
-        <script type="text/javascript" src="js/cliente/initCliente.js"></script>
-        <script type="text/javascript" src="js/veiculo/initVeiculo.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#input_veiculo").mask("aaa-9999");
@@ -46,7 +44,7 @@
                     <div id="top">
                         <div id="topLeft">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="input_veiculo" name="input_veiculo" placeholder="XXX-0123"/>
+                                <input type="text" class="form-control" id="input_veiculo" name="input_veiculo" placeholder="XXX-0123" onblur="$(this).val($(this).val().toUpperCase())"/>
                                 <span class="input-group-btn">
                                     <button type="button" onclick="buscarVeiculo()" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                                 </span>

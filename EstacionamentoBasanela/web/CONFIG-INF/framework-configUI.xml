@@ -12,5 +12,7 @@
     <logics>
         <!-- Login -->
         <logic name="EfetuarLogin" type="negocio.outro.EfetuarLogin"></logic>
+        <logic name="BuscarVeiculo" type="negocio.veiculo.BuscarVeiculo"></logic>
+        <logic name="CadastrarVeiculo" type="negocio.veiculo.CadastrarVeiculo"></logic>
     </logics>
 </config>

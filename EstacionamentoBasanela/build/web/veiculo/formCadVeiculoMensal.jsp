@@ -38,7 +38,7 @@
                     <div id="formCadVeiculoEsquerda">
                         <div class="form-group">
                             <label for="input_placa">Placa</label>
-                            <input type="text" class="form-control" id="input_placa" name="input_placa" readonly/>
+                            <input type="text" class="form-control" id="input_placa" name="input_placa" value="${placa}" readonly/>
                         </div>
                         <div class="form-group">
                             <label for="select_tipo">Tipo</label>

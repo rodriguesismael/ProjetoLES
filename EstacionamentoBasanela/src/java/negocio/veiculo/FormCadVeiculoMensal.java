@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FormCadVeiculoMensal implements ControllerInterface {
 
     public String call(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("placa", request.getParameter("id"));
         return "veiculo/formCadVeiculoMensal.jsp";
     }
 

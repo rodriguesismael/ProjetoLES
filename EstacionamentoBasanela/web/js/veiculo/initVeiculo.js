@@ -1,4 +1,7 @@
-function cadastrarVeiculo() {
+/*
+ * Funcao responsavel por cadastrar veiculos avulsos e exibir a opcao de registrar entrada
+ */
+function cadastrarVeiculoAvulso() {
     if ($("#input_placa").val().trim() == "") {
         alertify.alert("A PLACA do veiculo nao foi digitada!", function() {
             $("#input_placa").focus();
@@ -12,18 +15,19 @@ function cadastrarVeiculo() {
         });
         return;
     }
-    if ($("#select_tipoVeiculo").val() == "nada") {
+    if ($("#select_tipoVeiculo option:selected").val() == "nada") {
         alertify.alert("O TIPO DE VEICULO nao foi selecionado!");
         return;
     }
-    if ($("#select_marcaVeiculo").val() == "nada") {
+    if ($("#select_marcaVeiculo option:selected").val() == "nada") {
         alertify.alert("A MARCA do veiculo nao foi selecionada!");
         return;
     }
-    if ($("#select_modeloVeiculo").val() == "nada") {
+    if ($("#select_modeloVeiculo option:selected").val() == "nada") {
         alertify.alert("O MODELO do veiculo nao foi selecionado!");
         return;
     }
+    block();
     $.ajax({
         url: "Controller?name=CadastrarVeiculo",
         type: "POST",
@@ -34,65 +38,120 @@ function cadastrarVeiculo() {
             marcaVeiculo: $("#select_marcaVeiculo option:selected").val(),
             modeloVeiculo: $("#select_modeloVeiculo option:selected").val()
         },
-        dataType: "html",
+        dataType: "json",
         async: false,
-        success: function(html) {
-            $("html").html("");
-            $("html").html(html);
-            alertify.log("Cadastro realizado com sucesso!", success, 3000);
+        success: function(json) {
+            alertufy.log("Veiculo cadastrado com sucesso!", success, 3000);
+            alertify.confirm("Registrar entrada?", function(r) {
+                if (r) {//Caso a resposta seja sim
+                    block();
+                    $.ajax({
+                        url: "Controller?name=RegistrarEntrada",
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        data: {
+                            placa: json.placa
+                        },
+                        dataType: "html",
+                        async: false,
+                        success: function(html) {
+                            $(body).html("");
+                            $(body).html(html);
+                            alerify.log("Entrada cadastrada com sucesso!", success, 300);
+                        }
+                    });
+                } else {//Caso a resposta seja nao
+                    enviar("FormHome");
+                }
+            });
         }
     });
 }
 
-function buscarVeiculo() {
+/*
+ * Funcao responsavel por cadastrar veiculos mensais e exibir a opcao de registrar entrada
+ */
+function cadastrarVeiculoMensal() {
     if ($("#input_placa").val().trim() == "") {
-        alertify.alert("A PLACA nao foi digitada!", function() {
+        alertify.alert("A PLACA do veiculo nao foi digitada!", function() {
             $("#input_placa").focus();
         });
         return;
     }
     if ($("#input_placa").val().size() < 8) {
-        alertify.alert("Placa invalida!", function() {
+        alertify.alert("A PLACA do veiculo e invalida!", function() {
+            $("#input_placa").attr("value", "");
             $("#input_placa").focus();
         });
         return;
     }
+    if ($("#select_tipoVeiculo option:selected").val() == "nada") {
+        alertify.alert("O TIPO DE VEICULO nao foi selecionado!");
+        return;
+    }
+    if ($("#select_marcaVeiculo option:selected").val() == "nada") {
+        alertify.alert("A MARCA do veiculo nao foi selecionada!");
+        return;
+    }
+    if ($("#select_modeloVeiculo option:selected").val() == "nada") {
+        alertify.alert("O MODELO do veiculo nao foi selecionado!");
+        return;
+    }
+    if ($("#select_cliente option:selected").val() == "nada") {
+        alertify.alert("O PROPRIETÃ�RIO do veiculo nao foi selecionado!");
+        return;
+    }
+    block();
     $.ajax({
-        url: "Controller?name=BuscarVeiculo",
+        url: "Controller?name=CadastrarVeiculo",
         type: "POST",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         data: {
-            placa: $("#input_placa").val()
+            placa: $("#input_placa").val(),
+            tipoVeiculo: $("#select_tipoVeiculo option:selected").val(),
+            marcaVeiculo: $("#select_marcaVeiculo option:selected").val(),
+            modeloVeiculo: $("#select_modeloVeiculo option:selected").val()
         },
         dataType: "json",
         async: false,
         success: function(json) {
-            var html = "";
-            html += "<div class=\"modal-dialog\">";
-            html += "<div class=\"modal-content\">";
-            html += "<div class=\"modal-header\">";
-            html += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
-            if (json.existeVeiculo) {
-                html += "<h4 class=\"modal-title\">Veiculo Cadastrado</h4>";
-                html += "</div>";
-                html += "<div class=\"modal-body\">";
-                html += "conteudo";
-                html += "</div>";
-                html += "<div class=\"modal-footer\">";
-                html += "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>";
-                if (json.emMovimento) {
-                    html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"registrarSaida()\">Registrar Saida</button>";
-                } else {
-                    html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"registrarEntrada()\">Registrar Entrada</button>";
+            block();
+            $.ajax({
+                url: "Controller?name=CadastrarClienteXVeiculo",
+                type: "POST",
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                data: {
+                    placa: json.placa,
+                    cpf: $("#select_cliente option:selected").val()
+                },
+                dataType: "json",
+                async: false,
+                success: function(json) {
+                    alertufy.log("Veiculo cadastrado com sucesso!", success, 3000);
+                    alertify.confirm("Registrar entrada?", function(r) {
+                        if (r) {//Caso a resposta seja sim
+                            block();
+                            $.ajax({
+                                url: "Controller?name=RegistrarEntrada",
+                                type: "POST",
+                                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                                data: {
+                                    placa: json.placa
+                                },
+                                dataType: "html",
+                                async: false,
+                                success: function(html) {
+                                    $(body).html("");
+                                    $(body).html(html);
+                                    alerify.log("Entrada cadastrada com sucesso!", success, 300);
+                                }
+                            });
+                        } else {//Caso a resposta seja nao
+                            enviar("FormHome");
+                        }
+                    });
                 }
-                html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"datalharVeiculo()\">Detalhes</button>";
-                html += "</div>";
-            } else {
-                html += "<h4 class=\"modal-title\">Veiculo Nao Cadastrado</h4>";
-            }
-            $("#modal_veiculo").html("");
-            $("#modal_veiculo").html(html);
-            $("#modal_veiculo").modal();
+            });
         }
     });
 }
