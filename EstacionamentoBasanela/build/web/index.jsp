@@ -23,7 +23,6 @@
         <!-- JS -->
         <script type="text/javascript" src="jquery/jquery_1.11.0/jquery_1.11.0.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-        <script type="text/javascript" src="jquery/blockui/js/blockui.js"></script>
         <script type="text/javascript" src="jquery/dataTables_1.9.4/js/dataTables.js"></script>
         <script type="text/javascript" src="jquery/alertify_0.3.11/js/alertify.js"></script>
         <script type="text/javascript" src="jquery/maskedInput/jquery.maskedinput.js"></script>

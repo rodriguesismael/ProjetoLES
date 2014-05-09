@@ -68,23 +68,21 @@ function buscarVeiculo() {
  * montar o modal_cliente conforme o resultado da funcao.
  */
 function buscarCliente() {
-    if($("#input_cliente").val().trim("") == ""){
-        alertify.alert("O CPF do cliente não foi preenchido",function(){
+    if ($("#input_cliente").val().trim("") == "") {
+        alertify.alert("O CPF do cliente não foi preenchido", function() {
             $("#input_cliente").focus();
         });
     }
-    block();
     $.ajax({
-        url:"Controller?name=BuscarCliente",
-        type:"POST",
+        url: "Controller?name=BuscarCliente",
+        type: "POST",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        data:{
-            cpf:$("#input_cliente").val()
+        data: {
+            cpf: $("#input_cliente").val()
         },
-        async:false,
-        success:function(json){
-            if(json.)
-        }
-    })
+        async: false,
+        success: function(json) {
 
+        }
+    });
 }
