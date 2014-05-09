@@ -30,7 +30,14 @@ function buscarVeiculo() {
                 html += "<h4 class=\"modal-title\">Veiculo Cadastrado</h4>";
                 html += "</div>";
                 html += "<div class=\"modal-body\">";
-                html += "<p>One fine body&hellip;</p>";
+                html += "<p><b>Placa: </b>" + json.veiculo[0].placa + "</p>";
+                if (json.veiculo[0].tipo == 1) {
+                    html += "<p><b>Tipo de Veiculo: </b>Carro</p>";
+                } else {
+                    html += "<p><b>Tipo de Veiculo: </b>Moto</p>";
+                }
+                html += "<p><b>Marca: </b>" + json.veiculo[0].marca + "</p>";
+                html += "<p><b>Modelo: </b>" + json.veiculo[0].modelo + "</p>";
                 html += "</div>";
                 html += "<div class=\"modal-footer\">";
                 if (json.emMovimento) { //Se o veiculo estiver em um movimento nao encerrado, exibir botao registrar saida

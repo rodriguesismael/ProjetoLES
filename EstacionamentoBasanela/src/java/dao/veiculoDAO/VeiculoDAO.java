@@ -26,7 +26,7 @@ public class VeiculoDAO {
     public static final String UPDATE = "UPDATE Veiculo SET tipo = ?, codMarca = ?, codModelo = ? WHERE placa = ?";
     //public static final String DELETE = "DELETE FROM Veiculo WHERE placa = ?";
     public static final String SELECTALL = "SELECT placa, tipo, codMarca, codModelo FROM Veiculo";
-    public static final String SELECTBYID = "SELECT placa, tipo, codMarca, codModelo FROM Veiculo WHERE placa = ?";
+    public static final String SELECTBYID = "SELECT placa, tipoVeiculo, codMarca, codModelo FROM Veiculo WHERE placa = ?";
     public static final String SELECTBYMARCA = "SELECT placa, tipo, codMarca, codModelo FROM Veiculo WHERE codMarca = ?";
     //public static final String SELECTBYMODELO = "SELECT placa, tipo, codMarca, codModelo FROM Veiculo WHERE codModelo = ?";
 
@@ -124,7 +124,7 @@ public class VeiculoDAO {
             rs = stmt.executeQuery();
             if (rs.next()) {
                 veiculo.setPlaca(rs.getString("placa"));
-                veiculo.setTipo(rs.getInt("tipo"));
+                veiculo.setTipo(rs.getInt("tipoVeiculo"));
                 Marca marca = new Marca();
                 MarcaDAO marcaDAO = new MarcaDAO();
                 marca.setCodMarca(rs.getInt("codMarca"));
