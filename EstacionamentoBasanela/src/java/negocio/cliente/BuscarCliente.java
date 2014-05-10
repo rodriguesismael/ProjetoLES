@@ -35,7 +35,7 @@ public class BuscarCliente implements UpdateInterface {
 
         cliente.setCpf(request.getParameter("cpf"));
         try {
-            clienteDao.selectById(cliente);
+            cliente = clienteDao.selectById(cliente);
         } catch (SQLException ex) {
             Logger.getLogger(BuscarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -15,6 +15,7 @@
         <script type="text/javascript" src="js/marca/initMarca.js"></script>
         <script type="text/javascript" src="js/modelo/initModelo.js"></script>
         <script type="text/javascript" src="js/cidade/initCidade.js"></script>
+        <script type="text/javascript" src="js/cliente/initCliente.js"></script>
     </head>
     <body>
         <c:choose>
@@ -28,57 +29,114 @@
                 <h1>Cadastro de Cliente</h1>
                 <hr/>
                 <form action="javascript:;">
-                    <div id="formCadVeiculoEsquerda">
-                        <div class="form-group">
-                            <label for="input_nome">Nome</label>
-                            <input type="text" class="form-control" id="input_nome" name="input_nome"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="input_cpf">CPF</label>
-                            <input type="text" class="form-control" id="input_cpf" name="input_cpf" value="${cpf}" readonly/>
-                        </div>                        
-                        <div class="form-group">
-                            <label for="input_telefone">Telefone</label>
-                            <input type="text" class="form-control" id="input_telefone" name="input_telefone"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="input_celular">Celular</label>
-                            <input type="text" class="form-control" id="input_celular" name="input_celular"/>
-                        </div>
-                    </div>
-                    <div id="formCadVeiculoDireita" class="form-group">
-                        <div class="form-group">
-                            <label for="select_estado">Estado</label>
-                            <select class="form-control" id="select_estado" name="select_estado" onchange="buscarCidade()">
-                                <option value="nada"><-- selecione --></option>
-                                <c:forEach var="estado" items="${listaEstado}">
-                                    <option value="${estado.codEstado}">${estado.descricao}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="select_cidade">Cidade</label>
-                            <div class="input-group">
-                                <select class="form-control" id="select_modelo" name="select_cidade" disabled>
+                    <fieldset>
+                        <legend>Dados Pessoais</legend>
+                        <div class="formColunaEsquerda">
+                            <div class="form-group">
+                                <label for="input_nome">Nome</label>
+                                <input type="text" class="form-control" id="input_nome" name="input_nome"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="select_estado">Estado</label>
+                                <select class="form-control" id="select_estado" name="select_estado" onchange="buscarCidade()">
                                     <option value="nada"><-- selecione --></option>
+                                    <c:forEach var="estado" items="${listaEstado}">
+                                        <option value="${estado.codEstado}">${estado.descricao}</option>
+                                    </c:forEach>
                                 </select>
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="modalCadModelo()">Inserir</a></li>
-                                        <li><a href="modalAltModelo()">Alterar</a></li>
-                                    </ul>
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="input_celular">Endereço</label>
+                                <input type="text" class="form-control" id="input_endereco" name="input_endereco"/>
+                            </div>                        
+                            <div class="form-group medio">
+                                <label for="input_telefone">Telefone</label>
+                                <input type="text" class="form-control medio" id="input_telefone" name="input_telefone"/>
+                            </div>
+                            <div class="form-group medio">
+                                <label for="input_celular">Celular</label>
+                                <input type="text" class="form-control medio" id="input_celular" name="input_celular"/>
                             </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="input_celular">Endereço</label>
-                            <input type="text" class="form-control" id="input_endereco" name="input_endereco"/>
-                        </div>                        
+                        <div class="form-group formColunaDireita">
+                            <div class="form-group">
+                                <label for="input_cpf">CPF</label>
+                                <input type="text" class="form-control medio" id="input_cpf" name="input_cpf" value="${cpf}" readonly/>
+                            </div>
+                            <div class="form-group">
+                                <label for="select_cidade">Cidade</label>
+                                <div class="input-group">
+                                    <select class="form-control" id="select_cidade" name="select_cidade" disabled>
+                                        <option value="nada"><-- selecione --></option>
+                                    </select>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="modalCadModelo()">Inserir</a></li>
+                                            <li><a href="modalAltModelo()">Alterar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="input_cpf">Período</label>
+                                    <select class="form-control" id="select_periodo" name="select_periodo">
+                                        <option value="nada"><-- selecione --></option>
+                                        <option value="1">Manhã</option>
+                                        <option value="2">Tarde</option>
+                                        <option value="3">Noite</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Dados do Veículo</legend>
+                        <div class="formColunaEsquerda">
+                            <div class="form-group">
+                                <label for="input_placa">Placa</label>
+                                <input type="text" class="form-control" name="input_placa" id="ínput_placa"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="select_marca">Marca</label>
+                                <div class="input-group">
+                                    <select class="form-control" id="select_marca" name="select_marca" onchange="buscarModelo()">
+                                        <option value="nada"><-- selecione --></option>
+                                        <c:forEach var="marca" items="${listaMarca}">
+                                            <option value="${marca.codMarca}">${marca.descricao}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="modalCadMarca()">Adicionar</a></li>
+                                            <li><a href="modalAltMarca()">Alterar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="select_modelo">Modelo</label>
+                                <div class="input-group">
+                                    <select class="form-control" id="select_modelo" name="select_modelo" disabled>
+                                        <option value="nada"><-- selecione --></option>
+                                    </select>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+                                        <ul class="dropdown-menu pull-right">
+                                            <li><a href="modalCadModelo()">Inserir</a></li>
+                                            <li><a href="modalAltModelo()">Alterar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </fieldset>
+                    <div class="row" align="center">
+                        <div class='col-lg-12'>
+                            <button type="button" class="btn btn-primary" onclick="cadastrarCliente()">Cadastrar</button>
+                            <button type="button" class="btn btn-default" onclick="enviar('FormHome')">Cancelar</button>
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="cadastrarVeiculoAvulso()">Cadastrar</button>
-                    <button type="button" class="btn btn-default" onclick="enviar('FormHome')">Cancelar</button>
                 </form>
             </c:when>
             <c:otherwise>

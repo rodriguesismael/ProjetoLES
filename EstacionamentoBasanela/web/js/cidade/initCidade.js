@@ -18,8 +18,8 @@ function buscarCidade(){
                         html += "<option value=\"" + json.listaCidade[i].codCidade + "\">" + json.listaCidade[i].descricao + "</option>";
                     }
                 }
-                $("#select_modelo").html(html);
-                $("#select_modelo").attr("disabled", false);                
+                $("#select_cidade").html(html);
+                $("#select_cidade").attr("disabled", false);                
             }
         })
     }

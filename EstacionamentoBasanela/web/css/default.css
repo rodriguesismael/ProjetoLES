@@ -33,7 +33,7 @@ div#boxLogin {
 form#formLogin {
     width: 90%;
     margin: 0 auto;
-    //margin-top: 15%;
+    /*margin-top: 15%;*/
 }
 
 /* -- HOME -- */
@@ -142,4 +142,25 @@ div#formCadVeiculoDireita {
 /* -- MODAL VEICULO -- */
 #modal_veiculo button{
     margin-left: 60px;
+}
+
+/* -- PERSONALIZADOS -- */
+
+input.medio{
+    width: 35%;
+}
+
+input.pequeno{
+    width: 20%;
+}
+
+div.formColunaEsquerda {
+    width: 400px;
+    float: left;
+}
+
+div.formColunaDireita {
+    width: 400px;
+    float: left;
+    margin-left: 50px;
 }
