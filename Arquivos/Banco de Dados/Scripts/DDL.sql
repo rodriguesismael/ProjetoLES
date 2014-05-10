@@ -115,8 +115,8 @@ CREATE TABLE Movimento (
 	codMovimento INT NOT NULL AUTO_INCREMENT,
 	cpf VARCHAR(14) DEFAULT NULL,
 	placa VARCHAR(8) NOT NULL,
-	dataInicio DATE NOT NULL,
-	dataTermino DATE DEFAULT NULL,
+	dataInicio DATETIME NOT NULL,
+	dataTermino DATETIME DEFAULT NULL,
 	PRIMARY KEY (codMovimento),
 	FOREIGN KEY (cpf) REFERENCES Cliente(cpf),
 	FOREIGN KEY (placa) REFERENCES Veiculo(placa)

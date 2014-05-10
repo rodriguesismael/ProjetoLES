@@ -1,10 +1,9 @@
 /*
  * Classe ClienteXVeiculoDAO
  */
-package dao.clienteXveiculoDAO;
+package dao.clienteXVeiculoDAO;
 
 import modelo.clienteXVeiculo.ClienteXVeiculo;
-//import dao.cliente.Cliente;
 import modelo.veiculo.Veiculo;
 import dao.veiculoDAO.VeiculoDAO;
 import modelo.cliente.Cliente;
@@ -21,12 +20,13 @@ import java.util.List;
  *
  * @author Ismael
  */
-public class ClienteXveiculoDAO {
+public class ClienteXVeiculoDAO {
 
     public static final String INSERT = "INSERT INTO ClienteXVeiculo (codCliente,placa) VALUES(?,?)";
     public static final String DELETE = "DELETE FROM ClienteXVeiculo WHERE cpf = ?";
     public static final String SELECTALL = "SELECT * FROM ClienteXVeiculo";
     public static final String SELECTBYCLIENTE = "SELECT * FROM ClienteXVeiculo WHERE cpf = ?";
+    public static final String SELECTBYVEICULO = "SELECT cpf, placa FROM ClienteXVeiculo WHERE placa = ?";
 
     public void insert(ClienteXVeiculo clienteXveiculo) throws SQLException {
         Connection con = null;
@@ -119,5 +119,34 @@ public class ClienteXveiculoDAO {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
         return lista;
+    }
+
+    public ClienteXVeiculo selectByVeiculo(ClienteXVeiculo clienteXVeiculo) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            con = ConnectionFactory.getConexao();
+            stmt = con.prepareStatement(SELECTBYVEICULO);
+            stmt.setString(1, clienteXVeiculo.getVeiculo().getPlaca());
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                Cliente cliente = new Cliente();
+                ClienteDAO clienteDAO = new ClienteDAO();
+                cliente.setCpf(rs.getString("cpf"));
+                cliente = clienteDAO.selectById(cliente);
+                clienteXVeiculo.setCliente(cliente);
+                Veiculo veiculo = new Veiculo();
+                VeiculoDAO veiculoDAO = new VeiculoDAO();
+                veiculo.setPlaca(rs.getString("placa"));
+                veiculo = veiculoDAO.selectById(veiculo);
+                clienteXVeiculo.setVeiculo(veiculo);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ConnectionFactory.closeAll(con, stmt, rs);
+        }
+        return clienteXVeiculo;
     }
 }

@@ -35,8 +35,7 @@ function cadastrarVeiculoAvulso() {
                         type: "POST",
                         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                         data: {
-                            placa: json.placa,
-                            cpf: null
+                            placa: json.placa
                         },
                         dataType: "html",
                         async: false,

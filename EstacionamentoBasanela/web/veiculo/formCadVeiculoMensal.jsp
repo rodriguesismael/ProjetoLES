@@ -44,8 +44,8 @@
                             <label for="select_tipo">Tipo</label>
                             <select class="form-control" id="select_tipo" name="select_tipo">
                                 <option value="nada"><-- selecione --></option>
-                                <option value="1">Carro</option>
-                                <option value="2">Moto</option>
+                                <option value="0">Carro</option>
+                                <option value="1">Moto</option>
                             </select>
                         </div>
                     </div>

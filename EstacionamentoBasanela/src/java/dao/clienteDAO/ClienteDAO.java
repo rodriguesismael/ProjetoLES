@@ -8,7 +8,7 @@ import dao.ConnectionFactory;
 import dao.estadoDAO.EstadoDAO;
 import modelo.estado.Estado;
 import dao.cidadeDAO.CidadeDAO;
-import dao.clienteXveiculoDAO.ClienteXveiculoDAO;
+import dao.clienteXVeiculoDAO.ClienteXVeiculoDAO;
 import modelo.cidade.Cidade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -136,7 +136,7 @@ public class ClienteDAO {
                 cliente.setPeriodo(rs.getInt("periodo"));
 
                 ClienteXVeiculo clienteXveiculo = new ClienteXVeiculo();
-                ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
+                ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
                 clienteXveiculo.setCliente(cliente);
                 cliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXveiculo));
                 lista.add(cliente);
@@ -186,7 +186,7 @@ public class ClienteDAO {
                 cliente.setPeriodo(rs.getInt("periodo"));
                 
                 ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
-                ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
+                ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
                 clienteXVeiculo.setCliente(cliente);
                 cliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
             }
@@ -235,7 +235,7 @@ public class ClienteDAO {
                 nCliente.setPeriodo(rs.getInt("periodo"));
 
                 ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
-                ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
+                ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
                 clienteXVeiculo.setCliente(nCliente);
                 nCliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
 
@@ -287,7 +287,7 @@ public class ClienteDAO {
                 nCliente.setCelular(rs.getString("celular"));
                 nCliente.setPeriodo(rs.getInt("periodo"));
                 ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
-                ClienteXveiculoDAO clienteXveiculoDAO = new ClienteXveiculoDAO();
+                ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
                 clienteXVeiculo.setCliente(nCliente);
                 nCliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
 

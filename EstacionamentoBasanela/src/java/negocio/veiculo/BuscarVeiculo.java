@@ -39,7 +39,7 @@ public class BuscarVeiculo implements UpdateInterface {
             Logger.getLogger(BuscarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
         String json = "{\"existeVeiculo\": ";
-        if (veiculo.getTipo() != 0) { //Veiculo existe no BD
+        if (veiculo.getMarca() != null) { //Veiculo existe no BD
             json += true + ", ";
             json += "\"veiculo\": [{";
             json += "\"placa\": \"" + veiculo.getPlaca() + "\", ";

@@ -15,6 +15,7 @@
 
         <!-- JS -->
         <script type="text/javascript" src="js/initHome.js"></script>
+        <script type="text/javascript" src="js/movimento/initMovimento.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#input_veiculo").mask("aaa-9999");
