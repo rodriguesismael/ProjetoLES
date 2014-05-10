@@ -122,11 +122,11 @@ public class ClienteDAO {
                 CidadeDAO cidadeDAO = new CidadeDAO();
                 cidade = cidadeDAO.selectById(cidade);
 
-<<<<<<< HEAD
+
                 cliente.setCpf(rs.getString("cpf"));
-=======
+
                 cliente.setCpf(rs.getString("codCliente"));
->>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
+
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setEstado(estado);
@@ -171,16 +171,15 @@ public class ClienteDAO {
                 Cidade cidade = new Cidade();
                 cidade.setCodCidade(rs.getInt("codCidade"));
                 CidadeDAO cidadeDAO = new CidadeDAO();
-<<<<<<< HEAD
                 cidade = cidadeDAO.selectById(cidade);
 
                 cliente.setCpf(rs.getString("cpf"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setEstado(estado);
-=======
+
                 cidade = cidadeDAO.selectById(cidade);                
->>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
+
                 cliente.setCidade(cidade);
                 cliente.setTelefone(rs.getString("telefone"));
                 cliente.setCelular(rs.getString("celular"));
@@ -222,11 +221,11 @@ public class ClienteDAO {
                 CidadeDAO cidadeDAO = new CidadeDAO();
                 cidade = cidadeDAO.selectById(cidade);
 
-<<<<<<< HEAD
+
                 nCliente.setCpf(rs.getString("cpf"));
-=======
+
                 nCliente.setCpf(rs.getString("codCliente"));
->>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
+
                 nCliente.setNome(rs.getString("nome"));
                 nCliente.setEndereco(rs.getString("endereco"));
                 nCliente.setEstado(estado);
@@ -275,11 +274,11 @@ public class ClienteDAO {
             while (rs.next()) {
                 Cliente nCliente = new Cliente();
 
-<<<<<<< HEAD
+
                 nCliente.setCpf(rs.getString("cpf"));
-=======
+
                 nCliente.setCpf(rs.getString("codCliente"));
->>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
+
                 nCliente.setNome(rs.getString("nome"));
                 nCliente.setEndereco(rs.getString("endereco"));
                 nCliente.setEstado(estado);

@@ -39,21 +39,6 @@ public class BuscarCliente implements UpdateInterface {
         } catch (SQLException ex) {
             Logger.getLogger(BuscarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-<<<<<<< HEAD
-        String json = "{\"existeCliente\":";
-        if (cliente.getCpf() != null) {
-            json += true + ",";
-            json += "\"cpf\":\"" + cliente.getCpf() + "\"";
-            json += "\"nome\":\"" + cliente.getNome() + "\"";
-            json += "\"endereco\":\"" + cliente.getEndereco() + "\"";
-            json += "\"estado\":\"" + cliente.getEstado().getUf() + "\"";
-            json += "\"cidade\":\"" + cliente.getCidade().getDescricao() + "\"";
-            json += "\"telefone\":\"" + cliente.getTelefone() + "\"";
-            json += "\"celular\":\"" + cliente.getCelular() + "\"";
-            json += "\"periodo\":\"" + cliente.getPeriodo() + "\"";
-            json += "\"cpf\":\"" + cliente.getCpf() + "\"";
-=======
-        
         String json = "{\"existeCliente\": ";
 
         if (cliente.getPeriodo()!= 0) {
@@ -66,10 +51,9 @@ public class BuscarCliente implements UpdateInterface {
             json += "\"cidade\":\"" + cliente.getCidade().getDescricao() + "\", ";
             json += "\"telefone\":\"" + cliente.getTelefone() + "\", ";
             json += "\"celular\":\"" + cliente.getCelular() + "\", ";
-            json += "\"periodo\":\"" + cliente.getPeriodo() + "\"}]";
+            json += "\"periodo\":\"" + cliente.getPeriodo() + "\"}]}";
         }else{
             json += false +"}";
->>>>>>> 624565c71311e7bf10130e918a5511f89f9284ca
         }
         
         out.print(json);

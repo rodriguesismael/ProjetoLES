@@ -20,12 +20,12 @@ import modelo.estado.Estado;
  */
 public class CidadeDAO {
 
-    public static final String INSERT = "INSERT INTO Cidade (codEsdado, descricao) VALUES (?,?)";
+    public static final String INSERT = "INSERT INTO Cidade (codEstado, descricao) VALUES (?,?)";
     public static final String UPDATE = "UPDATE Cidade SET codEstado = ?, descricao = ? WHERE codCidade = ?";
     public static final String DELETE = "DELETE FROM Cidade WHERE codCidade = ?";
-    public static final String SELECTALL = "SELECT codCidade, codEsdado, descricao FROM Cidade ORDER BY descricao";
-    public static final String SELECTBYID = "SELECT codCidade, codEsdado, descricao FROM Cidade WHERE codCidade = ?";
-    public static final String SELECTBYESTADO = "SELECT codCidade, codEsdado, descricao FROM Cidade WHERE codEstado = ? ORDER BY descricao";
+    public static final String SELECTALL = "SELECT codCidade, codEstado, descricao FROM Cidade ORDER BY descricao";
+    public static final String SELECTBYID = "SELECT codCidade, codEstado, descricao FROM Cidade WHERE codCidade = ?";
+    public static final String SELECTBYESTADO = "SELECT codCidade, codEstado, descricao FROM Cidade WHERE codEstado = ? ORDER BY descricao";
 
     public void insert(Cidade cidade) throws SQLException {
         Connection con = null;
@@ -82,7 +82,7 @@ public class CidadeDAO {
         List<Cidade> lista = new ArrayList<Cidade>();
         try {
             con = ConnectionFactory.getConexao();
-            stmt = con.prepareCall(SELECTALL);
+            stmt = con.prepareStatement(SELECTALL);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Cidade cidade = new Cidade();
@@ -109,7 +109,7 @@ public class CidadeDAO {
         ResultSet rs = null;
         try {
             con = ConnectionFactory.getConexao();
-            stmt = con.prepareCall(SELECTBYID);
+            stmt = con.prepareStatement(SELECTBYID);
             stmt.setInt(1, cidade.getCodCidade());
             rs = stmt.executeQuery();
             if (rs.next()) {
@@ -136,7 +136,7 @@ public class CidadeDAO {
         List<Cidade> lista = new ArrayList<Cidade>();
         try {
             con = ConnectionFactory.getConexao();
-            stmt = con.prepareCall(SELECTBYESTADO);
+            stmt = con.prepareStatement(SELECTBYESTADO);
             stmt.setInt(1, cidade.getEstado().getCodEstado());
             rs = stmt.executeQuery();
             // Recupera os dados do Estado - INICIO

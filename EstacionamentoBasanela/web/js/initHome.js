@@ -72,6 +72,7 @@ function buscarCliente() {
         alertify.alert("O CPF do cliente não foi preenchido", function() {
             $("#input_cliente").focus();
         });
+        return;
     }
     $.ajax({
         url: "Controller?name=BuscarCliente",

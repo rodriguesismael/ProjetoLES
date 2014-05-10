@@ -14,6 +14,7 @@
         <script type="text/javascript" src="js/veiculo/initVeiculo.js"></script>
         <script type="text/javascript" src="js/marca/initMarca.js"></script>
         <script type="text/javascript" src="js/modelo/initModelo.js"></script>
+        <script type="text/javascript" src="js/cidade/initCidade.js"></script>
     </head>
     <body>
         <c:choose>
@@ -29,41 +30,36 @@
                 <form action="javascript:;">
                     <div id="formCadVeiculoEsquerda">
                         <div class="form-group">
-                            <label for="input_placa">Placa</label>
-                            <input type="text" class="form-control" id="input_placa" name="input_placa" value="${placa}" readonly/>
+                            <label for="input_nome">Nome</label>
+                            <input type="text" class="form-control" id="input_nome" name="input_nome"/>
                         </div>
                         <div class="form-group">
-                            <label for="select_tipo">Tipo</label>
-                            <select class="form-control" id="select_tipo" name="select_tipo">
-                                <option value="nada"><-- selecione --></option>
-                                <option value="1">Carro</option>
-                                <option value="2">Moto</option>
-                            </select>
+                            <label for="input_cpf">CPF</label>
+                            <input type="text" class="form-control" id="input_cpf" name="input_cpf" value="${cpf}" readonly/>
+                        </div>                        
+                        <div class="form-group">
+                            <label for="input_telefone">Telefone</label>
+                            <input type="text" class="form-control" id="input_telefone" name="input_telefone"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="input_celular">Celular</label>
+                            <input type="text" class="form-control" id="input_celular" name="input_celular"/>
                         </div>
                     </div>
                     <div id="formCadVeiculoDireita" class="form-group">
                         <div class="form-group">
-                            <label for="select_marca">Marca</label>
-                            <div class="input-group">
-                                <select class="form-control" id="select_marca" name="select_marca" onchange="buscarModelo()">
-                                    <option value="nada"><-- selecione --></option>
-                                    <c:forEach var="marca" items="${listaMarca}">
-                                        <option value="${marca.codMarca}">${marca.descricao}</option>
-                                    </c:forEach>
-                                </select>
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="modalCadMarca()">Adicionar</a></li>
-                                        <li><a href="modalAltMarca()">Alterar</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <label for="select_estado">Estado</label>
+                            <select class="form-control" id="select_estado" name="select_estado" onchange="buscarCidade()">
+                                <option value="nada"><-- selecione --></option>
+                                <c:forEach var="estado" items="${listaEstado}">
+                                    <option value="${estado.codEstado}">${estado.descricao}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="select_modelo">Modelo</label>
+                            <label for="select_cidade">Cidade</label>
                             <div class="input-group">
-                                <select class="form-control" id="select_modelo" name="select_modelo" disabled>
+                                <select class="form-control" id="select_modelo" name="select_cidade" disabled>
                                     <option value="nada"><-- selecione --></option>
                                 </select>
                                 <div class="input-group-btn">
@@ -75,6 +71,11 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="input_celular">Endereço</label>
+                            <input type="text" class="form-control" id="input_endereco" name="input_endereco"/>
+                        </div>                        
                     </div>
                     <button type="button" class="btn btn-primary" onclick="cadastrarVeiculoAvulso()">Cadastrar</button>
                     <button type="button" class="btn btn-default" onclick="enviar('FormHome')">Cancelar</button>
