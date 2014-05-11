@@ -94,7 +94,7 @@
                         <div class="formColunaEsquerda">
                             <div class="form-group">
                                 <label for="input_placa">Placa</label>
-                                <input type="text" class="form-control" name="input_placa" id="ínput_placa"/>
+                                <input type="text" class="form-control" name="input_placa" id="input_placa"/>
                             </div>
                             <div class="form-group">
                                 <label for="select_marca">Marca</label>
@@ -128,6 +128,14 @@
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="select_tipo">Tipo</label>
+                                <select class="form-control" id="select_tipo" name="select_tipo">
+                                    <option value="nada"><-- selecione --></option>
+                                    <option value="0">Carro</option>
+                                    <option value="1">Moto</option>
+                                </select>
                             </div>                            
                         </div>
                     </fieldset>

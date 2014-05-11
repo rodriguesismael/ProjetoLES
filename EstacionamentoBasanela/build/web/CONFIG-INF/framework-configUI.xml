@@ -20,6 +20,7 @@
         
         <!-- Cliente-->
         <logic name="BuscarCliente" type="negocio.cliente.BuscarCliente"></logic>
+        <logic name="CadastrarCliente" type="negocio.cliente.CadastrarCliente"></logic>
         
         <!-- Cidade-->
         <logic name="BuscarCidade" type="negocio.cidade.BuscarCidade"></logic>        
