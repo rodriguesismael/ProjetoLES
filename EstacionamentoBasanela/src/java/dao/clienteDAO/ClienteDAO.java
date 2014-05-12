@@ -29,8 +29,7 @@ public class ClienteDAO {
             + " codCidade=?, telefone = ?, celular = ?, periodo = ?, status = ? "
             + " WHERE cpf = ?";
     public static final String DELETE = "DELETE FROM Cliente WHERE cpf = ?";
-    public static final String SELECTALL = "SELECT cpf,nome,endereco,codEstado,codCidade,telefone,"
-            + "celular, periodo FROM Cliente";
+    public static final String SELECTALL = "SELECT cpf, nome, endereco, codEstado, codCidade, telefone, celular, periodo FROM Cliente ORDER BY nome";
     public static final String SELECTBYID = "SELECT cpf, nome, endereco, codEstado, codCidade, telefone, celular, periodo, status FROM Cliente WHERE cpf = ?";
     public static final String SELECTBYESTADO = "SELECT cpf,nome,endereco,codEstado,codCidade,telefone,"
             + "celular, periodo, status FROM Cliente WHERE codEstado = ?";
@@ -51,9 +50,9 @@ public class ClienteDAO {
             stmt.setString(6, cliente.getTelefone());
             stmt.setString(7, cliente.getCelular());
             stmt.setInt(8, cliente.getPeriodo());
-            if(cliente.isStatus()){
+            if (cliente.isStatus()) {
                 stmt.setInt(9, 1);
-            }else{
+            } else {
                 stmt.setInt(9, 0);
             }
 
@@ -79,11 +78,11 @@ public class ClienteDAO {
             stmt.setString(5, cliente.getTelefone());
             stmt.setString(6, cliente.getCelular());
             stmt.setInt(7, cliente.getPeriodo());
-            if(cliente.isStatus()){
+            if (cliente.isStatus()) {
                 stmt.setInt(8, 1);
-            }else{
+            } else {
                 stmt.setInt(8, 0);
-            }            
+            }
             stmt.setString(9, cliente.getCpf());
 
             stmt.executeUpdate();
@@ -122,27 +121,22 @@ public class ClienteDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Cliente cliente = new Cliente();
-
-                Estado estado = new Estado();
-                estado.setCodEstado(rs.getInt("codEstado"));
-                EstadoDAO estadoDAO = new EstadoDAO();
-                estado = estadoDAO.selectById(estado);
-                Cidade cidade = new Cidade();
-                cidade.setCodCidade(rs.getInt("codCidade"));
-                CidadeDAO cidadeDAO = new CidadeDAO();
-                cidade = cidadeDAO.selectById(cidade);
-
-
                 cliente.setCpf(rs.getString("cpf"));
-
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEndereco(rs.getString("endereco"));
+                Estado estado = new Estado();
+                EstadoDAO estadoDAO = new EstadoDAO();
+                estado.setCodEstado(rs.getInt("codEstado"));
+                estado = estadoDAO.selectById(estado);
                 cliente.setEstado(estado);
+                Cidade cidade = new Cidade();
+                CidadeDAO cidadeDAO = new CidadeDAO();
+                cidade.setCodCidade(rs.getInt("codCidade"));
+                cidade = cidadeDAO.selectById(cidade);
                 cliente.setCidade(cidade);
                 cliente.setTelefone(rs.getString("telefone"));
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setPeriodo(rs.getInt("periodo"));
-
                 ClienteXVeiculo clienteXveiculo = new ClienteXVeiculo();
                 ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
                 clienteXveiculo.setCliente(cliente);
@@ -154,7 +148,6 @@ public class ClienteDAO {
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
-
         return lista;
     }
 
@@ -174,7 +167,7 @@ public class ClienteDAO {
                 Estado estado = new Estado();
                 estado.setCodEstado(rs.getInt("codEstado"));
                 EstadoDAO estadoDAO = new EstadoDAO();
-                estado = estadoDAO.selectById(estado);                
+                estado = estadoDAO.selectById(estado);
                 cliente.setEstado(estado);
                 Cidade cidade = new Cidade();
                 cidade.setCodCidade(rs.getInt("codCidade"));
@@ -186,13 +179,13 @@ public class ClienteDAO {
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setEstado(estado);
 
-                cidade = cidadeDAO.selectById(cidade);                
+                cidade = cidadeDAO.selectById(cidade);
 
                 cliente.setCidade(cidade);
                 cliente.setTelefone(rs.getString("telefone"));
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setPeriodo(rs.getInt("periodo"));
-                
+
                 ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
                 ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
                 clienteXVeiculo.setCliente(cliente);
@@ -228,7 +221,6 @@ public class ClienteDAO {
                 cidade.setCodCidade(rs.getInt("codCidade"));
                 CidadeDAO cidadeDAO = new CidadeDAO();
                 cidade = cidadeDAO.selectById(cidade);
-
 
                 nCliente.setCpf(rs.getString("cpf"));
 
@@ -279,7 +271,6 @@ public class ClienteDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Cliente nCliente = new Cliente();
-
 
                 nCliente.setCpf(rs.getString("cpf"));
 

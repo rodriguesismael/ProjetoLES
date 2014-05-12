@@ -90,7 +90,7 @@
                             <select class="form-control" id="select_cliente" name="select_cliente">
                                 <option value="nada"><-- selecione --></option>
                                 <c:forEach var="cliente" items="${listaCliente}">
-                                    <option value="${cliente.codCliente}">${cliente.descricao}</option>
+                                    <option value="${cliente.cpf}">${cliente.nome}</option>
                                 </c:forEach>
                             </select>
                             <div class="input-group-btn">

@@ -18,10 +18,11 @@
         <!-- Modelo -->
         <logic name="BuscarModelo" type="negocio.modelo.BuscarModelo"></logic>
         
-        <!-- Cliente-->
+        <!-- Cliente -->
         <logic name="BuscarCliente" type="negocio.cliente.BuscarCliente"></logic>
         <logic name="CadastrarCliente" type="negocio.cliente.CadastrarCliente"></logic>
-        
+        <!-- ClienteXVeiculo -->
+        <logic name="CadastrarClienteXVeiculo" type="negocio.clienteXVeiculo.CadastrarClienteXVeiculo"></logic>
         <!-- Cidade-->
         <logic name="BuscarCidade" type="negocio.cidade.BuscarCidade"></logic>        
 

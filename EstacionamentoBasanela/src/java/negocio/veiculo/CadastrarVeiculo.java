@@ -25,7 +25,6 @@ import modelo.veiculo.Veiculo;
 public class CadastrarVeiculo implements UpdateInterface {
 
     public void executa(HttpServletRequest request, HttpServletResponse response) {
-        response.setContentType("application/json");
         PrintWriter out = null;
         try {
             out = response.getWriter();
@@ -59,6 +58,7 @@ public class CadastrarVeiculo implements UpdateInterface {
         } catch (SQLException ex) {
             Logger.getLogger(CadastrarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        response.setContentType("application/json");
         out.print("{\"placa\": \"" + veiculo.getPlaca() + "\"}");
     }
 }
