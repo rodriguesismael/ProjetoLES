@@ -24,18 +24,18 @@ import modelo.clienteXVeiculo.ClienteXVeiculo;
  */
 public class ClienteDAO {
 
-    public static final String INSERT = "INSERT INTO Cliente () VALUES(?,?,?,?,?,?,?,?)";
+    public static final String INSERT = "INSERT INTO Cliente (cpf, nome, endereco, codEstado, codCidade, telefone, celular, periodo, status) VALUES(?,?,?,?,?,?,?,?,?)";
     public static final String UPDATE = "UPDATE Cliente SET nome = ?,endereco= ?,codEstado = ?,"
-            + " codCidade=?, telefone = ?, celular = ?, periodo = ? "
+            + " codCidade=?, telefone = ?, celular = ?, periodo = ?, status = ? "
             + " WHERE cpf = ?";
     public static final String DELETE = "DELETE FROM Cliente WHERE cpf = ?";
     public static final String SELECTALL = "SELECT cpf,nome,endereco,codEstado,codCidade,telefone,"
             + "celular, periodo FROM Cliente";
-    public static final String SELECTBYID = "SELECT cpf, nome, endereco, codEstado, codCidade, telefone, celular, periodo FROM Cliente WHERE cpf = ?";
+    public static final String SELECTBYID = "SELECT cpf, nome, endereco, codEstado, codCidade, telefone, celular, periodo, status FROM Cliente WHERE cpf = ?";
     public static final String SELECTBYESTADO = "SELECT cpf,nome,endereco,codEstado,codCidade,telefone,"
-            + "celular, periodo FROM Cliente WHERE codEstado = ?";
+            + "celular, periodo, status FROM Cliente WHERE codEstado = ?";
     public static final String SELECTBYCIDADE = "SELECT cpf,nome,endereco,codEstado,codCidade,telefone,"
-            + "celular, periodo FROM Cliente WHERE codCidade = ?";
+            + "celular, periodo, status FROM Cliente WHERE codCidade = ?";
 
     public void insert(Cliente cliente) throws SQLException {
         Connection con = null;
@@ -51,6 +51,11 @@ public class ClienteDAO {
             stmt.setString(6, cliente.getTelefone());
             stmt.setString(7, cliente.getCelular());
             stmt.setInt(8, cliente.getPeriodo());
+            if(cliente.isStatus()){
+                stmt.setInt(9, 1);
+            }else{
+                stmt.setInt(9, 0);
+            }
 
             stmt.executeUpdate();
 
@@ -74,7 +79,12 @@ public class ClienteDAO {
             stmt.setString(5, cliente.getTelefone());
             stmt.setString(6, cliente.getCelular());
             stmt.setInt(7, cliente.getPeriodo());
-            stmt.setString(8, cliente.getCpf());
+            if(cliente.isStatus()){
+                stmt.setInt(8, 1);
+            }else{
+                stmt.setInt(8, 0);
+            }            
+            stmt.setString(9, cliente.getCpf());
 
             stmt.executeUpdate();
 
@@ -124,8 +134,6 @@ public class ClienteDAO {
 
 
                 cliente.setCpf(rs.getString("cpf"));
-
-                cliente.setCpf(rs.getString("codCliente"));
 
                 cliente.setNome(rs.getString("nome"));
                 cliente.setEndereco(rs.getString("endereco"));
@@ -224,8 +232,6 @@ public class ClienteDAO {
 
                 nCliente.setCpf(rs.getString("cpf"));
 
-                nCliente.setCpf(rs.getString("codCliente"));
-
                 nCliente.setNome(rs.getString("nome"));
                 nCliente.setEndereco(rs.getString("endereco"));
                 nCliente.setEstado(estado);
@@ -276,8 +282,6 @@ public class ClienteDAO {
 
 
                 nCliente.setCpf(rs.getString("cpf"));
-
-                nCliente.setCpf(rs.getString("codCliente"));
 
                 nCliente.setNome(rs.getString("nome"));
                 nCliente.setEndereco(rs.getString("endereco"));

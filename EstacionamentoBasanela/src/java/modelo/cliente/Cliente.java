@@ -22,6 +22,7 @@ public class Cliente {
     private String telefone;
     private String celular;
     private int periodo;
+    private boolean status;
     private List<Veiculo> listaVeiculo;
 
     public String getCpf() {
@@ -88,6 +89,13 @@ public class Cliente {
         this.periodo = periodo;
     }
 
+    public boolean isStatus(){
+        return status;
+    }
+    
+    public void setStatus(boolean status){
+        this.status = status;
+    }
     public List<Veiculo> getListaVeiculo() {
         return listaVeiculo;
     }

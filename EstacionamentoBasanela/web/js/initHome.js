@@ -89,13 +89,13 @@ function buscarCliente() {
             html += "<div class=\"modal-header\">";
             html += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
             //Criacao do modal_cliente caso o veiculo exista
+            console.debug(json.existeCliente);
             if (json.existeCliente) {
                 html += "<h4 class=\"modal-title\">Cliente Cadastrado</h4>";
                 html += "</div>";
                 html += "<div class=\"modal-body\">";
                 html += "<p><b>CPF: </b>" + json.cliente[0].cpf + "</p>";
                 html += "<p><b>Nome: </b>" + json.cliente[0].nome + "</p>";
-                html += "</div>";
                 if (json.cliente[0].periodo == 1) {
                     html += "<p><b>Periodo: </b>Manha</p>";
                 } else
@@ -105,6 +105,7 @@ function buscarCliente() {
                     html += "<p><b>Periodo: </b>Noite</p>";
 
                 }
+                html += "</div>";                
                 html += "<div class=\"modal-footer\">";
                 if (json.emMovimento) { //Se o veiculo estiver em um movimento nao encerrado, exibir botao registrar saida
                     html += "<button type=\"button\" class=\"btn btn-primary\">Detalhar</button>";

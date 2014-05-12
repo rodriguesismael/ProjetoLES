@@ -73,6 +73,8 @@ public class CadastrarCliente implements UpdateInterface{
         cliente.setEndereco(request.getParameter("endereco"));
         cliente.setTelefone(request.getParameter("telefone"));
         cliente.setCelular(request.getParameter("celular"));
+        cliente.setStatus(true);
+        
          
         //Inserção de veiculo do cliente na tabela de veiculo
         Marca marca = new Marca();

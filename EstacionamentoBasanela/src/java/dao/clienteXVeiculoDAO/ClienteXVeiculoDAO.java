@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class ClienteXVeiculoDAO {
 
-    public static final String INSERT = "INSERT INTO ClienteXVeiculo (codCliente,placa) VALUES(?,?)";
+    public static final String INSERT = "INSERT INTO ClienteXVeiculo (cpf,placa) VALUES(?,?)";
     public static final String DELETE = "DELETE FROM ClienteXVeiculo WHERE cpf = ?";
     public static final String SELECTALL = "SELECT * FROM ClienteXVeiculo";
     public static final String SELECTBYCLIENTE = "SELECT * FROM ClienteXVeiculo WHERE cpf = ?";
@@ -73,8 +73,6 @@ public class ClienteXVeiculoDAO {
                 Cliente cliente = new Cliente();
 
                 cliente.setCpf(rs.getString("cpf"));
-
-                cliente.setCpf(rs.getString("codCliente"));
 
                 ClienteDAO cliDAO = new ClienteDAO();
                 cliente = cliDAO.selectById(cliente);

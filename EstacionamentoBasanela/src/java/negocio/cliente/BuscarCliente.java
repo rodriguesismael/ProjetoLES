@@ -39,6 +39,7 @@ public class BuscarCliente implements UpdateInterface {
         } catch (SQLException ex) {
             Logger.getLogger(BuscarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        response.setContentType("application/json");
         String json = "{\"existeCliente\": ";
 
         if (cliente.getPeriodo()!= 0) {
