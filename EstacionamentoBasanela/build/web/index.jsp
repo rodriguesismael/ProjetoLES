@@ -30,24 +30,23 @@
         <script type="text/javascript" src="js/initLogin.js"></script>
     </head>
     <body>
-        <div id="barra-progresso" class="progress progress-striped active">
-            <div class="progress-bar" style="width: 100%"></div>
-        </div>
-        <div id="header">
-            <h1><strong>Estacionamento Basanella</strong></h1>
-        </div>
-        <div id="boxLogin">
-            <form id="formLogin" action="javascript:;">
-                <div class="form-group">
-                    <label for="input_operador">Operador</label>
-                    <input type="text" class="form-control" id="input_operador" name="input_operador" maxlength="20"/>
-                </div>
-                <div class="form-group">
-                    <label for="input_senha">Senha</label>
-                    <input type="password" class="form-control input-sm" id="input_senha" name="input_senha" maxlength="10"/>
-                </div>
-                <input type="submit" class="btn btn-primary" value="Entrar" onclick="efetuarLogin()"/>
-            </form>
+        <div id="pagina">
+            <div id="header">
+                <h1><strong>Estacionamento Basanella</strong></h1>
+            </div>
+            <div id="boxLogin">
+                <form id="formLogin" action="javascript:;">
+                    <div class="form-group">
+                        <label for="input_operador">Operador</label>
+                        <input type="text" class="form-control" id="input_operador" name="input_operador" maxlength="20"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="input_senha">Senha</label>
+                        <input type="password" class="form-control input-sm" id="input_senha" name="input_senha" maxlength="10"/>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Entrar" onclick="efetuarLogin()"/>
+                </form>
+            </div>
         </div>
     </body>
 </html>

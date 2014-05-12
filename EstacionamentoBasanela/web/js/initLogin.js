@@ -66,8 +66,8 @@ function efetuarLogoff() {
                 dataType: "html",
                 async: false,
                 success: function(html) {
-                    $("html").html("");
-                    $("html").html(html);
+                    $("#pagina").html("");
+                    $("#pagina").html(html);
                 }
             });
         }

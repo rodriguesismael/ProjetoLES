@@ -18,25 +18,31 @@ import modelo.marca.Marca;
  */
 public class MarcaDAO {
 
-    private static final String INSERT = "INSERT INTO Marca (descricao) VALUES (?)";
+    private static final String INSERT = "INSERT INTO Marca (descricao) VALUES (?) SELECT SCOPE_IDENTITY() AS codMarca";
     private static final String UPDATE = "UPDATE Marca SET descricao = ? WHERE codMarca = ?";
     private static final String DELETE = "DELETE Marca WHERE codMarca = ?";
     private static final String SELECTALL = "SELECT codMarca, descricao FROM Marca ORDER BY descricao";
     private static final String SELECTBYID = "SELECT codMarca, descricao FROM Marca WHERE codMarca = ?";
 
-    public void insert(Marca marca) throws SQLException {
+    public int insert(Marca marca) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int codMarca = 0;
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(INSERT);
             stmt.setString(1, marca.getDescricao());
-            stmt.executeUpdate();
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                codMarca = rs.getInt("codMarca");
+            }
         } catch (SQLException ex) {
             throw ex;
         } finally {
-            ConnectionFactory.closeAll(con, stmt);
+            ConnectionFactory.closeAll(con, stmt, rs);
         }
+        return codMarca;
     }
 
     public void update(Marca marca) throws SQLException {

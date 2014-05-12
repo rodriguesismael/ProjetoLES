@@ -7,8 +7,8 @@ function enviar(regraNegocio) {
         dataType: "html",
         async: true,
         success: function(html) {
-            $("body").html("");
-            $("body").html(html);
+            $("#pagina").html("");
+            $("#pagina").html(html);
         }
     });
 }
@@ -24,8 +24,8 @@ function enviarParametro(regraNegocio, parametro) {
         },
         async: true,
         success: function(html) {
-            $("body").html("");
-            $("body").html(html);
+            $("#pagina").html("");
+            $("#pagina").html(html);
         }
     });
 }

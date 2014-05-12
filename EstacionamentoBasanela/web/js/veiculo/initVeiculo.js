@@ -40,8 +40,8 @@ function cadastrarVeiculoAvulso() {
                         dataType: "html",
                         async: false,
                         success: function(html) {
-                            $("body").html("");
-                            $("body").html(html);
+                            $("#pagina").html("");
+                            $("#pagina").html(html);
                             alertify.log("Entrada registrada com sucesso!", "success", 5000);
                         }
                     });
@@ -110,8 +110,8 @@ function cadastrarVeiculoMensal() {
                                 dataType: "html",
                                 async: false,
                                 success: function(html) {
-                                    $("body").html("");
-                                    $("body").html(html);
+                                    $("#pagina").html("");
+                                    $("#pagina").html(html);
                                     alerify.log("Entrada cadastrada com sucesso!", success, 300);
                                 }
                             });
