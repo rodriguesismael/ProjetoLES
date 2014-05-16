@@ -26,9 +26,6 @@
                 <!-- Modal Modelo de Veiculo -->
                 <div id="modal_modelo" class="modal fade">
                 </div>
-                <!-- Modal Cliente -->
-                <div id="modal_cliente" class="modal fade">
-                </div>
                 <div id="header">
                     <h1><strong>Estacionamento Basanela</strong></h1>
                 </div>
@@ -86,21 +83,12 @@
                     </div>
                     <div class="form-group">
                         <label for="select_cliente">Proprietario</label>
-                        <div class="input-group">
-                            <select class="form-control" id="select_cliente" name="select_cliente">
-                                <option value="nada"><-- selecione --></option>
-                                <c:forEach var="cliente" items="${listaCliente}">
-                                    <option value="${cliente.cpf}">${cliente.nome}</option>
-                                </c:forEach>
-                            </select>
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="modalCadModelo()">Inserir</a></li>
-                                    <li><a href="modalAltModelo()">Alterar</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                        <select class="form-control" id="select_cliente" name="select_cliente">
+                            <option value="nada"><-- selecione --></option>
+                            <c:forEach var="cliente" items="${listaCliente}">
+                                <option value="${cliente.cpf}">${cliente.nome}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                     <button type="button" class="btn btn-primary" onclick="cadastrarVeiculoMensal()">Cadastrar</button>
                     <button type="button" class="btn btn-default" onclick="enviar('FormHome')">Cancelar</button>
