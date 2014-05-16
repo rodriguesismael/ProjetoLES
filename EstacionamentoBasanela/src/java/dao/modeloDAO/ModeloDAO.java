@@ -23,27 +23,33 @@ import modelo.marca.Marca;
 public class ModeloDAO {
 
     public static final String INSERT = "INSERT INTO Modelo (codMarca,descricao) VALUES (?,?)";
-    public static final String UPDATE = "UPDATE Modelo SET codMarca = ?, descricao = ? WHERE codModelo=?";
+    public static final String UPDATE = "UPDATE Modelo SET descricao = ? WHERE codModelo=?";
     public static final String DELETE = "DELETE FROM Modelo WHERE codModelo = ?";
     public static final String SELECTALL = "SELECT codModelo, codMarca, descricao FROM Modelo";
     public static final String SELECTBYID = "SELECT codModelo, codMarca, descricao FROM Modelo WHERE codModelo = ?";
     public static final String SELECTBYMARCA = "SELECT codModelo, descricao FROM Modelo WHERE codMarca = ?";
 
-    public void insert(Modelo modelo) throws SQLException {
+    public int insert(Modelo modelo) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
-
+        ResultSet rs = null;
+        int codModelo = 0;
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(INSERT);
             stmt.setInt(1, modelo.getMarca().getCodMarca());
             stmt.setString(2, modelo.getDescricao());
             stmt.executeUpdate();
+            rs = stmt.executeQuery("SELECT LAST_INSERT_ID() AS codModelo FROM Modelo");
+            if (rs.next()) {
+                codModelo = rs.getInt("codModelo");
+            }
         } catch (SQLException ex) {
             throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
+        return codModelo;
     }
 
     public void update(Modelo modelo) throws SQLException {
@@ -53,9 +59,8 @@ public class ModeloDAO {
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(UPDATE);
-            stmt.setInt(1, modelo.getMarca().getCodMarca());
-            stmt.setString(2, modelo.getDescricao());
-            stmt.setInt(3, modelo.getCodModelo());
+            stmt.setString(1, modelo.getDescricao());
+            stmt.setInt(2, modelo.getCodModelo());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             throw ex;

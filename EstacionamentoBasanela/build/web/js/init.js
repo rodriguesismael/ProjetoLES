@@ -6,6 +6,9 @@ function enviar(regraNegocio) {
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         dataType: "html",
         async: true,
+        beforeSend: function(){
+            $("#modal_veiculo").modal("hide");
+        },
         success: function(html) {
             $("#pagina").html("");
             $("#pagina").html(html);
@@ -19,6 +22,10 @@ function enviarParametro(regraNegocio, parametro) {
         type: "POST",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         dataType: "html",
+        beforeSend: function(){
+            $("body").removeClass("modal-open");
+            $(".modal-backdrop").remove();
+        },
         data: {
             id: parametro
         },

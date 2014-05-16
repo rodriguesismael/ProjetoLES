@@ -18,7 +18,7 @@ import modelo.marca.Marca;
  */
 public class MarcaDAO {
 
-    private static final String INSERT = "INSERT INTO Marca (descricao) VALUES (?) SELECT SCOPE_IDENTITY() AS codMarca";
+    private static final String INSERT = "INSERT INTO Marca (descricao) VALUES (?)";
     private static final String UPDATE = "UPDATE Marca SET descricao = ? WHERE codMarca = ?";
     private static final String DELETE = "DELETE Marca WHERE codMarca = ?";
     private static final String SELECTALL = "SELECT codMarca, descricao FROM Marca ORDER BY descricao";
@@ -33,7 +33,8 @@ public class MarcaDAO {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(INSERT);
             stmt.setString(1, marca.getDescricao());
-            rs = stmt.executeQuery();
+            stmt.executeUpdate();
+            rs = stmt.executeQuery("SELECT LAST_INSERT_ID() AS codMarca FROM Marca");
             if (rs.next()) {
                 codMarca = rs.getInt("codMarca");
             }
