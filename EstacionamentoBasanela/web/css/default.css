@@ -1,3 +1,8 @@
+div#listagem{
+    width: 950px;
+    margin: 0 auto;
+}
+
 /* -- BARRA DE PROGRESSO -- */
 #barra-progresso{
     width: 300px;

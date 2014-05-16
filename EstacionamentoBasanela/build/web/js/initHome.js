@@ -40,7 +40,7 @@ function buscarVeiculo() {
                 html += "</div>";
                 html += "<div class=\"modal-footer\">";
                 if (json.emMovimento) { //Se o veiculo estiver em um movimento nao encerrado, exibir botao registrar saida
-                    html += "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Registrar Saida</button>";
+                    html += "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" onclick=\"registrarSaida('" + json.veiculo[0].placa + "')\">Registrar Saida</button>";
                 } else { //Se o veiculo nao estiver em um movimento, exibir botao registrar entrada
                     html += "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" onclick=\"registrarEntrada('" + json.veiculo[0].placa + "')\">Registrar Entrada</button>";
                 }

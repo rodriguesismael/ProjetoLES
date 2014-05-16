@@ -15,9 +15,33 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#table_listaVeiculo").dataTable({
-                    "sDom": "<'row'<'span8'l><'span8'f>r>t<'row'<'span8'i><'span8'p>>"
+                    "oLanguage": {
+                        "sLengthMenu": "Mostrar _MENU_ registros por página.",
+                        "sZeroRecords": "Nenhum registro encontrado!",
+                        "sInfo": "Mostrando _START_ - _END_ de _TOTAL_",
+                        "sInfoEmpty": "Mostrando 0 - 0 de 0",
+                        "sInfoFiltered": "(filtrados de um total de _MAX_ registros)",
+                        "sSearch": "Buscar",
+                        "sProcessing": "Carregando...",
+                        "oPaginate": {
+                            "sFirst": "Primeiro",
+                            "sLast": "Último",
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior"
+                        }
+                    },
+                    "aoColumnDefs": [
+                        {"bSortable": false, "aTargets": [4]}
+                    ],
+                    "bProcessing": true,
+                    "bStateSave": true,
+                    "bAutoWidth": false,
+                    "aaSorting": [],
+                    "sSortAsc": "header headerSortDown",
+                    "sSortDesc": "header headerSortUp",
+                    "sSortable": "header"
                 });
-            })
+            });
         </script>
     </head>
     <body>
@@ -28,8 +52,8 @@
                 </div>
                 <h1>Lista de Veiculos</h1>
                 <hr/>
-                <div id="boxLista">
-                    <table id="table_listaVeiculo">
+                <div id="listagem">
+                    <table id="table_listaVeiculo" class="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Placa</th>

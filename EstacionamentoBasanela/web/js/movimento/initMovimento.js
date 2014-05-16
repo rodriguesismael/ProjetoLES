@@ -15,3 +15,22 @@ function registrarEntrada(placa) {
         }
     });
 }
+
+function registrarSaida(placa){
+    $.ajax({
+        url: "Controller?name=RegistrarSaida",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            placa: placa
+        },
+        dataType: "json",
+        async: false,
+        success: function(json) {
+            
+            $("#pagina").html("");
+            $("#pagina").html(html);
+            alertify.log("Saida registrada com sucesso!", "success", 5000);
+        }
+    });
+}
