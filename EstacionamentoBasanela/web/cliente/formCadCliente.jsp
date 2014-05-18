@@ -88,7 +88,9 @@
                                             <div class="input-group">
                                                     <select class="form-control" id="select_veiculo" name="select_veiculo">
                                                             <option value="nada"><-- selecione --></option>
-                                                            <option value="1">DKD-3240 / Chevrolet - GM / Celta</option>
+                                                            <c:forEach var="veiculo" items="${listaVeiculo}">
+                                                                <option value="${veiculo.placa}">${veiculo.placa}/${veiculo.modelo.getDescricao()}</option>
+                                                            </c:forEach>
                                                     </select>
                                                     <div class="input-group-btn">
                                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
@@ -103,56 +105,6 @@
                             <button type="button" class="btn btn-primary" onclick="javascript:;">Salvar</button>
                             <button type="button" class="btn btn-default" onclick="enviar('FormHome')">Voltar</button>
                     </div>
-                    <!--<fieldset>
-                        <legend>Dados do Veículo</legend>
-                        <div class="formColunaEsquerda">
-                            <div class="form-group">
-                                <label for="input_placa">Placa</label>
-                                <input type="text" class="form-control" name="input_placa" id="input_placa"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="select_marca">Marca</label>
-                                <div class="input-group">
-                                    <select class="form-control" id="select_marca" name="select_marca" onchange="buscarModelo()">
-                                        <option value="nada"> <- selecione -> /option>
-                                        <c:forEach var="marca" items="${listaMarca}">
-                                            <option value="${marca.codMarca}">${marca.descricao}</option>
-                                        </c:forEach>
-                                    </select>
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li><a href="modalCadMarca()">Adicionar</a></li>
-                                            <li><a href="modalAltMarca()">Alterar</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="select_modelo">Modelo</label>
-                                <div class="input-group">
-                                    <select class="form-control" id="select_modelo" name="select_modelo" disabled>
-                                        <option value="nada"><-- selecione -></option>
-                                    </select>
-                                    <div class="input-group-btn">
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
-                                        <ul class="dropdown-menu pull-right">
-                                            <li><a href="modalCadModelo()">Inserir</a></li>
-                                            <li><a href="modalAltModelo()">Alterar</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="select_tipo">Tipo</label>
-                                <select class="form-control" id="select_tipo" name="select_tipo">
-                                    <option value="nada"><- selecione -></option>
-                                    <option value="0">Carro</option>
-                                    <option value="1">Moto</option>
-                                </select>
-                            </div>                            
-                        </div>
-                    </fieldset>-->
                 </form>
             </c:when>
             <c:otherwise>

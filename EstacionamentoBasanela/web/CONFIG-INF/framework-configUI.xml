@@ -28,7 +28,9 @@
         <!-- ClienteXVeiculo -->
         <logic name="CadastrarClienteXVeiculo" type="negocio.clienteXVeiculo.CadastrarClienteXVeiculo"></logic>
         <!-- Cidade-->
-        <logic name="BuscarCidade" type="negocio.cidade.BuscarCidade"></logic>        
+        <logic name="BuscarCidade" type="negocio.cidade.BuscarCidade"></logic>
+        <!-- Estado -->
+        <logic name="CarregarMarcas" type="negocio.marca.CarregarMarcas"></logic>
 
     </logics>
 </config>
