@@ -91,3 +91,76 @@ function cadastrarCliente() {
 
     });
 }
+
+function modalNovoVeiculo(){
+    var html="";
+    html += "<div class=\"modal-dialog\">";
+    html += "<div class=\"modal-content\">";
+    html += "<div class=\"modal-header\">";
+    html += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
+    html += "<h4 class=\"modal-title\">Novo Veículo</h4>";
+    html += "</div>";
+    html += "<div class=\"modal-body\">";
+    html += "<form action=\"javascript:;\">";
+    html += "<div style=\"width: 450px;\">";
+    html += "<div class=\"row\">";
+    html += "<div clas=\"col-xs-6 form-group\">";
+    html += "<label for=\"input_placa\">Placa</label>";
+    html += "<input type=\"text\" class=\"form-control\" name=\"input_placa\" id=\"input_placa\"/>";
+    html += "</div>";
+    html += "<div clas=\"col-xs-6 form-group\">";
+    html += "<label for=\"input_placa\">Placa</label>";
+    html += "<input type=\"text\" class=\"form-control\" name=\"input_placa\" id=\"input_placa\"/>";
+    html += "</div>";
+    html += "<div clas=\"col-xs-6 form-group\">";
+    html += "<label for=\"select_marca\">Marca</label>";
+    html += "<select class=\"form-control\" id=\"select_marca\" name=\"select_marca\" onchange=\"buscarModelo()\">";
+    html += "<option value=\"nada\"> <- selecione -> </option>";
+    html += "<c:forEach var=\"marca\" items=\"${listaMarca}\">";
+    html += "<option value=\"${marca.codMarca}\">${marca.descricao}</option>";
+    html += "</c:forEach>";
+    html += "</select>";
+    html += "<div class=\"input-group-btn\">";
+    html += "<button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-plus\"></span></button>";
+    html += "<ul class=\"dropdown-menu pull-right\">";
+    html += "<li><a href=\"modalCadMarca()\">Adicionar</a></li>";
+    html += "<li><a href=\"modalAltMarca()\">Alterar</a></li>";
+    html += "</ul>";
+    html += "</div>";
+    html += "</div>";
+    html += "<div clas=\"col-xs-6 form-group\">";
+    html += "<label for=\"select_modelo\">Modelo</label>";
+    html += "<select class=\"form-control\" id=\"select_modelo\" name=\"select_modelo\" disabled>";
+    html += "<option value=\"nada\"><-- selecione -></option>";
+    html += "</select>";
+    html += "<div class=\"input-group-btn\">";
+    html += "<button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-plus\"></span></button>";
+    html += "<ul class=\"dropdown-menu pull-right\">";
+    html += "<li><a href=\"modalCadModelo()\">Inserir</a></li>";
+    html += "<li><a href=\"modalAltModelo()\">Alterar</a></li>";
+    html += "</ul>";
+    html += "</div>";
+    html += "</div>";
+    html += "<div clas=\"col-xs-6 form-group\">";
+    html += "<label for=\"select_tipo\">Tipo</label>";
+    html += "<select class=\"form-control\" id=\"select_tipo\" name=\"select_tipo\">";
+    html += "<option value=\"nada\"><- selecione -></option>";
+    html += "<option value=\"0\">Carro</option>";
+    html += "<option value=\"1\">Moto</option>";
+    html += "</select>";
+    html += "<div class=\"row\" align=\"center\">";
+    html += "<div class=\"col-xs-12\">";
+    html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"javascript:;\">Salvar</button>";
+    html += "</div>";
+    html += "</div>";
+    html += "</div>";    
+    html += "</form>";
+    html += "</div>";
+    html += "</div>";
+    html += "</div>";
+    html += "</div>";
+    
+    $("#modal_veiculo").html("");
+    $("#modal_veiculo").html(html);
+    $("#modal_veiculo").modal();
+}
