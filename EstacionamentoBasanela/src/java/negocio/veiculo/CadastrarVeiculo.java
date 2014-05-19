@@ -59,6 +59,6 @@ public class CadastrarVeiculo implements UpdateInterface {
             Logger.getLogger(CadastrarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
         response.setContentType("application/json");
-        out.print("{\"placa\": \"" + veiculo.getPlaca() + "\"}");
+        out.print("{\"placa\": \"" + veiculo.getPlaca() + "\", \"modelo\": \""+veiculo.getModelo().getDescricao()+"\"}");
     }
 }

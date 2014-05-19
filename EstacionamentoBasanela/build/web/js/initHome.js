@@ -63,6 +63,35 @@ function buscarVeiculo() {
     });
 }
 
+function cpfValido(){
+    var Soma;
+    var Resto;
+    Soma = 0;
+    var strCPF = $("#input_cliente").val();
+    
+    strCPF = strCPF.replace(/[^0-9]/g,"");//pega apenas os numeros
+    if (strCPF == "00000000000")
+        return false;
+    for (i=1; i<=9; i++)
+        Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+    if ((Resto == 10) || (Resto == 11))
+        Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10)) )
+        return false;
+    Soma = 0;
+    for (i = 1; i <= 10; i++)
+        Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+    if ((Resto == 10) || (Resto == 11))
+        Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) )
+        return false;
+    return true;
+
+    
+}
+
 /*
  * Funcao responsavel por buscar o cliente mediante a seu numero de CPF e
  * montar o modal_cliente conforme o resultado da funcao.
@@ -70,6 +99,12 @@ function buscarVeiculo() {
 function buscarCliente() {
     if ($("#input_cliente").val().trim("") == "") {
         alertify.alert("O CPF do cliente não foi preenchido", function() {
+            $("#input_cliente").focus();
+        });
+        return;
+    }
+    if(!cpfValido()){
+        alertify.alert("O CPF do cliente não é válido", function() {
             $("#input_cliente").focus();
         });
         return;
