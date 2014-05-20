@@ -186,9 +186,9 @@ function modalNovoVeiculo(){
     html += "</div>";
     html += "</div>";
     html += "</div>";
-    
     $("#modal_veiculo").html("");
     $("#modal_veiculo").html(html);
+    $("#input_placa").mask("aaa-9999");
     carregarEstados();
     $("#modal_veiculo").modal();
 }
@@ -244,3 +244,9 @@ function cadastrarVeiculo() {
         }
     });
 }
+
+$(document).ready(function(){
+    //$.mask.definitions['~'] = '([0-9] )?';
+    $("#input_telefone").mask("(99) 99999999");
+    $("#input_celular").mask("(99) 999999999");
+})

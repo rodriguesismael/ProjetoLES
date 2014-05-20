@@ -33,7 +33,7 @@
                             <div class="row">
                                     <div class="col-xs-6 form-group">
                                             <label for="input_cpf">CPF</label>
-                                            <input type="text" class="form-control" id="input_cpf" name="input_cpf" value="${cpf}"/>
+                                            <input type="text" class="form-control" id="input_cpf" name="input_cpf" value="${cpf}" readonly/>
                                     </div>
                                     <div class="col-xs-6 form-group">
                                             <label for="select_estado">Estado</label>
