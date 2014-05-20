@@ -41,30 +41,7 @@ function cadastrarCliente() {
         });
         return;
     }
-    /*fim validação campos do cliente*/
-
-    /*validação campos do veiculo do cliente*/
-    if ($("#input_placa").val().trim(" ") == "") {
-        alertify.alert("Informe a placa do veículo!", function() {
-            $("#input_placa").focus();
-        });
-        return;
-    }
-
-    if ($("#select_tipo option:selected").val() == "nada") {
-        alertify.alert("O TIPO DE VEICULO nao foi selecionado!");
-        return;
-    }
-    if ($("#select_marca option:selected").val() == "nada") {
-        alertify.alert("A MARCA do veiculo nao foi selecionada!");
-        return;
-    }
-    if ($("#select_modelo option:selected").val() == "nada") {
-        alertify.alert("O MODELO do veiculo nao foi selecionado!");
-        return;
-    }
-    /*fim validação campos do veiculo do cliente*/
-
+    
     $.ajax({
         url: "Controller?name=CadastrarCliente",
         type: "POST",
@@ -87,9 +64,10 @@ function cadastrarCliente() {
         }
 
     });
+    enviar("FormHome");
 }
 
-function carregarEstados(){
+function carregarMarcas(){
         $.ajax({
             url: "Controller?name=CarregarMarcas",
             type: "POST",
@@ -109,7 +87,6 @@ function carregarEstados(){
                     }
                 }
                 $("#select_marca").html(html);
-                
             }
         });    
 }
@@ -134,35 +111,17 @@ function modalNovoVeiculo(){
     html += "<div class=\"row\">";
     html += "<div class=\"col-xs-8 form-group\">";
     html += "<label for=\"select_marca\">Marca</label>";
-    html += "<div class=\"input-group\">";
     html += "<select class=\"form-control\" id=\"select_marca\" name=\"select_marca\" onchange=\"buscarModelo()\">";
     html += "<option value=\"nada\"> <- selecione -> </option>";
     html += "</select>";
-    html += "<div class=\"input-group-btn\">";
-    html += "<button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-plus\"></span></button>";
-    html += "<ul class=\"dropdown-menu pull-right\">";
-    html += "<li><a href=\"javascript:;\" onclick=\"modalCadMarca()\">Adicionar</a></li>";
-    html += "<li><a href=\"javascript:;\" onclick=\"modalAltMarca()\">Alterar</a></li>";
-    html += "</ul>";
-    html += "</div>";
-    html += "</div>";    
     html += "</div>";
     html += "</div>";
     html += "<div class=\"row\">";
     html += "<div class=\"col-xs-8 form-group\">";
     html += "<label for=\"select_modelo\">Modelo</label>";
-    html += "<div class=\"input-group\">";
     html += "<select class=\"form-control\" id=\"select_modelo\" name=\"select_modelo\" disabled>";
     html += "<option value=\"nada\"><-- selecione -></option>";
     html += "</select>";
-    html += "<div class=\"input-group-btn\">";
-    html += "<button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"glyphicon glyphicon-plus\"></span></button>";
-    html += "<ul class=\"dropdown-menu pull-right\">";
-    html += "<li><a href=\"javascript:;\" onclick=\"modalCadModelo()\">Inserir</a></li>";
-    html += "<li><a href=\"javascript:;\" onclick=\"modalAltModelo()\">Alterar</a></li>";
-    html += "</ul>";
-    html += "</div>";
-    html += "</div>";
     html += "</div>";
     html += "</div>";
     html += "<div class=\"row\">";
@@ -177,7 +136,7 @@ function modalNovoVeiculo(){
     html += "</div>";
     html += "<div class=\"row\" align=\"center\">";
     html += "<div class=\"col-xs-1\">";
-    html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"cadastrarVeiculoAvulso()\">Salvar</button>";
+    html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"cadastrarVeiculo()\">Salvar</button>";
     html += "</div>";
     html += "</div>";
     html += "</div>";    
@@ -186,10 +145,11 @@ function modalNovoVeiculo(){
     html += "</div>";
     html += "</div>";
     html += "</div>";
-    
     $("#modal_veiculo").html("");
     $("#modal_veiculo").html(html);
-    carregarEstados();
+    $("#input_placa").mask("aaa-9999");
+    carregarMarcas();
+    buscarModelo();
     $("#modal_veiculo").modal();
 }
 
@@ -220,7 +180,11 @@ function cadastrarVeiculo() {
         async: false,
         success: function(json) {
             alertify.log("Veiculo cadastrado com sucesso!", "success", 5000);
-            alertify.confirm("Registrar entrada?", function(r) {
+            $("#modal_veiculo").modal('hide');
+            var html = "<option value=\""+json.plavaVeiculo+"\" selected>"+json.placa+"/"+json.modelo+"</option>";
+            $("#select_veiculo").append(html);
+            /*
+             *alertify.confirm("Registrar entrada?", function(r) {
                 if (r) {//Caso a resposta seja sim
                     $.ajax({
                         url: "Controller?name=RegistrarEntrada",
@@ -240,7 +204,13 @@ function cadastrarVeiculo() {
                 } else {//Caso a resposta seja nao
                     enviar("FormHome");
                 }
-            });
+            });*/
         }
     });
 }
+
+$(document).ready(function(){
+    //$.mask.definitions['~'] = '([0-9] )?';
+    $("#input_telefone").mask("(99) 99999999");
+    $("#input_celular").mask("(99) 999999999");
+})

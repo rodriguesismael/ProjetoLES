@@ -116,7 +116,11 @@ form {
 
 /* -- MODAL VEICULO -- */
 #modal_veiculo button{
+<<<<<<< HEAD
     margin-left: 60px;
+=======
+    /*margin-left: 60px;*/
+>>>>>>> 9ba3699830e808995bc686e5f8d59caf253e1977
 }
 
 /* -- PERSONALIZADOS -- */

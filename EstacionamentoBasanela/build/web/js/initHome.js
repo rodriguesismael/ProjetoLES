@@ -124,7 +124,7 @@ function buscarCliente() {
             html += "<div class=\"modal-header\">";
             html += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
             //Criacao do modal_cliente caso o veiculo exista
-            console.debug(json.existeCliente);
+            
             if (json.existeCliente) {
                 html += "<h4 class=\"modal-title\">Cliente Cadastrado</h4>";
                 html += "</div>";
