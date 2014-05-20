@@ -30,6 +30,7 @@
                 <h1>Cadastro de Cliente</h1>
                 <hr/>
                 <form action="javascript:;">
+<<<<<<< HEAD
                     <div style="margin: 0 auto; width: 900px;">
                         <div class="row">
                             <div class="col-xs-6 form-group">
@@ -94,12 +95,89 @@
                                             <li><a href="javascript:;" onclick="">Cadastrar</a></li>
                                             <li><a href="javascript:;" onclick="">Alterar</a></li>
                                         </ul>
+=======
+			<div style="margin: 0 auto; width: 900px;">
+                            <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                            <label for="input_cpf">CPF</label>
+                                            <input type="text" class="form-control" id="input_cpf" name="input_cpf" value="${cpf}"/>
                                     </div>
-                                </div>
+                                    <div class="col-xs-6 form-group">
+                                            <label for="select_estado">Estado</label>
+                                            <select class="form-control" id="select_estado" name="select_estado" onchange="buscarCidade()">
+                                                    <option value="nada"><-- selecione --></option>
+                                                    <c:forEach var="estado" items="${listaEstado}">
+                                                        <option value="${estado.codEstado}">${estado.descricao}</option>
+                                                    </c:forEach>                                                    
+                                            </select>
+                                    </div>
                             </div>
+                            <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                            <label for="input_nome">Nome</label>
+                                            <input type="text" class="form-control" id="input_nome" name="input_nome"/>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                            <label for="select_cidade">Cidade</label>
+                                            <select class="form-control" id="select_cidade" name="select_cidade" disabled>
+                                                    <option value="nada"><-- selecione --></option>
+                                            </select>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                            <label for="input_telefone">Telefone</label>
+                                            <input type="text" class="form-control" id="input_telefone" name="input_telefone"/>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                            <label for="input_endereco">Endereço</label>
+                                            <input type="text" class="form-control" id="input_endereco" name="input_endereco"/>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                            <label for="input_celular">Celular</label>
+                                            <input type="text" class="form-control" id="input_celular" name="input_celular"/>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                            <label for="select_periodo">Período</label>
+                                            <select class="form-control" id="select_periodo" name="select_periodo">
+                                                    <option value="nada"><-- selecione --></option>
+                                                    <option value="1">Manhã</option>
+                                                    <option value="2">Tarde</option>
+                                                    <option value="3">Noite</option>
+                                            </select>
+                                    </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-12 form-group">
+                                            <label for="select_veiculo">Veiculo</label>
+                                            <div class="input-group">
+                                                    <select class="form-control" id="select_veiculo" name="select_veiculo">
+                                                            <option value="nada"><-- selecione --></option>
+                                                            <c:forEach var="veiculo" items="${listaVeiculo}">
+                                                                <option value="${veiculo.placa}">${veiculo.placa}/${veiculo.modelo.getDescricao()}</option>
+                                                            </c:forEach>
+                                                    </select>
+                                                    <div class="input-group-btn">
+                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
+                                                            <ul class="dropdown-menu pull-right">
+                                                                    <li><a href="javascript:;" onclick="modalNovoVeiculo()">Cadastrar</a></li>
+                                                                    <li><a href="javascript:;" onclick="">Alterar</a></li>
+                                                            </ul>
+                                                    </div>
+                                            </div>
+>>>>>>> c1d52b73abbaff3725283169d9c4428db710efc3
+                                    </div>
+                            </div>
+<<<<<<< HEAD
                         </div>
                         <button type="button" class="btn btn-primary" onclick="javascript:;">Salvar</button>
                         <button type="button" class="btn btn-default" onclick="javascript:;">Voltar</button>
+=======
+                            <button type="button" class="btn btn-primary" onclick="javascript:;">Salvar</button>
+                            <button type="button" class="btn btn-default" onclick="enviar('FormHome')">Voltar</button>
+>>>>>>> c1d52b73abbaff3725283169d9c4428db710efc3
                     </div>
                 </form>
             </c:when>

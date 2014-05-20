@@ -75,52 +75,28 @@ public class CadastrarCliente implements UpdateInterface{
         cliente.setCelular(request.getParameter("celular"));
         cliente.setStatus(true);
         
-         
-        //Inserção de veiculo do cliente na tabela de veiculo
-        Marca marca = new Marca();
-        MarcaDAO marcaDAO = new MarcaDAO();
-        Modelo modelo = new Modelo();
-        ModeloDAO modeloDAO = new ModeloDAO();
-        marca.setCodMarca(Integer.parseInt(request.getParameter("marcaVeiculo")));
-        try{
-            marca = marcaDAO.selectById(marca);
-        }catch(SQLException ex){
-            Logger.getLogger(CadastrarCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        modelo.setCodModelo(Integer.parseInt(request.getParameter("modeloVeiculo")));
-        try {
-            modelo = modeloDAO.selectById(modelo);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastrarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        Veiculo veiculo = new Veiculo();
-        VeiculoDAO veiculoDAO = new VeiculoDAO();        
-        
-        veiculo.setPlaca(request.getParameter("placa"));
-        veiculo.setMarca(marca);
-        veiculo.setModelo(modelo);
-        veiculo.setTipo(Integer.parseInt(request.getParameter("tipoVeiculo")));
-        
-        try{
-            veiculoDAO.insert(veiculo);
-        }catch(SQLException ex){
-            Logger.getLogger(CadastrarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //Fim inserção de veiculo do cliente na tabela de veiculo
-        
+                
         /*//Lista contendo veiculo do cliente
         List<Veiculo> listaVeiculos = new ArrayList<Veiculo>();
         listaVeiculos.add(veiculo);
         cliente.setListaVeiculo(listaVeiculos);*/
         
-        //finalmente inserindo o cliente
+        //inserindo o cliente
         try {
             clienteDAO.insert(cliente);
         } catch (SQLException ex) {
             Logger.getLogger(CadastrarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
+        Veiculo veiculo = new Veiculo();
+        veiculo.setPlaca(request.getParameter("placaVeiculo"));
+        VeiculoDAO veoiculoDAO = new VeiculoDAO();
+        try{
+            veiculo = veoiculoDAO.selectById(veiculo);
+        }catch(SQLException ex){
+            Logger.getLogger(CadastrarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //Inserir relacionamento entre o cliente e o veiculo
         ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
         ClienteXVeiculoDAO clienteXVeiculoDAO = new ClienteXVeiculoDAO();
