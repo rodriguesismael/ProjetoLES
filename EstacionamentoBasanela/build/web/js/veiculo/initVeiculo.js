@@ -97,7 +97,7 @@ function cadastrarVeiculoMensal() {
                 dataType: "json",
                 async: false,
                 success: function(json) {
-                    alertify.log("Veiculo cadastrado com sucesso!", "success", 3000);
+                    alertify.log("Veiculo cadastrado com sucesso!", "success", 5000);
                     alertify.confirm("Registrar entrada?", function(r) {
                         if (r) {//Caso a resposta seja sim
                             $.ajax({
@@ -112,7 +112,7 @@ function cadastrarVeiculoMensal() {
                                 success: function(html) {
                                     $("#pagina").html("");
                                     $("#pagina").html(html);
-                                    alerify.log("Entrada cadastrada com sucesso!", success, 300);
+                                    alerify.log("Entrada cadastrada com sucesso!", "success", 5000);
                                 }
                             });
                         } else {//Caso a resposta seja nao
@@ -121,6 +121,39 @@ function cadastrarVeiculoMensal() {
                     });
                 }
             });
+        }
+    });
+}
+
+function alterarVeiculo() {
+    if ($("#select_tipo option:selected").val() == "nada") {
+        alertify.alert("O campo TIPO nao foi selecionado!");
+        return;
+    }
+    if ($("#select_marca option:selected").val() == "nada") {
+        alertify.alert("O campo MARCA nao foi selecionado!");
+        return;
+    }
+    if ($("#select_modelo option:selected").val() == "nada") {
+        alertify.alert("O campo MODELO nao foi selecionado!");
+        return;
+    }
+    $.ajax({
+        url: "Controller?name=AlterarVeiculo",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            placa: $("#input_placa").val(),
+            tipoVeiculo: $("#select_tipo option:selected").val(),
+            marcaVeiculo: $("#select_marca option:selected").val(),
+            modeloVeiculo: $("#select_modelo option:selected").val()
+        },
+        dataType: "html",
+        async: false,
+        success: function(html) {
+            $("#pagina").html("");
+            $("#pagina").html(html);
+            alertify.log("Veiculo alterado com sucesso!", "success", 5000);
         }
     });
 }
