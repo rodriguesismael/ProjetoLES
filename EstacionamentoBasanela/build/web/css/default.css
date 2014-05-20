@@ -116,10 +116,7 @@ form {
 
 /* -- MODAL VEICULO -- */
 #modal_veiculo button{
-<<<<<<< HEAD
     margin-left: 60px;
-=======
-    /*margin-left: 60px;*/
 }
 
 /* -- PERSONALIZADOS -- */
@@ -141,5 +138,4 @@ div.formColunaDireita {
     width: 400px;
     float: left;
     margin-left: 50px;
->>>>>>> c1d52b73abbaff3725283169d9c4428db710efc3
 }
