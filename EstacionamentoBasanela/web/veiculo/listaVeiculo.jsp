@@ -77,7 +77,7 @@
                                     </c:choose>
                                     <td>${veiculo.marca.descricao}</td>
                                     <td>${veiculo.modelo.descricao}</td>
-                                    <td><a>Alterar</a><a>Inativar</a></td>
+                                    <td style="text-align: center;"><a href="javascript:;" onclick="enviarParametro('FormAltVeiculo', '${veiculo.placa}')"><span class="glyphicon glyphicon-pencil"></span></a></td>
                                 </tr>
                             </c:forEach>
                         </tbody>

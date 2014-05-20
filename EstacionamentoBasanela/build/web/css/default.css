@@ -1,13 +1,7 @@
+/* -- PADRONIZACAO DAS LISTAS -- */
 div#listagem{
     width: 950px;
     margin: 0 auto;
-}
-
-/* -- BARRA DE PROGRESSO -- */
-#barra-progresso{
-    width: 300px;
-    margin: 0 auto;
-    display: none;
 }
 
 /* -- HEADER -- */
@@ -113,18 +107,6 @@ div#bottom {
     margin-left: 10px;
 }
 
-/*--LISTAS--*/
-/* -- LOGIN -- */
-div#boxLista {
-    margin: 0 auto;
-    margin-top: 30px;
-    width: 80%;
-    padding: 20px;
-    background-color: #DDDDDD;
-    border-radius: 5px;
-    box-shadow: 0em 0em 3px #000; 
-}
-
 /* -- PADRONIZACAO DE TODOS OS FORMULARIOS -- */
 form {
     margin: 0 auto;
@@ -132,40 +114,7 @@ form {
     width: 850px;
 }
 
-/* -- FORM CAD VEICULO -- */
-div#formCadVeiculoEsquerda {
-    width: 400px;
-    float: left;
-}
-
-div#formCadVeiculoDireita {
-    width: 400px;
-    float: left;
-    margin-left: 50px;
-}
-
 /* -- MODAL VEICULO -- */
 #modal_veiculo button{
     margin-left: 60px;
-}
-
-/* -- PERSONALIZADOS -- */
-
-input.medio{
-    width: 35%;
-}
-
-input.pequeno{
-    width: 20%;
-}
-
-div.formColunaEsquerda {
-    width: 400px;
-    float: left;
-}
-
-div.formColunaDireita {
-    width: 400px;
-    float: left;
-    margin-left: 50px;
 }

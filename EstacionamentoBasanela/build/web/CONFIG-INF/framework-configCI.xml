@@ -14,6 +14,8 @@
         <logic name="FormCadVeiculoAvulso" type="negocio.veiculo.FormCadVeiculoAvulso"></logic>
         <logic name="FormCadVeiculoMensal" type="negocio.veiculo.FormCadVeiculoMensal"></logic>
         <logic name="ListarVeiculo" type="negocio.veiculo.ListarVeiculo"></logic>
+        <logic name="FormAltVeiculo" type="negocio.veiculo.FormAltVeiculo"></logic>
+        <logic name="AlterarVeiculo" type="negocio.veiculo.AlterarVeiculo"></logic>
         <!-- Outro -->
         <logic name="FormHome" type="negocio.outro.FormHome"></logic>
         <!-- Movimento -->

@@ -17,9 +17,9 @@ import java.sql.Statement;
 public class ConnectionFactory {
 
     private static final String STR_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DATABASE = "basanelapark";
-    private static final String STR_CON = "jdbc:mysql://127.0.0.1:3306/" + DATABASE;
-    private static final String USER = "root";
+    private static final String DATABASE = "basanelapark";//basanelapark
+    private static final String STR_CON = "jdbc:mysql://127.0.0.1:3306/" + DATABASE;//127.0.0.1:3306/
+    private static final String USER = "root";//root
     private static final String PASSWORD = "19930730";//19930730
 
     public static Connection getConexao() {

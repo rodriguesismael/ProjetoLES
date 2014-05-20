@@ -1,7 +1,7 @@
 <%-- 
-    Document   : formCadVeiculo
-    Created on : Apr 29, 2014, 12:07:39 PM
-    Author     : Alvaro Augusto Roberto
+    Document   : formAltVeiculo
+    Created on : May 17, 2014, 1:49:27 PM
+    Author     : Alvaro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,14 +28,14 @@
                 <div id="header">
                     <h1><strong>Estacionamento Basanela</strong></h1>
                 </div>
-                <h1>Cadastro de Veiculo Avulso</h1>
+                <h1>Alteracao de Veiculo</h1>
                 <hr/>
                 <form action="javascript:;">
                     <div style="margin: 0 auto; width: 900px;">
                         <div class="row">
                             <div class="col-xs-6 form-group">
                                 <label for="input_placa">Placa</label>
-                                <input type="text" class="form-control" id="input_placa" name="input_placa" value="${placa}" readonly/>
+                                <input type="text" class="form-control" id="input_placa" name="input_placa" value="${veiculo.placa}" readonly/>
                             </div>
                             <div class="col-xs-6 form-group">
                                 <label for="select_marca">Marca</label>
@@ -43,7 +43,14 @@
                                     <select class="form-control" id="select_marca" name="select_marca" onchange="buscarModelo()">
                                         <option value="nada"><-- selecione --></option>
                                         <c:forEach var="marca" items="${listaMarca}">
-                                            <option value="${marca.codMarca}">${marca.descricao}</option>
+                                            <c:choose>
+                                                <c:when test="${veiculo.marca.codMarca eq marca.codMarca}">
+                                                    <option value="${marca.codMarca}" selected>${marca.descricao}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${marca.codMarca}">${marca.descricao}</option>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:forEach>
                                     </select>
                                     <div class="input-group-btn">
@@ -61,15 +68,33 @@
                                 <label for="select_tipo">Tipo</label>
                                 <select class="form-control" id="select_tipo" name="select_tipo">
                                     <option value="nada"><-- selecione --></option>
-                                    <option value="0">Carro</option>
-                                    <option value="1">Moto</option>
+                                    <c:choose>
+                                        <c:when test="${veiculo.tipo eq 0}">
+                                            <option value="0" selected>Carro</option>
+                                            <option value="1">Moto</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="0">Carro</option>
+                                            <option value="1" selected>Moto</option>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </select>
                             </div>
                             <div class="col-xs-6 form-group">
                                 <label for="select_modelo">Modelo</label>
                                 <div class="input-group">
-                                    <select class="form-control" id="select_modelo" name="select_modelo" disabled>
+                                    <select class="form-control" id="select_modelo" name="select_modelo">
                                         <option value="nada"><-- selecione --></option>
+                                        <c:forEach var="modelo" items="${listaModelo}">
+                                            <c:choose>
+                                                <c:when test="${modelo.codModelo eq veiculo.modelo.codModelo}">
+                                                    <option value="${modelo.codModelo}" selected>${modelo.descricao}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${modelo.codModelo}">${modelo.descricao}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
                                     </select>
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
@@ -81,8 +106,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary" onclick="cadastrarVeiculoAvulso()">Cadastrar</button>
-                        <button type="button" class="btn btn-default" onclick="enviar('FormHome')">Cancelar</button>
+                        <button type="button" class="btn btn-primary" onclick="alterarVeiculo()">Alterar</button>
+                        <button type="button" class="btn btn-default" onclick="enviar('ListarVeiculo')">Cancelar</button>
                     </div>
                 </form>
             </c:when>
