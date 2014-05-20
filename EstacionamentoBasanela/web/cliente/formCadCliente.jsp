@@ -103,7 +103,7 @@
                                             </div>
                                     </div>
                             </div>
-                            <button type="button" class="btn btn-primary" onclick="javascript:;">Salvar</button>
+                                    <button type="button" class="btn btn-primary" onclick="cadastrarCliente()">Salvar</button>
                             <button type="button" class="btn btn-default" onclick="enviar('FormHome')">Voltar</button>
                     </div>
                 </form>

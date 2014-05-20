@@ -41,30 +41,7 @@ function cadastrarCliente() {
         });
         return;
     }
-    /*fim validação campos do cliente*/
-
-    /*validação campos do veiculo do cliente*/
-    if ($("#input_placa").val().trim(" ") == "") {
-        alertify.alert("Informe a placa do veículo!", function() {
-            $("#input_placa").focus();
-        });
-        return;
-    }
-
-    if ($("#select_tipo option:selected").val() == "nada") {
-        alertify.alert("O TIPO DE VEICULO nao foi selecionado!");
-        return;
-    }
-    if ($("#select_marca option:selected").val() == "nada") {
-        alertify.alert("A MARCA do veiculo nao foi selecionada!");
-        return;
-    }
-    if ($("#select_modelo option:selected").val() == "nada") {
-        alertify.alert("O MODELO do veiculo nao foi selecionado!");
-        return;
-    }
-    /*fim validação campos do veiculo do cliente*/
-
+    
     $.ajax({
         url: "Controller?name=CadastrarCliente",
         type: "POST",
@@ -87,6 +64,7 @@ function cadastrarCliente() {
         }
 
     });
+    enviar("FormHome");
 }
 
 function carregarMarcas(){
