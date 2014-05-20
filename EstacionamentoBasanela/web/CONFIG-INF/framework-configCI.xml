@@ -18,10 +18,13 @@
         <logic name="AlterarVeiculo" type="negocio.veiculo.AlterarVeiculo"></logic>
         <!-- Outro -->
         <logic name="FormHome" type="negocio.outro.FormHome"></logic>
+        <logic name="EfetuarLogoff" type="negocio.outro.EfetuarLogoff"></logic>
         <!-- Movimento -->
         <logic name="RegistrarEntrada" type="negocio.movimento.RegistrarEntrada"></logic>
         
         <!-- Cliente-->
         <logic name="FormCadCliente" type="negocio.cliente.FormCadCliente"></logic>
+        <logic name="ListarCliente" type="negocio.cliente.ListarCliente"></logic>
+        <logic name="FormAltCliente" type="negocio.cliente.FormAltCliente"></logic>
     </logics>
 </config>

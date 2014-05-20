@@ -38,7 +38,7 @@ function modalMarca(tipoOperacao) {
 }
 
 function cadastrarMarca() {
-    if ($("#input_marca").val() == "") {
+    if ($("#input_marca").val().trim() == "") {
         alertify.alert("O campo nao foi preenchido!", function() {
             $("#input_marca").focus();
         });
@@ -58,12 +58,13 @@ function cadastrarMarca() {
             $("#select_marca").append(option);
             $("#select_marca option:last").attr("selected", "selected");
             $("#modal_marca").modal("hide");
+            buscarModelo();
         }
     });
 }
 
 function alterarMarca(codMarca) {
-    if ($("#input_marca").val() == "") {
+    if ($("#input_marca").val().trim() == "") {
         alertify.alert("O campo nao foi preenchido!", function() {
             $("#input_marca").focus();
         });
@@ -86,6 +87,7 @@ function alterarMarca(codMarca) {
                 }
             });
             $("#modal_marca").modal("hide");
+            buscarModelo();
         }
     });
 }

@@ -21,14 +21,15 @@ import java.util.List;
  * @author ismael
  */
 public class MovimentoDAO {
-
+    
     public static final String INSERT = "INSERT INTO Movimento (cpf, placa, dataInicio, dataTermino) VALUES(?,?,?,?)";
+    public static final String UPDATE = "UPDATE Movimento SET cpf = ?, placa = ?, dataInicio = ?, dataTermino = ? WHERE codMovimento = ?";
     public static final String SELECTALL = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento";
     public static final String SELECTBYID = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento WHERE codMovimento = ?";
-    public static final String SELECTBYCLIENTE = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento WHERE codCliente = ?";
-    public static final String SELECTBYVEICULO = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento WHERE placa = ?";
+    public static final String SELECTBYCLIENTE = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento WHERE cpf = ?";
+    public static final String SELECTBYVEICULO = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento WHERE placa = ? AND dataTermino IS NULL";
     public static final String SELECTEMMOVIMENTO = "SELECT codMovimento FROM Movimento WHERE placa = ? AND dataTermino IS NULL";
-
+    
     public void insert(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -46,7 +47,26 @@ public class MovimentoDAO {
             ConnectionFactory.closeAll(con, stmt);
         }
     }
-
+    
+    public void update(Movimento movimento) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = ConnectionFactory.getConexao();
+            stmt = con.prepareStatement(UPDATE);
+            stmt.setString(1, movimento.getCliente().getCpf());
+            stmt.setString(2, movimento.getVeiculo().getPlaca());
+            stmt.setString(3, movimento.getDataInicio());
+            stmt.setString(4, movimento.getDataTermino());
+            stmt.setInt(5, movimento.getCodMovimento());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ConnectionFactory.closeAll(con, stmt);
+        }
+    }
+    
     public List<Movimento> selectAll() throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -61,11 +81,11 @@ public class MovimentoDAO {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
-
+                
                 cliente.setCpf(rs.getString("cpf"));
-
+                
                 cliente.setCpf(rs.getString("codCliente"));
-
+                
                 if (cliente.getCpf() != null) {
                     cliente = clienteDAO.selectById(cliente);
                 }
@@ -86,7 +106,7 @@ public class MovimentoDAO {
         }
         return lista;
     }
-
+    
     public Movimento selectById(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -100,13 +120,13 @@ public class MovimentoDAO {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
-
+                
                 cliente.setCpf(rs.getString("cpf"));
                 if (cliente.getCpf() != null) {
-
+                    
                     cliente.setCpf(rs.getString("codCliente"));
-                    if (cliente.getCpf()!= null) {
-
+                    if (cliente.getCpf() != null) {
+                        
                         cliente = clienteDAO.selectById(cliente);
                     }
                     movimento.setCliente(cliente);
@@ -126,7 +146,7 @@ public class MovimentoDAO {
         }
         return movimento;
     }
-
+    
     public List<Movimento> selectByCliente(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -161,12 +181,12 @@ public class MovimentoDAO {
         }
         return lista;
     }
-
-    public List<Movimento> selectByVeiculo(Movimento movimento) throws SQLException {
+    
+    public Movimento selectByVeiculo(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Movimento> lista = new ArrayList<Movimento>();
+        Movimento novoMovimento = new Movimento();
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYVEICULO);
@@ -176,23 +196,17 @@ public class MovimentoDAO {
             VeiculoDAO veiculoDAO = new VeiculoDAO();
             veiculo.setPlaca(movimento.getVeiculo().getPlaca());
             veiculo = veiculoDAO.selectById(veiculo);
-            while (rs.next()) {
-                Movimento novoMovimento = new Movimento();
+            novoMovimento.setVeiculo(veiculo);
+            if (rs.next()) {
                 novoMovimento.setCodMovimento(rs.getInt("codMovimento"));
                 novoMovimento.setDataInicio(rs.getString("dataInicio"));
                 novoMovimento.setDataTermino(rs.getString("dataTermino"));
-                novoMovimento.setVeiculo(veiculo);
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
-
                 cliente.setCpf(rs.getString("cpf"));
-                if (cliente.getCpf() != null) {
-                    cliente.setCpf(rs.getString("codCliente"));
-                    if (cliente.getCpf()!= null) {
+                if (cliente.getCpf() != "null") {
                         cliente = clienteDAO.selectById(cliente);
                         novoMovimento.setCliente(cliente);
-                    }
-                    lista.add(novoMovimento);
                 }
             }
         } catch (SQLException e) {
@@ -200,9 +214,9 @@ public class MovimentoDAO {
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
-        return lista;
+        return novoMovimento;
     }
-
+    
     public boolean selectEmMovimento(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;

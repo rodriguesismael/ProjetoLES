@@ -49,6 +49,7 @@
             <c:when test="${sessionScope['loggedIn'] eq true}">
                 <div id="header">
                     <h1><strong>Estacionamento Basanella</strong></h1>
+                    <a href="javascript:;" onclick="efetuarLogoff()"><img src="img/logoff2.png" title="Logoff"/></a>
                 </div>
                 <h1>Lista de Veiculos</h1>
                 <hr/>

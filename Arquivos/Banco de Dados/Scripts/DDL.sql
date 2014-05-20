@@ -123,12 +123,23 @@ CREATE TABLE Movimento (
 );
 -- ------------------------------------------------------------------------
 
-/*CREATE TABLE Fatura (
-	codFatura INT NOT NULL auto_increment,
-	codMovimento INT NOT NULL,
+--
+-- Criacao da tabela Fatura
+--
+CREATE TABLE Fatura (
+	codFatura INT NOT NULL AUTO_INCREMENT,
 	dataVencimento DATE,
 	dataPagamento DATE DEFAULT NULL,
-	status INT NOT NULL,
-	PRIMARY KEY (codFatura),
+	status BIT NOT NULL,
+	PRIMARY KEY (codFatura)
+);
+
+--
+-- Criacao da tabela FaturaXMovimento
+--
+CREATE TABLE FaturaXMovimento(
+    codFatura INT NOT NULL,
+	codMovimento INT NOT NULL,
+	FOREIGN KEY (codFatura) REFERENCES Fatura(codFatura),
 	FOREIGN KEY (codMovimento) REFERENCES Movimento(codMovimento)
-);*/
+);

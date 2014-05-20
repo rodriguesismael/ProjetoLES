@@ -42,7 +42,7 @@ function modalModelo(tipoOperacao) {
 }
 
 function cadastrarModelo() {
-    if ($("#input_modelo").val() == "") {
+    if ($("#input_modelo").val().trim() == "") {
         alertify.alert("O campo nao foi preenchido!", function() {
             $("#input_modelo").focus();
         });
@@ -68,7 +68,7 @@ function cadastrarModelo() {
 }
 
 function alterarModelo(codModelo) {
-    if ($("#input_modelo").val() == "") {
+    if ($("#input_modelo").val().trim() == "") {
         alertify.alert("O campo nao foi preenchido!", function() {
             $("#input_modelo").focus();
         });

@@ -3,7 +3,7 @@
  */
 package modelo.fatura;
 
-import modelo.movimento.Movimento;
+import modelo.preco.Preco;
 
 /**
  *
@@ -15,7 +15,8 @@ public class Fatura {
     private String dataVencimento;
     private String dataPagamento;
     private boolean status;
-    private Movimento movimento;
+    private Preco preco;
+    private double diferenca;
 
     public int getCodFatura() {
         return codFatura;
@@ -49,21 +50,19 @@ public class Fatura {
         this.status = status;
     }
 
-    public Movimento getMovimento() {
-        return movimento;
+    public Preco getPreco() {
+        return preco;
     }
 
-    public void setMovimento(Movimento movimento) {
-        this.movimento = movimento;
+    public void setPreco(Preco preco) {
+        this.preco = preco;
     }
 
-    /*public boolean estaPago(){
-     return this.status;
-     }
-    
-     public void darBaixa(){
-     this.status = true;
-     Date h = new Date();
-     this.dataPagamento = h.toString();
-     }*/
+    public double getDiferenca() {
+        return diferenca;
+    }
+
+    public void setDiferenca(double diferenca) {
+        this.diferenca = diferenca;
+    }
 }

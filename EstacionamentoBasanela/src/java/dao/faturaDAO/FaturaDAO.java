@@ -1,9 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Classe FaturaDAO
  */
-
 package dao.faturaDAO;
 
 import modelo.fatura.Fatura;
@@ -17,45 +14,47 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.veiculo.Veiculo;
+
 /**
  *
- * @author ismael
+ * @author Ismael Rodrigues
  */
 public class FaturaDAO {
-    public static final String INSERT="INSERT INTO Fatura (codMovimento,dataVencimento,status) VALUES(?,?,?)";
+
+    public static final String INSERT = "INSERT INTO Fatura (codMovimento,dataVencimento,status) VALUES(?,?,?)";
     public static final String SELECTALL = "SELECT codFatura,codMovimento,dataVencimento,dataPagamento FROM Fatura";
-    public static final String SELECTBYID = "SELECT codFatura,codMovimento,dataVencimento,dataPagamento FROM Fatura "
-            + "WHERE codFatura = ?" ;
-    //public static final String SELECTBYVEICULO = SELECTALL + "WHERE codMovimento  = ?" ;
-    
-    public void insert(Fatura fatura) throws SQLException{
+    public static final String SELECTBYID = "SELECT codFatura,codMovimento,dataVencimento,dataPagamento FROM Fatura WHERE codFatura = ?";
+    public static final String SELECTINADIMPLENTEPORVEICULO = "SELECT a.codFatura, b.codMovimento, c.placa FROM Fatura AS a INNER JOIN FaturaXMovimento AS b ON a.codFatura = b.codFatura INNER JOIN Movimento AS c ON b.codMovimento = c.codMovimento WHERE c.placa = ? AND a.dataPagamento IS NULL";
+
+    public void insert(Fatura fatura) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
-        try{
+        try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(INSERT);
-            stmt.setInt(1, fatura.getMovimento().getCodMovimento());
+            //stmt.setInt(1, fatura.getMovimento().getCodMovimento());
             stmt.setString(2, fatura.getDataVencimento());
             //fatura é gerada om status de 0: não paga
             stmt.setInt(3, 0);
             stmt.executeUpdate();
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             throw ex;
-        }finally{
+        } finally {
             ConnectionFactory.closeAll(con, stmt);
         }
     }
-    
-    public List<Fatura> selectAll() throws SQLException{
+
+    public List<Fatura> selectAll() throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Fatura> lista = new ArrayList<Fatura>();
-        try{
+        try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTALL);
             rs = stmt.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Fatura fatura = new Fatura();
                 fatura.setCodFatura(rs.getInt("codFatura"));
                 fatura.setDataVencimento(rs.getString("dataVencimento"));
@@ -64,18 +63,38 @@ public class FaturaDAO {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
                 MovimentoDAO movDAO = new MovimentoDAO();
                 movimento = movDAO.selectById(movimento);
-                fatura.setMovimento(movimento);
+//                fatura.setMovimento(movimento);
                 lista.add(fatura);
-                       
+
             }
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             throw ex;
-        }finally{
+        } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
         return lista;
-                
     }
-    
-    
+
+    public List<Fatura> selectInadimplentesPorVeiculo(Veiculo veiculo) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Fatura> lista = new ArrayList<Fatura>();
+        try {
+            con = ConnectionFactory.getConexao();
+            stmt = con.prepareStatement(SELECTINADIMPLENTEPORVEICULO);
+            stmt.setString(1, veiculo.getPlaca());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Fatura fatura = new Fatura();
+                fatura.setCodFatura(rs.getInt("codFatura"));
+                lista.add(fatura);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ConnectionFactory.closeAll(con, stmt, rs);
+        }
+        return lista;
+    }
 }

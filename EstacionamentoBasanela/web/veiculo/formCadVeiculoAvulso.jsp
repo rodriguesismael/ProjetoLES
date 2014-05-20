@@ -27,6 +27,7 @@
                 </div>
                 <div id="header">
                     <h1><strong>Estacionamento Basanela</strong></h1>
+                    <a href="javascript:;" onclick="efetuarLogoff()"><img src="img/logoff2.png" title="Logoff"/></a>
                 </div>
                 <h1>Cadastro de Veiculo Avulso</h1>
                 <hr/>
