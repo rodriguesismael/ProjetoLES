@@ -13,6 +13,8 @@
         <title>Estacionamento Basanela</title>
         <!-- JS -->
         <script type="text/javascript" src="js/clienteXVeiculo/initClienteXVeiculo.js"></script>
+        <script type="text/javascript" src="js/cidade/initCidade.js"></script>
+        <script type="text/javascript" src="js/cliente/initCliente.js"></script>
     </head>
     <body>
         <c:choose>
@@ -130,7 +132,7 @@
                             </thead>
                             <tbody>
                                 <c:forEach var="clienteXVeiculo" items="${listaClienteXVeiculo}">
-                                    <tr>
+                                    <tr id="${clienteXVeiculo.veiculo.placa}">
                                         <td>${clienteXVeiculo.veiculo.placa}</td>
                                         <c:choose>
                                             <c:when test="${clienteXVeiculo.veiculo.tipo eq 0}">

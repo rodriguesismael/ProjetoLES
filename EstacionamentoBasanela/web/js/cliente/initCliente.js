@@ -41,14 +41,14 @@ function cadastrarCliente() {
         });
         return;
     }
-    
+
     if ($("#select_veiculo option:selected").val() == "nada") {
         alertify.alert("Selecione um periodo!", function() {
             $("#select_periodo").focus();
         });
         return;
-    }    
-    
+    }
+
     $.ajax({
         url: "Controller?name=CadastrarCliente",
         type: "POST",
@@ -74,39 +74,39 @@ function cadastrarCliente() {
     enviar("FormHome");
 }
 
-function carregarMarcas(){
-        $.ajax({
-            url: "Controller?name=CarregarMarcas",
-            type: "POST",
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-            data: {
-                codEstado: $("#select_estado").val()
-            },
-            async: false,
-            success: function(json) {
-                $("#select_marca option").remove();
-                var html = "";
-                for (var i = 0; i < json.listaMarca.length; i++) {
-                    if (json.listaMarca.length == 1) {
-                        html += "<option value=\"" + json.listaMarca[i].codMarca + "\" selected>" + json.listaMarca[i].descricao + "</option>";
-                    } else {
-                        html += "<option value=\"" + json.listaMarca[i].codMarca + "\">" + json.listaMarca[i].descricao + "</option>";
-                    }
+function carregarMarcas() {
+    $.ajax({
+        url: "Controller?name=CarregarMarcas",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            codEstado: $("#select_estado").val()
+        },
+        async: false,
+        success: function(json) {
+            $("#select_marca option").remove();
+            var html = "";
+            for (var i = 0; i < json.listaMarca.length; i++) {
+                if (json.listaMarca.length == 1) {
+                    html += "<option value=\"" + json.listaMarca[i].codMarca + "\" selected>" + json.listaMarca[i].descricao + "</option>";
+                } else {
+                    html += "<option value=\"" + json.listaMarca[i].codMarca + "\">" + json.listaMarca[i].descricao + "</option>";
                 }
-                $("#select_marca").html(html);
             }
-        });    
+            $("#select_marca").html(html);
+        }
+    });
 }
 
-function modalVeiculo(tipoOperacao){
-    var html="";
+function modalVeiculo(tipoOperacao) {
+    var html = "";
     html += "<div class=\"modal-dialog\">";
     html += "<div class=\"modal-content\">";
     html += "<div class=\"modal-header\">";
     html += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
-    if(tipoOperacao == 'cad'){
+    if (tipoOperacao == 'cad') {
         html += "<h4 class=\"modal-title\">Novo Veículo</h4>";
-    }else{
+    } else {
         html += "<h4 class=\"modal-title\">Alterar Veículo</h4>";
     }
     html += "</div>";
@@ -116,12 +116,12 @@ function modalVeiculo(tipoOperacao){
     html += "<div class=\"row\">";
     html += "<div class=\"col-xs-6 form-group\">";
     html += "<label for=\"input_placa\">Placa</label>";
-    if(tipoOperacao == 'cad'){
+    if (tipoOperacao == 'cad') {
         html += "<input type=\"text\" class=\"form-control\" name=\"input_placa\" id=\"input_placa\"/>";
     }
-    else{
-        html += "<input type=\"text\" class=\"form-control\" name=\"input_placa\" id=\"input_placa\" value=\""+$("#select_veiculo option:selected").text().split("/")[0]+"\"/>";
-    }    
+    else {
+        html += "<input type=\"text\" class=\"form-control\" name=\"input_placa\" id=\"input_placa\" value=\"" + $("#select_veiculo option:selected").text().split("/")[0] + "\"/>";
+    }
     html += "</div>";
     html += "</div>";
     html += "<div class=\"row\">";
@@ -155,7 +155,7 @@ function modalVeiculo(tipoOperacao){
     html += "<button type=\"button\" class=\"btn btn-primary\" onclick=\"cadastrarVeiculo()\">Salvar</button>";
     html += "</div>";
     html += "</div>";
-    html += "</div>";    
+    html += "</div>";
     html += "</form>";
     html += "</div>";
     html += "</div>";
@@ -196,7 +196,7 @@ function cadastrarVeiculo() {
         async: false,
         success: function(json) {
             alertify.log("Veiculo cadastrado com sucesso!", "success", 5000);
-            var html = "<option value=\""+json.plavaVeiculo+"\" selected>"+json.placa+"/"+json.modelo+"</option>";
+            var html = "<option value=\"" + json.plavaVeiculo + "\" selected>" + json.placa + "/" + json.modelo + "</option>";
             $("#select_veiculo").append(html);
             alertify.confirm("Registrar entrada?", function(r) {
                 if (r) {//Caso a resposta seja sim
@@ -220,7 +220,58 @@ function cadastrarVeiculo() {
     });
 }
 
-$(document).ready(function(){
+function alterarCliente() {
+    if ($("#input_nome").val().trim() == "") {
+        alertify.alert("O campo NOME nao foi preenchido!", function() {
+            $("#input_nome").focus();
+        });
+        return;
+    }
+    if ($("#input_telefone").val().trim() == "") {
+        alertify.alert("O campo TELEFONE nao foi preenchido", function() {
+            $("#input_telefone").focus();
+        });
+        return;
+    }
+    if ($("#select_estado option:selected").val() == "nada") {
+        alertify.alert("O campo ESTADO nao foi selecionado!");
+        return;
+    }
+    if ($("#input_endereco").val().trim() == "") {
+        alertify.alert("O campo ENDERECO nao foi preenchido!", function() {
+            $("#input_endereco").focus();
+        });
+        return;
+    }
+    if ($("#select_periodo option:selected").val() == "nada") {
+        alertify.alert("O campo PERIODO nao foi selecionado!");
+        return;
+    }
+    $.ajax({
+        url: "Controller?name=AlterarCliente",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            cpf: $("#input_cpf").val(),
+            nome: $("#input_nome").val(),
+            telefone: $("#input_telefone").val(),
+            celular: $("#input_celular").val(),
+            codEstado: $("#select_estado option:selected").val(),
+            codCidade: $("#select_cidade option:selected").val(),
+            endereco: $("#input_endereco").val(),
+            codPeriodo: $("#select_periodo option:selected").val()
+        },
+        dataType: "html",
+        async: false,
+        success: function(html) {
+            $("#pagina").html("");
+            $("#pagina").html(html);
+            alertify.log("Alteracao realizada com sucesso!", "success", 5000);
+        }
+    });
+}
+
+$(document).ready(function() {
     //$.mask.definitions['~'] = '([0-9] )?';
     $("#input_telefone").mask("(99) 99999999");
     $("#input_celular").mask("(99) 999999999");

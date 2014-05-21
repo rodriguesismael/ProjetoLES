@@ -22,5 +22,9 @@ function buscarCidade() {
                 $("#select_cidade").attr("disabled", false);
             }
         });
+    } else {
+        var html = "<option value=\"nada\"><-- selecione --></option>";
+        $("#select_cidade").html(html);
+        $("#select_cidade").attr("disabled", "disabled");
     }
 }

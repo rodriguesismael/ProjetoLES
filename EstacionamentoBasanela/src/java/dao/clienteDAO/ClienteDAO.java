@@ -79,11 +79,7 @@ public class ClienteDAO {
             stmt.setString(5, cliente.getTelefone());
             stmt.setString(6, cliente.getCelular());
             stmt.setInt(7, cliente.getPeriodo());
-            if (cliente.isStatus()) {
-                stmt.setInt(8, 1);
-            } else {
-                stmt.setInt(8, 0);
-            }
+            stmt.setInt(8, 1);//ATIVO
             stmt.setString(9, cliente.getCpf());
 
             stmt.executeUpdate();
