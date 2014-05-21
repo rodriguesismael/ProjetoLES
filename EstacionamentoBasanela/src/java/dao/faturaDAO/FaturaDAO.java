@@ -75,26 +75,24 @@ public class FaturaDAO {
         return lista;
     }
 
-    public List<Fatura> selectInadimplentesPorVeiculo(Veiculo veiculo) throws SQLException {
+    public boolean selectInadimplentesPorVeiculo(Veiculo veiculo) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Fatura> lista = new ArrayList<Fatura>();
+        boolean faturaAberta = false;
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTINADIMPLENTEPORVEICULO);
             stmt.setString(1, veiculo.getPlaca());
             rs = stmt.executeQuery();
-            while (rs.next()) {
-                Fatura fatura = new Fatura();
-                fatura.setCodFatura(rs.getInt("codFatura"));
-                lista.add(fatura);
+            if (rs.next()) {
+                faturaAberta = true;
             }
         } catch (SQLException ex) {
             throw ex;
         } finally {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
-        return lista;
+        return faturaAberta;
     }
 }

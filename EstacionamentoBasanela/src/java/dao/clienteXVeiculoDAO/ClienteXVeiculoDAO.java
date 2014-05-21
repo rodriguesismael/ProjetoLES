@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  *
- * @author Ismael
+ * @author Ismael Rodrigues
  */
 public class ClienteXVeiculoDAO {
 
@@ -94,22 +94,25 @@ public class ClienteXVeiculoDAO {
         return lista;
     }
 
-    public List<Veiculo> selectByCliente(ClienteXVeiculo clienteXVeiculo) throws SQLException {
+    public List<ClienteXVeiculo> selectByCliente(ClienteXVeiculo clienteXVeiculo) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Veiculo> lista = new ArrayList<Veiculo>();
+        List<ClienteXVeiculo> lista = new ArrayList<ClienteXVeiculo>();
         try {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(SELECTBYCLIENTE);
             stmt.setString(1, clienteXVeiculo.getCliente().getCpf());
             rs = stmt.executeQuery();
             while (rs.next()) {
+                ClienteXVeiculo novoClienteXVeiculo = new ClienteXVeiculo();
                 Veiculo veiculo = new Veiculo();
                 veiculo.setPlaca(rs.getString("placa"));
                 VeiculoDAO veiculoDAO = new VeiculoDAO();
                 veiculo = veiculoDAO.selectById(veiculo);
-                lista.add(veiculo);
+                novoClienteXVeiculo.setVeiculo(veiculo);
+                novoClienteXVeiculo.setCliente(clienteXVeiculo.getCliente());
+                lista.add(novoClienteXVeiculo);
             }
         } catch (SQLException ex) {
             throw ex;

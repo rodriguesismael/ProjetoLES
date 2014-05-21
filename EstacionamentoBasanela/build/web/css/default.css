@@ -1,3 +1,7 @@
+p#alerta {
+    color: red;
+}
+
 /* -- PADRONIZACAO DAS LISTAS -- */
 div#listagem{
     width: 950px;
@@ -28,8 +32,8 @@ div#header a {
 }
 
 div#header a img {
-	width: 40px;
-	height: 40px;
+    width: 40px;
+    height: 40px;
 }
 
 /* -- LOGIN -- */

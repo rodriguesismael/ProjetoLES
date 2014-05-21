@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Estacionamento Basanela</title>
         <!-- JS -->
+        <script type="text/javascript" src="js/clienteXVeiculo/initClienteXVeiculo.js"></script>
     </head>
     <body>
         <c:choose>
@@ -105,6 +106,47 @@
                                 </select>
                             </div>
                         </div>
+                        <h4>Veiculos</h4>
+                        <div class="row">
+                            <div class="col-xs-12 form-group">
+                                <label for="select_veiculo">Lista de Veiculos</label>
+                                <select id="select_veiculo" name="select_veiculo" class="form-control">
+                                    <option value="nada"><-- selecione --></option>
+                                    <c:forEach var="veiculo" items="${listaVeiculo}">
+                                        <option value="${veiculo.placa}">${veiculo.placa}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <table id="listagemVeiculo" class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr id="cabecalho">
+                                    <th>Placa</th>
+                                    <th>Tipo</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="clienteXVeiculo" items="${listaClienteXVeiculo}">
+                                    <tr>
+                                        <td>${clienteXVeiculo.veiculo.placa}</td>
+                                        <c:choose>
+                                            <c:when test="${clienteXVeiculo.veiculo.tipo eq 0}">
+                                                <td>Carro</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td>Moto</td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <td>${clienteXVeiculo.veiculo.marca.descricao}</td>
+                                        <td>${clienteXVeiculo.veiculo.modelo.descricao}</td>
+                                        <td style="text-align: center;"><a href="javascript:;" onclick="desvincularVeiculo('${clienteXVeiculo.veiculo.placa}')"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
                         <button type="button" class="btn btn-primary" onclick="alterarCliente()">Alterar</button>
                         <button type="button" class="btn btn-default" onclick="enviar('ListarCliente')">Voltar</button>
                     </div>

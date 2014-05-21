@@ -37,8 +37,8 @@ function buscarVeiculo() {
                 }
                 html += "<p><b>Marca: </b>" + json.veiculo[0].marca + "</p>";
                 html += "<p><b>Modelo: </b>" + json.veiculo[0].modelo + "</p>";
-                if(json.faturasAbertas != 0){
-                    html += "<p><b>Faturas em aberto: </b>" + json.faturasAbertas + "</p>";
+                if (json.faturasAbertas == true) {
+                    html += "<p id=\"alerta\"><b>Existem faturas à serem pagas!</b></p>";
                 }
                 html += "</div>";
                 html += "<div class=\"modal-footer\">";
@@ -66,33 +66,33 @@ function buscarVeiculo() {
     });
 }
 
-function cpfValido(){
+function cpfValido() {
     var Soma;
     var Resto;
     Soma = 0;
     var strCPF = $("#input_cliente").val();
-    
-    strCPF = strCPF.replace(/[^0-9]/g,"");//pega apenas os numeros
+
+    strCPF = strCPF.replace(/[^0-9]/g, "");//pega apenas os numeros
     if (strCPF == "00000000000")
         return false;
-    for (i=1; i<=9; i++)
-        Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+    for (i = 1; i <= 9; i++)
+        Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
     Resto = (Soma * 10) % 11;
     if ((Resto == 10) || (Resto == 11))
         Resto = 0;
-    if (Resto != parseInt(strCPF.substring(9, 10)) )
+    if (Resto != parseInt(strCPF.substring(9, 10)))
         return false;
     Soma = 0;
     for (i = 1; i <= 10; i++)
-        Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+        Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
     Resto = (Soma * 10) % 11;
     if ((Resto == 10) || (Resto == 11))
         Resto = 0;
-    if (Resto != parseInt(strCPF.substring(10, 11) ) )
+    if (Resto != parseInt(strCPF.substring(10, 11)))
         return false;
     return true;
 
-    
+
 }
 
 /*
@@ -100,13 +100,13 @@ function cpfValido(){
  * montar o modal_cliente conforme o resultado da funcao.
  */
 function buscarCliente() {
-    if ($("#input_cliente").val().trim("") == "") {
+    if ($("#input_cliente").val().trim() == "") {
         alertify.alert("O CPF do cliente não foi preenchido", function() {
             $("#input_cliente").focus();
         });
         return;
     }
-    if(!cpfValido()){
+    if (!cpfValido()) {
         alertify.alert("O CPF do cliente não é válido", function() {
             $("#input_cliente").focus();
         });
@@ -127,7 +127,7 @@ function buscarCliente() {
             html += "<div class=\"modal-header\">";
             html += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
             //Criacao do modal_cliente caso o veiculo exista
-            
+
             if (json.existeCliente) {
                 html += "<h4 class=\"modal-title\">Cliente Cadastrado</h4>";
                 html += "</div>";

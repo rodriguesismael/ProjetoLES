@@ -1,9 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Classe FormCadCliente
  */
-
 package negocio.cliente;
 
 import controller.ControllerInterface;
@@ -18,27 +15,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.veiculo.Veiculo;
 
-
 /**
  *
- * @author ismael
+ * @author Ismael Rodrigues
  */
-public class FormCadCliente implements ControllerInterface{
+public class FormCadCliente implements ControllerInterface {
+
     private List<Estado> listaEstado;
     private List<Veiculo> listaVeiculo;
-    public String call(HttpServletRequest request, HttpServletResponse response){
+
+    public String call(HttpServletRequest request, HttpServletResponse response) {
         EstadoDAO estadoDao = new EstadoDAO();
         VeiculoDAO veiculoDAO = new VeiculoDAO();
-        try{
+        try {
             listaEstado = estadoDao.selectAll();
-            listaVeiculo  = veiculoDAO.selectAll();
-        }catch(SQLException ex){
-            Logger.getLogger(FormCadCliente.class.getName()).log(Level.SEVERE,null,ex);
+            listaVeiculo = veiculoDAO.selectAll();
+        } catch (SQLException ex) {
+            Logger.getLogger(FormCadCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         request.setAttribute("listaEstado", listaEstado);
         request.setAttribute("listaVeiculo", listaVeiculo);
-        request.setAttribute("cpf",request.getParameter("id"));
+        request.setAttribute("cpf", request.getParameter("id"));
         return "cliente/formCadCliente.jsp";
     }
 }
