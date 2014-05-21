@@ -42,6 +42,7 @@ public class EfetuarLogin implements UpdateInterface {
         if (operador.getCodOperador() != 0) {
             status = true;
             session.setAttribute("loggedIn", true);
+            session.setAttribute("nome", operador.getNome());
             session.setAttribute("administrador", operador.isAdministrador());
         } else {
             session.setAttribute("loggedIn", false);

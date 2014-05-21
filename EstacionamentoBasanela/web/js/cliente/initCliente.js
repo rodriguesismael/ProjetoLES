@@ -43,8 +43,8 @@ function cadastrarCliente() {
     }
 
     if ($("#select_veiculo option:selected").val() == "nada") {
-        alertify.alert("Selecione um periodo!", function() {
-            $("#select_periodo").focus();
+        alertify.alert("Selecione um veículo!", function() {
+            $("#select_veiculo").focus();
         });
         return;
     }
@@ -169,19 +169,53 @@ function modalVeiculo(tipoOperacao) {
     $("#modal_veiculo").modal();
 }
 
+function buscarVeiculo(placa) {
+    var response;
+    $.ajax({
+        url: "Controller?name=BuscarVeiculo",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {
+            placa: placa
+        },
+        dataType: "json",
+        async: false,
+        success: function(json) {
+            response = json.existeVeiculo;
+        }
+    });
+    console.debug(response);
+    if(response){
+        return true;
+    }
+    return false;
+}
+
 function cadastrarVeiculo() {
-    if ($("#select_tipo option:selected").val() == "nada") {
-        alertify.alert("O TIPO DE VEICULO nao foi selecionado!");
+    if ($("#input_placa").val().trim(" ") == "") {
+        alertify.alert("A PLACA DO VEÍCULO não foi informada!");
+        return;
+    }
+    if(buscarVeiculo($("#input_placa").val().trim(" "))){
+        alertify.alert("Este veículo JÁ ESTÁ CADATRADO!",function(){
+            $("#input_placa").val("");            
+            $("#input_placa").focus();
+        });
         return;
     }
     if ($("#select_marca option:selected").val() == "nada") {
-        alertify.alert("A MARCA do veiculo nao foi selecionada!");
+        alertify.alert("A MARCA do veículo não foi selecionada!");
         return;
     }
     if ($("#select_modelo option:selected").val() == "nada") {
-        alertify.alert("O MODELO do veiculo nao foi selecionado!");
+        alertify.alert("O MODELO do veículo não foi selecionado!");
         return;
     }
+    if ($("#select_tipo option:selected").val() == "nada") {
+        alertify.alert("O TIPO DE VEÍCULO não foi selecionado!");
+        return;
+    }
+    
     $.ajax({
         url: "Controller?name=CadastrarVeiculo",
         type: "POST",
@@ -195,7 +229,7 @@ function cadastrarVeiculo() {
         dataType: "json",
         async: false,
         success: function(json) {
-            alertify.log("Veiculo cadastrado com sucesso!", "success", 5000);
+            alertify.log("Veículo cadastrado com sucesso!", "success", 5000);
             var html = "<option value=\"" + json.plavaVeiculo + "\" selected>" + json.placa + "/" + json.modelo + "</option>";
             $("#select_veiculo").append(html);
             alertify.confirm("Registrar entrada?", function(r) {
@@ -222,29 +256,29 @@ function cadastrarVeiculo() {
 
 function alterarCliente() {
     if ($("#input_nome").val().trim() == "") {
-        alertify.alert("O campo NOME nao foi preenchido!", function() {
+        alertify.alert("O campo NOME não foi preenchido!", function() {
             $("#input_nome").focus();
         });
         return;
     }
     if ($("#input_telefone").val().trim() == "") {
-        alertify.alert("O campo TELEFONE nao foi preenchido", function() {
+        alertify.alert("O campo TELEFONE não foi preenchido", function() {
             $("#input_telefone").focus();
         });
         return;
     }
     if ($("#select_estado option:selected").val() == "nada") {
-        alertify.alert("O campo ESTADO nao foi selecionado!");
+        alertify.alert("O campo ESTADO não foi selecionado!");
         return;
     }
     if ($("#input_endereco").val().trim() == "") {
-        alertify.alert("O campo ENDERECO nao foi preenchido!", function() {
+        alertify.alert("O campo ENDEREÇO não foi preenchido!", function() {
             $("#input_endereco").focus();
         });
         return;
     }
     if ($("#select_periodo option:selected").val() == "nada") {
-        alertify.alert("O campo PERIODO nao foi selecionado!");
+        alertify.alert("O campo PERÍODO não foi selecionado!");
         return;
     }
     $.ajax({
@@ -266,7 +300,7 @@ function alterarCliente() {
         success: function(html) {
             $("#pagina").html("");
             $("#pagina").html(html);
-            alertify.log("Alteracao realizada com sucesso!", "success", 5000);
+            alertify.log("Alteração realizada com sucesso!", "success", 5000);
         }
     });
 }

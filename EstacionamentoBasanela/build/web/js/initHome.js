@@ -4,7 +4,7 @@
  */
 function buscarVeiculo() {
     if ($("#input_veiculo").val().trim() == "") {
-        alertify.alert("O campo nao foi preenchido!", function() {
+        alertify.alert("A PLACA não foi informada!", function() {
             $("#input_veiculo").focus();
         });
         return;
@@ -30,10 +30,10 @@ function buscarVeiculo() {
                 html += "</div>";
                 html += "<div class=\"modal-body\">";
                 html += "<p><b>Placa: </b>" + json.veiculo[0].placa + "</p>";
-                if (json.veiculo[0].tipo == 1) {
-                    html += "<p><b>Tipo de Veiculo: </b>Carro</p>";
+                if (json.veiculo[0].tipo == 0) {
+                    html += "<p><b>Tipo de Veículo: </b>Carro</p>";
                 } else {
-                    html += "<p><b>Tipo de Veiculo: </b>Moto</p>";
+                    html += "<p><b>Tipo de Veículo: </b>Moto</p>";
                 }
                 html += "<p><b>Marca: </b>" + json.veiculo[0].marca + "</p>";
                 html += "<p><b>Modelo: </b>" + json.veiculo[0].modelo + "</p>";
@@ -51,7 +51,7 @@ function buscarVeiculo() {
                 html += "</div>";
                 html += "</div>";
             } else { //Criacao do modal_veiculo caso o veiculo nao exista
-                html += "<h4 class=\"modal-title\">Veiculo Nao Cadastrado</h4>";
+                html += "<h4 class=\"modal-title\">Veiculo Não Cadastrado</h4>";
                 html += "</div>";
                 html += "<div class=\"modal-body\">";
                 html += "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" onclick=\"enviarParametro('FormCadVeiculoAvulso', '" + $("#input_veiculo").val() + "')\">Cadastrar Veiculo Avulso</button>";
@@ -135,7 +135,7 @@ function buscarCliente() {
                 html += "<p><b>CPF: </b>" + json.cliente[0].cpf + "</p>";
                 html += "<p><b>Nome: </b>" + json.cliente[0].nome + "</p>";
                 if (json.cliente[0].periodo == 1) {
-                    html += "<p><b>Periodo: </b>Manha</p>";
+                    html += "<p><b>Periodo: </b>Manhã</p>";
                 } else
                 if (json.cliente[0].periodo == 2) {
                     html += "<p><b>Periodo: </b>Tarde</p>";
@@ -154,7 +154,7 @@ function buscarCliente() {
                 html += "</div>";
                 html += "</div>";
             } else { //Criacao do modal_veiculo caso o veiculo nao exista
-                html += "<h4 class=\"modal-title\">Cliente Nao Cadastrado</h4>";
+                html += "<h4 class=\"modal-title\">Cliente Não Cadastrado</h4>";
                 html += "</div>";
                 html += "<div class=\"modal-body\">";
                 html += "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" onclick=\"enviarParametro('FormCadCliente', '" + $("#input_cliente").val() + "')\">Cadastrar Cliente</button>";
@@ -166,4 +166,30 @@ function buscarCliente() {
             $("#modal_cliente").modal();
         }
     });
+}
+
+function sobre(){
+    var html = "";
+    html += "<div class=\"modal-dialog\">";
+    html += "<div class=\"modal-content\">";
+    html += "<div class=\"modal-header\">";
+    html += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
+    html += "<h4 class=\"modal-title\">Sobre...</h4>";
+    html += "</div>";
+    html += "<div class=\"modal-body\">";
+    html += "<p>Projeto desenvolvido para a disciplina de Laboratório de Engenharia de Software do curso de ADS da FATEC - AM.</p>";    
+    html += "<p>Equipe:</p>";
+    html += "<p><img src=\"img/operador_mini.png\">Álvaro Augusto Roberto</p>";
+    html += "<p><img src=\"img/operador_mini.png\">Guilherme Adão</p>";
+    html += "<p><img src=\"img/operador_mini.png\">Ismael Rodrigues Martins</p>";
+    html += "<p><img src=\"img/operador_mini.png\">Márcia Leite Silva</p>";
+    html += "<p><img src=\"img/operador_mini.png\">Rafael Juzo Oda</p>";
+    html += "<p><img src=\"img/operador_mini.png\">Wang Yu Tzu</p>";
+    html += "</div>";
+    html += "</div>";
+    html += "</div>";
+    html += "</div>";
+    $("#modal_sobre").html("");
+    $("#modal_sobre").html(html);
+    $("#modal_sobre").modal();
 }
