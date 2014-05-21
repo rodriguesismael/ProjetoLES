@@ -42,6 +42,13 @@ function cadastrarCliente() {
         return;
     }
     
+    if ($("#select_veiculo option:selected").val() == "nada") {
+        alertify.alert("Selecione um periodo!", function() {
+            $("#select_periodo").focus();
+        });
+        return;
+    }    
+    
     $.ajax({
         url: "Controller?name=CadastrarCliente",
         type: "POST",
@@ -91,13 +98,17 @@ function carregarMarcas(){
         });    
 }
 
-function modalNovoVeiculo(){
+function modalVeiculo(tipoOperacao){
     var html="";
     html += "<div class=\"modal-dialog\">";
     html += "<div class=\"modal-content\">";
     html += "<div class=\"modal-header\">";
     html += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>";
-    html += "<h4 class=\"modal-title\">Novo Veículo</h4>";
+    if(tipoOperacao == 'cad'){
+        html += "<h4 class=\"modal-title\">Novo Veículo</h4>";
+    }else{
+        html += "<h4 class=\"modal-title\">Alterar Veículo</h4>";
+    }
     html += "</div>";
     html += "<div class=\"modal-body\">";
     html += "<form action=\"javascript:;\">";
@@ -105,7 +116,12 @@ function modalNovoVeiculo(){
     html += "<div class=\"row\">";
     html += "<div class=\"col-xs-6 form-group\">";
     html += "<label for=\"input_placa\">Placa</label>";
-    html += "<input type=\"text\" class=\"form-control\" name=\"input_placa\" id=\"input_placa\"/>";
+    if(tipoOperacao == 'cad'){
+        html += "<input type=\"text\" class=\"form-control\" name=\"input_placa\" id=\"input_placa\"/>";
+    }
+    else{
+        html += "<input type=\"text\" class=\"form-control\" name=\"input_placa\" id=\"input_placa\" value=\""+$("#select_veiculo option:selected").text().split("/")[0]+"\"/>";
+    }    
     html += "</div>";
     html += "</div>";
     html += "<div class=\"row\">";
@@ -180,11 +196,9 @@ function cadastrarVeiculo() {
         async: false,
         success: function(json) {
             alertify.log("Veiculo cadastrado com sucesso!", "success", 5000);
-            $("#modal_veiculo").modal('hide');
             var html = "<option value=\""+json.plavaVeiculo+"\" selected>"+json.placa+"/"+json.modelo+"</option>";
             $("#select_veiculo").append(html);
-            /*
-             *alertify.confirm("Registrar entrada?", function(r) {
+            alertify.confirm("Registrar entrada?", function(r) {
                 if (r) {//Caso a resposta seja sim
                     $.ajax({
                         url: "Controller?name=RegistrarEntrada",
@@ -196,15 +210,12 @@ function cadastrarVeiculo() {
                         dataType: "html",
                         async: false,
                         success: function(html) {
-                            $("#pagina").html("");
-                            $("#pagina").html(html);
                             alertify.log("Entrada registrada com sucesso!", "success", 5000);
                         }
                     });
-                } else {//Caso a resposta seja nao
-                    enviar("FormHome");
                 }
-            });*/
+            });
+            $("#modal_veiculo").modal('hide');
         }
     });
 }
