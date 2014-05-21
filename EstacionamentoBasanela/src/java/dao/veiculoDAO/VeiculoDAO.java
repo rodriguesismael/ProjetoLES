@@ -26,6 +26,7 @@ public class VeiculoDAO {
     public static final String UPDATE = "UPDATE Veiculo SET tipoVeiculo = ?, codMarca = ?, codModelo = ? WHERE placa = ?";
     //public static final String DELETE = "DELETE FROM Veiculo WHERE placa = ?";
     public static final String SELECTALL = "SELECT placa, tipoVeiculo, codMarca, codModelo FROM Veiculo";
+    public static final String SELECTALLAVULSO = "SELECT v.placa, tipoVeiculo, codMarca, codModelo FROM Veiculo v LEFT JOIN ClienteXVeiculo cv ON v.placa = cv.placa WHERE cv.placa IS NULL";
     public static final String SELECTBYID = "SELECT placa, tipoVeiculo, codMarca, codModelo FROM Veiculo WHERE placa = ?";
     public static final String SELECTBYMARCA = "SELECT placa, tipo, codMarca, codModelo FROM Veiculo WHERE codMarca = ?";
     //public static final String SELECTBYMODELO = "SELECT placa, tipo, codMarca, codModelo FROM Veiculo WHERE codModelo = ?";
@@ -113,6 +114,38 @@ public class VeiculoDAO {
         return lista;
     }
 
+    public List<Veiculo> selectAllAvulso() throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Veiculo> lista = new ArrayList<Veiculo>();
+        try {
+            con = ConnectionFactory.getConexao();
+            stmt = con.prepareStatement(SELECTALLAVULSO);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Veiculo veiculo = new Veiculo();
+                veiculo.setPlaca(rs.getString("placa"));
+                veiculo.setTipo(rs.getInt("tipoVeiculo"));
+                Marca marca = new Marca();
+                MarcaDAO marcaDAO = new MarcaDAO();
+                marca.setCodMarca(rs.getInt("codMarca"));
+                marca = marcaDAO.selectById(marca);
+                veiculo.setMarca(marca);
+                Modelo modelo = new Modelo();
+                ModeloDAO modeloDAO = new ModeloDAO();
+                modelo.setCodModelo(rs.getInt("codModelo"));
+                modelo = modeloDAO.selectById(modelo);
+                veiculo.setModelo(modelo);
+                lista.add(veiculo);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ConnectionFactory.closeAll(con, stmt, rs);
+        }
+        return lista;
+    }    
     public Veiculo selectById(Veiculo veiculo) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;

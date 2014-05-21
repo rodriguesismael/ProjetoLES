@@ -31,7 +31,7 @@ public class FormCadCliente implements ControllerInterface{
         VeiculoDAO veiculoDAO = new VeiculoDAO();
         try{
             listaEstado = estadoDao.selectAll();
-            listaVeiculo  = veiculoDAO.selectAll();
+            listaVeiculo  = veiculoDAO.selectAllAvulso();
         }catch(SQLException ex){
             Logger.getLogger(FormCadCliente.class.getName()).log(Level.SEVERE,null,ex);
         }
