@@ -42,6 +42,13 @@ function cadastrarCliente() {
         return;
     }
     
+    if ($("#select_veiculo option:selected").val() == "nada") {
+        alertify.alert("Selecione um periodo!", function() {
+            $("#select_periodo").focus();
+        });
+        return;
+    }    
+    
     $.ajax({
         url: "Controller?name=CadastrarCliente",
         type: "POST",

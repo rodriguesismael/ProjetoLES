@@ -97,7 +97,7 @@
                                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
                                                             <ul class="dropdown-menu pull-right">
                                                                     <li><a href="javascript:;" onclick="modalVeiculo('cad')">Cadastrar</a></li>
-                                                                    <li><a href="javascript:;" onclick="modalVeiculo('alt')">Alterar</a></li>
+                                                                    <!--<li><a href="javascript:;" onclick="modalVeiculo('alt')">Alterar</a></li>-->
                                                             </ul>
                                                     </div>
                                             </div>
