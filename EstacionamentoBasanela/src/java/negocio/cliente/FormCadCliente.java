@@ -29,15 +29,9 @@ public class FormCadCliente implements ControllerInterface {
         VeiculoDAO veiculoDAO = new VeiculoDAO();
         try {
             listaEstado = estadoDao.selectAll();
-<<<<<<< HEAD
             listaVeiculo = veiculoDAO.selectAll();
         } catch (SQLException ex) {
             Logger.getLogger(FormCadCliente.class.getName()).log(Level.SEVERE, null, ex);
-=======
-            listaVeiculo  = veiculoDAO.selectAllAvulso();
-        }catch(SQLException ex){
-            Logger.getLogger(FormCadCliente.class.getName()).log(Level.SEVERE,null,ex);
->>>>>>> 55b79c656f8aaae289be264e242279c8ad916fda
         }
         request.setAttribute("listaEstado", listaEstado);
         request.setAttribute("listaVeiculo", listaVeiculo);

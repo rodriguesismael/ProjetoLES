@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.clienteXVeiculo.ClienteXVeiculo;
+import modelo.veiculo.Veiculo;
 
 /**
  *
@@ -140,7 +141,12 @@ public class ClienteDAO {
                 ClienteXVeiculo clienteXveiculo = new ClienteXVeiculo();
                 ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
                 clienteXveiculo.setCliente(cliente);
-                cliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXveiculo));
+                List<ClienteXVeiculo> listaClienteXVeiculo = clienteXveiculoDAO.selectByCliente(clienteXveiculo);
+                List<Veiculo> veiculos = new ArrayList<Veiculo>();
+                for (ClienteXVeiculo clienteXVeiculo : listaClienteXVeiculo) {
+                    veiculos.add(clienteXVeiculo.getVeiculo());
+                }
+                cliente.setListaVeiculo(veiculos);
                 lista.add(cliente);
             }
         } catch (SQLException ex) {
@@ -186,10 +192,15 @@ public class ClienteDAO {
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setPeriodo(rs.getInt("periodo"));
 
-                ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
+                ClienteXVeiculo clienteXveiculo = new ClienteXVeiculo();
                 ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
-                clienteXVeiculo.setCliente(cliente);
-                cliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
+                clienteXveiculo.setCliente(cliente);
+                List<ClienteXVeiculo> listaClienteXVeiculo = clienteXveiculoDAO.selectByCliente(clienteXveiculo);
+                List<Veiculo> veiculos = new ArrayList<Veiculo>();
+                for (ClienteXVeiculo clienteXVeiculo : listaClienteXVeiculo) {
+                    veiculos.add(clienteXVeiculo.getVeiculo());
+                }
+                cliente.setListaVeiculo(veiculos);
             }
         } catch (SQLException ex) {
             throw ex;
@@ -232,10 +243,15 @@ public class ClienteDAO {
                 nCliente.setCelular(rs.getString("celular"));
                 nCliente.setPeriodo(rs.getInt("periodo"));
 
-                ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
+                ClienteXVeiculo clienteXveiculo = new ClienteXVeiculo();
                 ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
-                clienteXVeiculo.setCliente(nCliente);
-                nCliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
+                clienteXveiculo.setCliente(nCliente);
+                List<ClienteXVeiculo> listaClienteXVeiculo = clienteXveiculoDAO.selectByCliente(clienteXveiculo);
+                List<Veiculo> veiculos = new ArrayList<Veiculo>();
+                for (ClienteXVeiculo clienteXVeiculo : listaClienteXVeiculo) {
+                    veiculos.add(clienteXVeiculo.getVeiculo());
+                }
+                nCliente.setListaVeiculo(veiculos);
 
                 lista.add(nCliente);
 
@@ -281,10 +297,15 @@ public class ClienteDAO {
                 nCliente.setTelefone(rs.getString("telefone"));
                 nCliente.setCelular(rs.getString("celular"));
                 nCliente.setPeriodo(rs.getInt("periodo"));
-                ClienteXVeiculo clienteXVeiculo = new ClienteXVeiculo();
+                ClienteXVeiculo clienteXveiculo = new ClienteXVeiculo();
                 ClienteXVeiculoDAO clienteXveiculoDAO = new ClienteXVeiculoDAO();
-                clienteXVeiculo.setCliente(nCliente);
-                nCliente.setListaVeiculo(clienteXveiculoDAO.selectByCliente(clienteXVeiculo));
+                clienteXveiculo.setCliente(nCliente);
+                List<ClienteXVeiculo> listaClienteXVeiculo = clienteXveiculoDAO.selectByCliente(clienteXveiculo);
+                List<Veiculo> veiculos = new ArrayList<Veiculo>();
+                for (ClienteXVeiculo clienteXVeiculo : listaClienteXVeiculo) {
+                    veiculos.add(clienteXVeiculo.getVeiculo());
+                }
+                nCliente.setListaVeiculo(veiculos);
 
                 lista.add(nCliente);
 

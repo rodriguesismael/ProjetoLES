@@ -82,7 +82,6 @@
                                     <option value="3">Noite</option>
                                 </select>
                             </div>
-<<<<<<< HEAD
                         </div>
                         <div class="row">
                             <div class="col-xs-12 form-group">
@@ -97,29 +96,9 @@
                                     <div class="input-group-btn">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
                                         <ul class="dropdown-menu pull-right">
-                                            <li><a href="javascript:;" onclick="modalNovoVeiculo()">Cadastrar</a></li>
-                                            <li><a href="javascript:;" onclick="">Alterar</a></li>
+                                            <li><a href="javascript:;" onclick="modalVeiculo('cad')">Cadastrar</a></li>
+                                            <!--<li><a href="javascript:;" onclick="modalVeiculo('alt')">Alterar</a></li>-->
                                         </ul>
-=======
-                            <div class="row">
-                                    <div class="col-xs-12 form-group">
-                                            <label for="select_veiculo">Veiculo</label>
-                                            <div class="input-group">
-                                                    <select class="form-control" id="select_veiculo" name="select_veiculo">
-                                                            <option value="nada"><-- selecione --></option>
-                                                            <c:forEach var="veiculo" items="${listaVeiculo}">
-                                                                <option value="${veiculo.placa}">${veiculo.placa}/${veiculo.modelo.getDescricao()}</option>
-                                                            </c:forEach>
-                                                    </select>
-                                                    <div class="input-group-btn">
-                                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></button>
-                                                            <ul class="dropdown-menu pull-right">
-                                                                    <li><a href="javascript:;" onclick="modalVeiculo('cad')">Cadastrar</a></li>
-                                                                    <!--<li><a href="javascript:;" onclick="modalVeiculo('alt')">Alterar</a></li>-->
-                                                            </ul>
-                                                    </div>
-                                            </div>
->>>>>>> 55b79c656f8aaae289be264e242279c8ad916fda
                                     </div>
                                 </div>
                             </div>
