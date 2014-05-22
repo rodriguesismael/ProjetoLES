@@ -148,7 +148,7 @@ function buscarCliente() {
                 if (json.emMovimento) { //Se o veiculo estiver em um movimento nao encerrado, exibir botao registrar saida
                     html += "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Detalhar</button>";
                 } else { //Se o veiculo nao estiver em um movimento, exibir botao registrar entrada
-                    html += "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Alterar</button>";
+                    html += "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" onclick=\"enviarParametro('FormAltCliente', '" + json.cliente[0].cpf + "')\">Alterar</button>";
                 }
                 html += "</div>";
                 html += "</div>";
@@ -168,7 +168,7 @@ function buscarCliente() {
     });
 }
 
-function sobre(){
+function sobre() {
     var html = "";
     html += "<div class=\"modal-dialog\">";
     html += "<div class=\"modal-content\">";
@@ -177,7 +177,7 @@ function sobre(){
     html += "<h4 class=\"modal-title\">Sobre...</h4>";
     html += "</div>";
     html += "<div class=\"modal-body\">";
-    html += "<p>Projeto desenvolvido para a disciplina de Laboratório de Engenharia de Software do curso de ADS da FATEC - AM.</p>";    
+    html += "<p>Projeto desenvolvido para a disciplina de Laboratório de Engenharia de Software do curso de ADS da FATEC - AM.</p>";
     html += "<p>Equipe:</p>";
     html += "<p><img src=\"img/operador_mini.png\">Álvaro Augusto Roberto</p>";
     html += "<p><img src=\"img/operador_mini.png\">Guilherme Adão</p>";

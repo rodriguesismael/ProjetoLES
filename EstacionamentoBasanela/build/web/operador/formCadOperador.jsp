@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-xs-6 form-group">
                                 <label for="input_senha">Senha</label>
-                                <input type="password" class="form-control" id="input_senha" name="input_senha"/>
+                                <input type="password" class="form-control" id="input_senha" name="input_senha" maxlength="10"/>
                             </div>
                         </div>
                         <button type="button" class="btn btn-primary" onclick="cadastrarOperador()">Cadastrar</button>

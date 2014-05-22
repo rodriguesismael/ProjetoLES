@@ -33,8 +33,6 @@
         <logic name="BuscarCidade" type="negocio.cidade.BuscarCidade"></logic>
         <!-- Estado -->
         <logic name="CarregarMarcas" type="negocio.marca.CarregarMarcas"></logic>
-        <!-- Movimento -->
-        <logic name="RegistrarSaida" type="negocio.movimento.RegistrarSaida"></logic>
         <!-- Operador -->
         <logic name="BuscarLoginDuplicado" type="negocio.operador.BuscarLoginDuplicado"></logic>
     </logics>

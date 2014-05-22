@@ -3,7 +3,7 @@
  */
 package negocio.movimento;
 
-import controller.UpdateInterface;
+import controller.ControllerInterface;
 import dao.movimentoDAO.MovimentoDAO;
 import dao.veiculoDAO.VeiculoDAO;
 import java.sql.SQLException;
@@ -20,9 +20,9 @@ import modelo.veiculo.Veiculo;
  *
  * @author Alvaro Augusto Roberto
  */
-public class RegistrarSaida implements UpdateInterface {
+public class RegistrarSaida implements ControllerInterface {
 
-    public void executa(HttpServletRequest request, HttpServletResponse response) {
+    public String call(HttpServletRequest request, HttpServletResponse response) {
         Veiculo veiculo = new Veiculo();
         VeiculoDAO veiculoDAO = new VeiculoDAO();
         veiculo.setPlaca(request.getParameter("placa"));
@@ -47,6 +47,6 @@ public class RegistrarSaida implements UpdateInterface {
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarSaida.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return "Controller?name=FormHome";
     }
-
 }

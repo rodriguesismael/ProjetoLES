@@ -59,7 +59,7 @@
                                     <span class="input-group-addon">
                                         <input type="checkbox" id="chk_senha" onchange="habilitarSenha()"/>
                                     </span>
-                                    <input type="text" class="form-control" id="input_senha" name="input_senha" disabled>
+                                    <input type="password" class="form-control" id="input_senha" name="input_senha" maxlength="10" disabled>
                                 </div>
                             </div>
                         </div>

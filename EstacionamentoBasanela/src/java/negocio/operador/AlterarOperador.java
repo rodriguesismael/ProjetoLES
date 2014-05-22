@@ -21,12 +21,12 @@ public class AlterarOperador implements ControllerInterface {
     public String call(HttpServletRequest request, HttpServletResponse response) {
         Operador operador = new Operador();
         OperadorDAO operadorDAO = new OperadorDAO();
+        operador.setCodOperador(Integer.parseInt(request.getParameter("codOperador")));
         try {
             operador = operadorDAO.selectById(operador);
         } catch (SQLException ex) {
             Logger.getLogger(AlterarOperador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        operador.setCodOperador(Integer.parseInt(request.getParameter("codOperador")));
         operador.setNome(request.getParameter("nome"));
         if (Integer.parseInt(request.getParameter("administrador")) == 0) {
             operador.setAdministrador(false);

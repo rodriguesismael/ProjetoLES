@@ -21,6 +21,7 @@
         <logic name="EfetuarLogoff" type="negocio.outro.EfetuarLogoff"></logic>
         <!-- Movimento -->
         <logic name="RegistrarEntrada" type="negocio.movimento.RegistrarEntrada"></logic>
+        <logic name="RegistrarSaida" type="negocio.movimento.RegistrarSaida"></logic>
         <!-- Cliente-->
         <logic name="FormCadCliente" type="negocio.cliente.FormCadCliente"></logic>
         <logic name="ListarCliente" type="negocio.cliente.ListarCliente"></logic>

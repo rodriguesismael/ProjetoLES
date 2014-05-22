@@ -32,9 +32,9 @@ function registrarSaida(placa) {
         data: {
             placa: placa
         },
-        dataType: "json",
+        dataType: "html",
         async: false,
-        success: function(json) {
+        success: function(html) {
             $("#pagina").html("");
             $("#pagina").html(html);
             alertify.log("Saida registrada com sucesso!", "success", 5000);
