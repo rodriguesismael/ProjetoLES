@@ -21,11 +21,20 @@
         <logic name="EfetuarLogoff" type="negocio.outro.EfetuarLogoff"></logic>
         <!-- Movimento -->
         <logic name="RegistrarEntrada" type="negocio.movimento.RegistrarEntrada"></logic>
-        
         <!-- Cliente-->
         <logic name="FormCadCliente" type="negocio.cliente.FormCadCliente"></logic>
         <logic name="ListarCliente" type="negocio.cliente.ListarCliente"></logic>
         <logic name="FormAltCliente" type="negocio.cliente.FormAltCliente"></logic>
         <logic name="AlterarCliente" type="negocio.cliente.AlterarCliente"></logic>
+        <logic name="AtivarCliente" type="negocio.cliente.AtivarCliente"></logic>
+        <logic name="InativarCliente" type="negocio.cliente.InativarCliente"></logic>
+        <!-- Operador -->
+        <logic name="ListarOperador" type="negocio.operador.ListarOperador"></logic>
+        <logic name="FormCadOperador" type="negocio.operador.FormCadOperador"></logic>
+        <logic name="FormAltOperador" type="negocio.operador.FormAltOperador"></logic>
+        <logic name="CadastrarOperador" type="negocio.operador.CadastrarOperador"></logic>
+        <logic name="AtivarOperador" type="negocio.operador.AtivarOperador"></logic>
+        <logic name="InativarOperador" type="negocio.operador.InativarOperador"></logic>
+        <logic name="AlterarOperador" type="negocio.operador.AlterarOperador"></logic>
     </logics>
 </config>

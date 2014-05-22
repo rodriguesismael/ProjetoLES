@@ -13,8 +13,8 @@ public class Operador {
     private String nome;
     private String login;
     private String senha;
-    private Boolean administrador;
-    private Boolean status;
+    private boolean administrador;
+    private boolean status;
 
     public int getCodOperador() {
         return codOperador;
@@ -48,19 +48,19 @@ public class Operador {
         this.senha = senha;
     }
 
-    public Boolean isAdministrador() {
+    public boolean isAdministrador() {
         return administrador;
     }
 
-    public void setAdministrador(Boolean administrador) {
+    public void setAdministrador(boolean administrador) {
         this.administrador = administrador;
     }
 
-    public Boolean isStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 }

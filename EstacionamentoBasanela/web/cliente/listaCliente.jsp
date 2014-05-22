@@ -12,6 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Estacionamento Basanella</title>
         <!-- JS -->
+        <script type="text/javascript" src="js/cliente/initCliente.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#table_listaCliente").dataTable({
@@ -67,7 +68,17 @@
                                 <tr>    
                                     <td>${cliente.cpf}</td>
                                     <td>${cliente.nome}</td>
-                                    <td style="text-align: center;"><a href="javascript:;" onclick="enviarParametro('FormAltCliente', '${cliente.cpf}')"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                    <td style="text-align: center;">
+                                        <a href="javascript:;" onclick="enviarParametro('FormAltCliente', '${cliente.cpf}')"><span class="glyphicon glyphicon-pencil"></span></a>
+                                            <c:choose>
+                                                <c:when test="${cliente.status eq true}">
+                                                <a href="javascript:;" onclick="inativarCliente('${cliente.cpf}')"><span class="glyphicon glyphicon-remove"></span></a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                <a href="javascript:;" onclick="ativarCliente('${cliente.cpf}')"><span class="glyphicon glyphicon-ok"></span></a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>

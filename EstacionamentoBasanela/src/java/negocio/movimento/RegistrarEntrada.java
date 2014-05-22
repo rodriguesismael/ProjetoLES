@@ -45,8 +45,12 @@ public class RegistrarEntrada implements ControllerInterface {
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarEntrada.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (clienteXVeiculo.getCliente() != null) {
-            movimento.setCliente(clienteXVeiculo.getCliente());
+        if (clienteXVeiculo.getCliente() != null) { // SE O CLIENTE FOR ATIVO, OU SEJA, ESTIVER USANDO O ESTACIONAMENTO COMO MENSALISTA
+            if (clienteXVeiculo.getCliente().isStatus()) {
+                movimento.setCliente(clienteXVeiculo.getCliente());
+            } else {
+                movimento.setCliente(new Cliente());
+            }
         } else {
             movimento.setCliente(new Cliente());
         }

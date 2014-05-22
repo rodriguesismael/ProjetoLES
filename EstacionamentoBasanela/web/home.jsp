@@ -27,21 +27,15 @@
     <body>
         <c:choose>
             <c:when test="${sessionScope['loggedIn'] eq true}">
-                <!-- Modal Sobre -->
-                <div id="modal_sobre" class="modal fade" role="dialog" aria-hidden="true">
-                </div>                
                 <!-- Modal Veiculo -->
                 <div id="modal_veiculo" class="modal fade" role="dialog" aria-hidden="true">
                 </div>
                 <!-- Modal Cliente -->
                 <div id="modal_cliente" class="modal fade" role="dialog" aria-hidden="true">
                 </div>
-
                 <div id="header">
                     <h1><strong>Estacionamento Basanela</strong></h1>
                     <a href="javascript:;" onclick="efetuarLogoff()"><img src="img/logoff2.png" title="Logoff"/></a>
-                    <a href="javascript:;" onclick="sobre()"><img src="img/about.png" title="Sobre"/></a>
-                    <a href="javascript:;"><img src="img/operador.png" title="Sobre"/><strong>${sessionScope['nome']}</strong></a>                    
                 </div>
                 <div id="conteudo">
                     <!-- Topo -->
@@ -74,8 +68,14 @@
                             <button type="button" class="btn btn-primary" onclick="enviar('ListarCliente')">Listar Cliente</button>
                         </div>
                         <div id="bottomRight1">
+                            <c:if test="${sessionScope['administrador'] eq true}">
+                                <button type="button" class="btn btn-primary" onclick="enviar('ListarOperador')">Gerenciar Operadores</button>
+                            </c:if>
                         </div>
                         <div id="bottomRight1">
+                            <c:if test="${sessionScope['administrador'] eq true}">
+                                <button type="button" class="btn btn-primary" onclick="gerarRelatorioMensal()">Gerar Relatório Mensal</button>
+                            </c:if>
                         </div>
                     </div>
                 </div>

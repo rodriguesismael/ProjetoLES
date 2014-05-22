@@ -24,6 +24,7 @@ public class ClienteXVeiculoDAO {
 
     public static final String INSERT = "INSERT INTO ClienteXVeiculo (cpf,placa) VALUES(?,?)";
     public static final String DELETE = "DELETE FROM ClienteXVeiculo WHERE cpf = ?";
+    public static final String DELETEBYVEICULO = "DELETE FROM ClienteXVeiculo WHERE placa = ?";
     public static final String SELECTALL = "SELECT * FROM ClienteXVeiculo";
     public static final String SELECTBYCLIENTE = "SELECT * FROM ClienteXVeiculo WHERE cpf = ?";
     public static final String SELECTBYVEICULO = "SELECT cpf, placa FROM ClienteXVeiculo WHERE placa = ?";
@@ -51,6 +52,21 @@ public class ClienteXVeiculoDAO {
             con = ConnectionFactory.getConexao();
             stmt = con.prepareStatement(DELETE);
             stmt.setString(1, clienteXveiculo.getCliente().getCpf());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ConnectionFactory.closeAll(con, stmt);
+        }
+    }
+
+    public void deleteByVeiculo(ClienteXVeiculo clienteXveiculo) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = ConnectionFactory.getConexao();
+            stmt = con.prepareStatement(DELETEBYVEICULO);
+            stmt.setString(1, clienteXveiculo.getVeiculo().getPlaca());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             throw ex;

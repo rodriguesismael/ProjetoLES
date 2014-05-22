@@ -112,12 +112,17 @@
                         <div class="row">
                             <div class="col-xs-12 form-group">
                                 <label for="select_veiculo">Lista de Veiculos</label>
-                                <select id="select_veiculo" name="select_veiculo" class="form-control">
-                                    <option value="nada"><-- selecione --></option>
-                                    <c:forEach var="veiculo" items="${listaVeiculo}">
-                                        <option value="${veiculo.placa}">${veiculo.placa}</option>
-                                    </c:forEach>
-                                </select>
+                                <div class="input-group">
+                                    <select id="select_veiculo" name="select_veiculo" class="form-control">
+                                        <option value="nada"><-- selecione --></option>
+                                        <c:forEach var="veiculo" items="${listaVeiculo}">
+                                            <option value="${veiculo.placa}">${veiculo.placa}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" onclick="vincularVeiculo()">Vincular</button>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <table id="listagemVeiculo" class="table table-bordered table-striped table-hover">

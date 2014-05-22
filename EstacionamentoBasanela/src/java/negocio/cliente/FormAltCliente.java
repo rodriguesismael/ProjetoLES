@@ -63,7 +63,7 @@ public class FormAltCliente implements ControllerInterface {
         }
         VeiculoDAO veiculoDAO = new VeiculoDAO();
         try {
-            listaVeiculo = veiculoDAO.selectAll();
+            listaVeiculo = veiculoDAO.selectAllAvulso();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
