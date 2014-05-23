@@ -41,3 +41,7 @@ function registrarSaida(placa) {
         }
     });
 }
+
+function gerarRelatorioMensal() {
+    $("#formGerarRelatorio").submit();
+}

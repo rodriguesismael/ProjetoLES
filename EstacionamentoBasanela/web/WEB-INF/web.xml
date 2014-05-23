@@ -8,6 +8,14 @@
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>GerarXLSRelatorioMensal</servlet-name>
+        <servlet-class>negocio.movimento.GerarXLSRelatorioMensal</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GerarXLSRelatorioMensal</servlet-name>
+        <url-pattern>/GerarXLSRelatorioMensal</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
