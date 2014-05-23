@@ -1,6 +1,6 @@
 function modalMarca(tipoOperacao) {
     if ($("#select_marca option:selected").val() == "nada" && tipoOperacao == "alt") {
-        alertify.alert("Selecione uma marca para que possa alterar suas informacoes!");
+        alertify.alert("Selecione uma marca para que possa alterar suas informações!");
         return;
     }
     var html = "";
@@ -17,7 +17,7 @@ function modalMarca(tipoOperacao) {
     }
     html += "<div class=\"modal-body\">";
     html += "<div class=\"form-group\">";
-    html += "<label for=\"input_marca\">Descricao</label>";
+    html += "<label for=\"input_marca\">Descrição</label>";
     if (tipoOperacao == "cad") {
         html += "<input type=\"text\" class=\"form-control\" id=\"input_marca\"/>";
     } else {
@@ -39,7 +39,7 @@ function modalMarca(tipoOperacao) {
 
 function cadastrarMarca() {
     if ($("#input_marca").val().trim() == "") {
-        alertify.alert("O campo nao foi preenchido!", function() {
+        alertify.alert("O campo não foi preenchido!", function() {
             $("#input_marca").focus();
         });
         return;
@@ -65,7 +65,7 @@ function cadastrarMarca() {
 
 function alterarMarca(codMarca) {
     if ($("#input_marca").val().trim() == "") {
-        alertify.alert("O campo nao foi preenchido!", function() {
+        alertify.alert("O campo não foi preenchido!", function() {
             $("#input_marca").focus();
         });
         return;

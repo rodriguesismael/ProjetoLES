@@ -29,7 +29,7 @@ function cadastrarCliente() {
     }
 
     if ($("#select_periodo option:selected").val() == "nada") {
-        alertify.alert("Selecione um periodo!", function() {
+        alertify.alert("Selecione um período!", function() {
             $("#select_periodo").focus();
         });
         return;
@@ -43,8 +43,8 @@ function cadastrarCliente() {
     }
 
     if ($("#select_veiculo option:selected").val() == "nada") {
-        alertify.alert("Selecione um periodo!", function() {
-            $("#select_periodo").focus();
+        alertify.alert("Selecione um veículo!", function() {
+            $("#select_veiculo").focus();
         });
         return;
     }
@@ -171,15 +171,15 @@ function modalVeiculo(tipoOperacao) {
 
 function cadastrarVeiculo() {
     if ($("#select_tipo option:selected").val() == "nada") {
-        alertify.alert("O TIPO DE VEICULO nao foi selecionado!");
+        alertify.alert("O TIPO DE VEÍCULO não foi selecionado!");
         return;
     }
     if ($("#select_marca option:selected").val() == "nada") {
-        alertify.alert("A MARCA do veiculo nao foi selecionada!");
+        alertify.alert("A MARCA do veículo não foi selecionada!");
         return;
     }
     if ($("#select_modelo option:selected").val() == "nada") {
-        alertify.alert("O MODELO do veiculo nao foi selecionado!");
+        alertify.alert("O MODELO do veículo não foi selecionado!");
         return;
     }
     $.ajax({
@@ -195,7 +195,7 @@ function cadastrarVeiculo() {
         dataType: "json",
         async: false,
         success: function(json) {
-            alertify.log("Veiculo cadastrado com sucesso!", "success", 5000);
+            alertify.log("Veículo cadastrado com sucesso!", "success", 5000);
             var html = "<option value=\"" + json.plavaVeiculo + "\" selected>" + json.placa + "/" + json.modelo + "</option>";
             $("#select_veiculo").append(html);
             alertify.confirm("Registrar entrada?", function(r) {

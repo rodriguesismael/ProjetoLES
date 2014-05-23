@@ -4,7 +4,7 @@ function modalModelo(tipoOperacao) {
         return;
     }
     if ($("#select_modelo option:selected").val() == "nada" && tipoOperacao == "alt") {
-        alertify.alert("Selecione um modelo para que possa alterar suas informacoes!");
+        alertify.alert("Selecione um modelo para que possa alterar suas informações!");
         return;
     }
     var html = "";
@@ -21,7 +21,7 @@ function modalModelo(tipoOperacao) {
     }
     html += "<div class=\"modal-body\">";
     html += "<div class=\"form-group\">";
-    html += "<label for=\"input_modelo\">Descricao</label>";
+    html += "<label for=\"input_modelo\">Descrição</label>";
     if (tipoOperacao == "cad") {
         html += "<input type=\"text\" class=\"form-control\" id=\"input_modelo\"/>";
     } else {
@@ -43,7 +43,7 @@ function modalModelo(tipoOperacao) {
 
 function cadastrarModelo() {
     if ($("#input_modelo").val().trim() == "") {
-        alertify.alert("O campo nao foi preenchido!", function() {
+        alertify.alert("O campo não foi preenchido!", function() {
             $("#input_modelo").focus();
         });
         return;
@@ -69,7 +69,7 @@ function cadastrarModelo() {
 
 function alterarModelo(codModelo) {
     if ($("#input_modelo").val().trim() == "") {
-        alertify.alert("O campo nao foi preenchido!", function() {
+        alertify.alert("O campo não foi preenchido!", function() {
             $("#input_modelo").focus();
         });
         return;

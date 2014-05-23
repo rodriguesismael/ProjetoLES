@@ -18,13 +18,13 @@ $(document).ready(function() {
 //Efetuar login
 function efetuarLogin() {
     if ($("#input_operador").val().trim() == "") {
-        alertify.alert("O campo OPERADOR nao foi preenchido!", function() {
+        alertify.alert("O campo OPERADOR não foi preenchido!", function() {
             $("#input_operador").focus();
         });
         return;
     }
     if ($("#input_senha").val().trim() == "") {
-        alertify.alert("O campo SENHA nao foi preenchido!", function() {
+        alertify.alert("O campo SENHA não foi preenchido!", function() {
             $("#input_senha").focus();
         });
         return;

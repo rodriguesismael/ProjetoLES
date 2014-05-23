@@ -3,15 +3,15 @@
  */
 function cadastrarVeiculoAvulso() {
     if ($("#select_tipo option:selected").val() == "nada") {
-        alertify.alert("O TIPO DE VEICULO nao foi selecionado!");
+        alertify.alert("O TIPO DE VEÍCULO não foi selecionado!");
         return;
     }
     if ($("#select_marca option:selected").val() == "nada") {
-        alertify.alert("A MARCA do veiculo nao foi selecionada!");
+        alertify.alert("A MARCA do veículo nao foi selecionada!");
         return;
     }
     if ($("#select_modelo option:selected").val() == "nada") {
-        alertify.alert("O MODELO do veiculo nao foi selecionado!");
+        alertify.alert("O MODELO do veículo não foi selecionado!");
         return;
     }
     $.ajax({
@@ -27,7 +27,7 @@ function cadastrarVeiculoAvulso() {
         dataType: "json",
         async: false,
         success: function(json) {
-            alertify.log("Veiculo cadastrado com sucesso!", "success", 5000);
+            alertify.log("Veículo cadastrado com sucesso!", "success", 5000);
             alertify.confirm("Registrar entrada?", function(r) {
                 if (r) {//Caso a resposta seja sim
                     $.ajax({
@@ -58,19 +58,19 @@ function cadastrarVeiculoAvulso() {
  */
 function cadastrarVeiculoMensal() {
     if ($("#select_tipo option:selected").val() == "nada") {
-        alertify.alert("O TIPO DE VEICULO nao foi selecionado!");
+        alertify.alert("O TIPO DE VEÍCULO não foi selecionado!");
         return;
     }
     if ($("#select_marca option:selected").val() == "nada") {
-        alertify.alert("A MARCA do veiculo nao foi selecionada!");
+        alertify.alert("A MARCA do veículo não foi selecionada!");
         return;
     }
     if ($("#select_modelo option:selected").val() == "nada") {
-        alertify.alert("O MODELO do veiculo nao foi selecionado!");
+        alertify.alert("O MODELO do veículo não foi selecionado!");
         return;
     }
     if ($("#select_cliente option:selected").val() == "nada") {
-        alertify.alert("O PROPRIETARIO do veiculo nao foi selecionado!");
+        alertify.alert("O PROPRIETARIO do veículo não foi selecionado!");
         return;
     }
     $.ajax({
@@ -97,7 +97,7 @@ function cadastrarVeiculoMensal() {
                 dataType: "json",
                 async: false,
                 success: function(json) {
-                    alertify.log("Veiculo cadastrado com sucesso!", "success", 5000);
+                    alertify.log("Veículo cadastrado com sucesso!", "success", 5000);
                     alertify.confirm("Registrar entrada?", function(r) {
                         if (r) {//Caso a resposta seja sim
                             $.ajax({

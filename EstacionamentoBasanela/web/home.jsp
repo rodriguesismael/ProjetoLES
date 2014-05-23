@@ -67,10 +67,10 @@
                     <!-- Base -->
                     <div id="bottom">
                         <div id="bottomLeft1">
-                            <button type="button" class="btn btn-primary" onclick="enviar('ListarVeiculo')">Listar Veiculo</button>
+                            <button type="button" class="btn btn-primary" onclick="enviar('ListarVeiculo')">Listar Veículos</button>
                         </div>
                         <div id="bottomLeft2">
-                            <button type="button" class="btn btn-primary" onclick="enviar('ListarCliente')">Listar Cliente</button>
+                            <button type="button" class="btn btn-primary" onclick="enviar('ListarCliente')">Listar Clientes</button>
                         </div>
                         <div id="bottomRight1">
                             <c:if test="${sessionScope['administrador'] eq true}">
