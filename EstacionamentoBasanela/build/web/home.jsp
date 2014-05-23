@@ -74,7 +74,9 @@
                         </div>
                         <div id="bottomRight1">
                             <c:if test="${sessionScope['administrador'] eq true}">
-                                <button type="button" class="btn btn-primary" onclick="gerarRelatorioMensal()">Gerar Relatório Mensal</button>
+                                <form id="formGerarRelatorio" name="formGerarRelatorio" action="GerarXLSRelatorioMensal" method="POST">
+                                    <button type="button" class="btn btn-primary" onclick="gerarRelatorioMensal()">Gerar Relatório Mensal</button>
+                                </form>
                             </c:if>
                         </div>
                     </div>

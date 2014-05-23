@@ -21,7 +21,7 @@ import java.util.List;
  * @author ismael
  */
 public class MovimentoDAO {
-    
+
     public static final String INSERT = "INSERT INTO Movimento (cpf, placa, dataInicio, dataTermino) VALUES(?,?,?,?)";
     public static final String UPDATE = "UPDATE Movimento SET cpf = ?, placa = ?, dataInicio = ?, dataTermino = ? WHERE codMovimento = ?";
     public static final String SELECTALL = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento";
@@ -29,7 +29,8 @@ public class MovimentoDAO {
     public static final String SELECTBYCLIENTE = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento WHERE cpf = ?";
     public static final String SELECTBYVEICULO = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento WHERE placa = ? AND dataTermino IS NULL";
     public static final String SELECTEMMOVIMENTO = "SELECT codMovimento FROM Movimento WHERE placa = ? AND dataTermino IS NULL";
-    
+    public static final String SELECTRELATORIO = "SELECT codMovimento, cpf, placa, dataInicio, dataTermino FROM Movimento WHERE MONTH(dataInicio) = ?";
+
     public void insert(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -47,7 +48,7 @@ public class MovimentoDAO {
             ConnectionFactory.closeAll(con, stmt);
         }
     }
-    
+
     public void update(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -66,7 +67,7 @@ public class MovimentoDAO {
             ConnectionFactory.closeAll(con, stmt);
         }
     }
-    
+
     public List<Movimento> selectAll() throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -81,11 +82,11 @@ public class MovimentoDAO {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
-                
+
                 cliente.setCpf(rs.getString("cpf"));
-                
+
                 cliente.setCpf(rs.getString("codCliente"));
-                
+
                 if (cliente.getCpf() != null) {
                     cliente = clienteDAO.selectById(cliente);
                 }
@@ -106,7 +107,7 @@ public class MovimentoDAO {
         }
         return lista;
     }
-    
+
     public Movimento selectById(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -120,13 +121,13 @@ public class MovimentoDAO {
                 movimento.setCodMovimento(rs.getInt("codMovimento"));
                 Cliente cliente = new Cliente();
                 ClienteDAO clienteDAO = new ClienteDAO();
-                
+
                 cliente.setCpf(rs.getString("cpf"));
                 if (cliente.getCpf() != null) {
-                    
+
                     cliente.setCpf(rs.getString("codCliente"));
                     if (cliente.getCpf() != null) {
-                        
+
                         cliente = clienteDAO.selectById(cliente);
                     }
                     movimento.setCliente(cliente);
@@ -146,7 +147,7 @@ public class MovimentoDAO {
         }
         return movimento;
     }
-    
+
     public List<Movimento> selectByCliente(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -181,7 +182,7 @@ public class MovimentoDAO {
         }
         return lista;
     }
-    
+
     public Movimento selectByVeiculo(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -205,8 +206,8 @@ public class MovimentoDAO {
                 ClienteDAO clienteDAO = new ClienteDAO();
                 cliente.setCpf(rs.getString("cpf"));
                 if (cliente.getCpf() != "null") {
-                        cliente = clienteDAO.selectById(cliente);
-                        novoMovimento.setCliente(cliente);
+                    cliente = clienteDAO.selectById(cliente);
+                    novoMovimento.setCliente(cliente);
                 }
             }
         } catch (SQLException e) {
@@ -216,7 +217,7 @@ public class MovimentoDAO {
         }
         return novoMovimento;
     }
-    
+
     public boolean selectEmMovimento(Movimento movimento) throws SQLException {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -236,5 +237,40 @@ public class MovimentoDAO {
             ConnectionFactory.closeAll(con, stmt, rs);
         }
         return retorno;
+    }
+
+    public List<Movimento> selectRelatorio(int mes) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Movimento> lista = new ArrayList<Movimento>();
+        try {
+            con = ConnectionFactory.getConexao();
+            stmt = con.prepareStatement(SELECTRELATORIO);
+            stmt.setInt(1, mes);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Movimento movimento = new Movimento();
+                movimento.setCodMovimento(rs.getInt("codMovimento"));
+                Cliente cliente = new Cliente();
+                ClienteDAO clienteDAO = new ClienteDAO();
+                cliente.setCpf(rs.getString("cpf"));
+                cliente = clienteDAO.selectById(cliente);
+                movimento.setCliente(cliente);
+                Veiculo veiculo = new Veiculo();
+                VeiculoDAO veiculoDAO = new VeiculoDAO();
+                veiculo.setPlaca(rs.getString("placa"));
+                veiculo = veiculoDAO.selectById(veiculo);
+                movimento.setVeiculo(veiculo);
+                movimento.setDataInicio(rs.getString("dataInicio"));
+                movimento.setDataTermino(rs.getString("dataTermino"));
+                lista.add(movimento);
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            ConnectionFactory.closeAll(con, stmt, rs);
+        }
+        return lista;
     }
 }
