@@ -22,8 +22,10 @@
                 <div id="header">
                     <h1><strong>Estacionamento Basanela</strong></h1>
                     <a href="javascript:;" onclick="efetuarLogoff()"><img src="img/logoff2.png" title="Logoff"/></a>
+                    <a href="javascript:;" onclick="sobre()"><img src="img/about.png" title="Sobre"/></a>
+                    <a href="javascript:;"><img src="img/operador.png"/> <strong>${sessionScope['nome']}</strong></a>                    
                 </div>
-                <h1>Alteracao de Cliente</h1>
+                <h1>Alteração de Cliente</h1>
                 <hr/>
                 <form action="javascript:;">
                     <div style="margin: 0 auto; width: 900px;">
@@ -111,7 +113,7 @@
                         <h4>Veiculos</h4>
                         <div class="row">
                             <div class="col-xs-12 form-group">
-                                <label for="select_veiculo">Lista de Veiculos</label>
+                                <label for="select_veiculo">Lista de Veículos</label>
                                 <div class="input-group">
                                     <select id="select_veiculo" name="select_veiculo" class="form-control">
                                         <option value="nada"><-- selecione --></option>

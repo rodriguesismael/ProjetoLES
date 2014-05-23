@@ -19,6 +19,9 @@
     <body>
         <c:choose>
             <c:when test="${sessionScope['loggedIn'] eq true}">
+                <!-- Modal Sobre -->
+                <div id="modal_sobre" class="modal fade">
+                </div>                
                 <!-- Modal Marca de Veiculo -->
                 <div id="modal_marca" class="modal fade">
                 </div>
@@ -28,8 +31,10 @@
                 <div id="header">
                     <h1><strong>Estacionamento Basanela</strong></h1>
                     <a href="javascript:;" onclick="efetuarLogoff()"><img src="img/logoff2.png" title="Logoff"/></a>
+                    <a href="javascript:;" onclick="sobre()"><img src="img/about.png" title="Sobre"/></a>
+                    <a href="javascript:;"><img src="img/operador.png"/> <strong>${sessionScope['nome']}</strong></a>                    
                 </div>
-                <h1>Cadastro de Veiculo Avulso</h1>
+                <h1>Cadastro de Veículo Avulso</h1>
                 <hr/>
                 <form action="javascript:;">
                     <div style="margin: 0 auto; width: 900px;">
