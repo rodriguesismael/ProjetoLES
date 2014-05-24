@@ -75,7 +75,7 @@ function cpfValido() {
     strCPF = strCPF.replace(/[^0-9]/g, "");//pega apenas os numeros
     if (strCPF == "00000000000")
         return false;
-    if (strCPF == "11111111110")
+    if (strCPF == "11111111111")
         return false;
     if (strCPF == "22222222222")
         return false;    

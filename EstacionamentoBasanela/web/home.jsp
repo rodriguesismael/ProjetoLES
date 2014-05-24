@@ -52,7 +52,7 @@
                                     <button type="button" onclick="buscarVeiculo()" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                                 </span>
                             </div>
-                            <h3>Consulta de Veiculo</h3>
+                            <h3>Consulta de Veículo</h3>
                         </div>
                         <div id="topRight">
                             <div class="input-group">
