@@ -100,14 +100,16 @@ div#bottom {
     height: 100%;
     background-color: #BCD2EE;
     float: left;
+    text-align: center;
 }
 
 #bottomLeft2 {
     width: 217.5px;
     height: 100%;
-    background-color: #32CD32;
+    background-color: #EEDD82;
     float: left;
     margin-left: 10px;
+    text-align: center;
 }
 
 #bottomRight1 {

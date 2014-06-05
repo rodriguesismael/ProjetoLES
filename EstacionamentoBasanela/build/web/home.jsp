@@ -67,10 +67,22 @@
                     <!-- Base -->
                     <div id="bottom">
                         <div id="bottomLeft1">
-                            <button type="button" class="btn btn-primary" onclick="enviar('ListarVeiculo')">Listar Veículos</button>
+                            <!--<button type="button" class="btn btn-primary" onclick="enviar('ListarVeiculo')">Listar Veículos</button>-->
+                            <a href="javascript:;" onclick="enviar('ListarVeiculo')">
+                                <div>
+                                    <img src="img/carro.png">
+                                        <div><strong>Veículos</strong></div>
+                                 </div>
+                            </a>
                         </div>
                         <div id="bottomLeft2">
-                            <button type="button" class="btn btn-primary" onclick="enviar('ListarCliente')">Listar Clientes</button>
+                            <!--<button type="button" class="btn btn-primary" onclick="enviar('ListarCliente')">Listar Clientes</button>-->
+                            <a href="javascript:;" onclick="enviar('ListarCliente')">
+                                <div>
+                                    <img src="img/clientes.png">
+                                        <div><strong>Clientes</strong></div>
+                                 </div>
+                            </a>                            
                         </div>
                         <div id="bottomRight1">
                             <c:if test="${sessionScope['administrador'] eq true}">
