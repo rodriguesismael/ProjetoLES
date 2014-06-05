@@ -10,6 +10,9 @@ import dao.veiculoDAO.VeiculoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -53,12 +56,30 @@ public class BuscarVeiculo implements UpdateInterface {
             MovimentoDAO movimentoDAO = new MovimentoDAO();
             movimento.setVeiculo(veiculo);
             boolean emMovimento = false;
+            String dataHoraEntrada="";
             try {
                 emMovimento = movimentoDAO.selectEmMovimento(movimento);
+                if(emMovimento){
+                    movimento = movimentoDAO.selectByVeiculo(movimento);
+                    String dataHora = movimento.getDataInicio();
+
+                    try{
+                        Date date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dataHora);
+                        String data = new SimpleDateFormat("dd/MM/yyyy").format(date);
+                        String hora = new SimpleDateFormat("HH:mm").format(date);
+                        dataHoraEntrada += "\"dataEntrada\": \""+data+"\", ";
+                        dataHoraEntrada += "\"horaEntrada\": \""+hora+"\", ";                        
+                    }catch(ParseException ex){
+                        Logger.getLogger(BuscarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                }                
+
             } catch (SQLException ex) {
                 Logger.getLogger(BuscarVeiculo.class.getName()).log(Level.SEVERE, null, ex);
             }
             json += emMovimento + ", ";
+            json += dataHoraEntrada;
             boolean faturaAberta = false;
             FaturaDAO faturaDAO = new FaturaDAO();
             try {

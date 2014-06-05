@@ -2,6 +2,10 @@
  * Funcao responsavel por buscar o veiculo mediante a sua placa e montar
  * o modal_veiculo conforme os resultados da funcao.
  */
+
+function formataData(data){
+    
+}
 function buscarVeiculo() {
     if ($("#input_veiculo").val().trim() == "") {
         alertify.alert("A PLACA não foi informada!", function() {
@@ -39,6 +43,9 @@ function buscarVeiculo() {
                 html += "<p><b>Modelo: </b>" + json.veiculo[0].modelo + "</p>";
                 if (json.faturasAbertas == true) {
                     html += "<p id=\"alerta\"><b>Existem faturas à serem pagas!</b></p>";
+                }
+                if (json.emMovimento) {
+                    html += "<p><b>Entrada: </b>"+json.dataEntrada+" às "+json.horaEntrada+"</p>";
                 }
                 html += "</div>";
                 html += "<div class=\"modal-footer\">";

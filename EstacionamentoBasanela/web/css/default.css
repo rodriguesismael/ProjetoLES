@@ -98,14 +98,14 @@ div#bottom {
 #bottomLeft1 {
     width: 217.5px;
     height: 100%;
-    background-color: green;
+    background-color: #BCD2EE;
     float: left;
 }
 
 #bottomLeft2 {
     width: 217.5px;
     height: 100%;
-    background-color: green;
+    background-color: #32CD32;
     float: left;
     margin-left: 10px;
 }
@@ -113,7 +113,7 @@ div#bottom {
 #bottomRight1 {
     width: 217.5px;
     height: 100%;
-    background-color: green;
+    background-color: #98FB98;
     float: left;
     margin-left: 10px;
 }
