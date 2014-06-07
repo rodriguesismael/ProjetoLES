@@ -118,6 +118,7 @@ div#bottom {
     background-color: #98FB98;
     float: left;
     margin-left: 10px;
+    text-align: center;
 }
 
 #bottomRight2 {
@@ -126,6 +127,7 @@ div#bottom {
     background-color: green;
     float: left;
     margin-left: 10px;
+    text-align: center;
 }
 
 /* -- PADRONIZACAO DE TODOS OS FORMULARIOS -- */

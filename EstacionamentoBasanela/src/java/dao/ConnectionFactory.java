@@ -20,7 +20,7 @@ public class ConnectionFactory {
     private static final String DATABASE = "BasanelaPark";//basanelapark
     private static final String STR_CON = "jdbc:mysql://127.0.0.1:3306/" + DATABASE;//127.0.0.1:3306/
     private static final String USER = "root";//root
-    private static final String PASSWORD = "19930730";//19930730
+    private static final String PASSWORD = "";//19930730
 
     public static Connection getConexao() {
         Connection conn = null;

@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Estacionamento Basanela</title>
+        <title>Estacionamento Basanella</title>
         <!-- JS -->
         <script type="text/javascript" src="js/clienteXVeiculo/initClienteXVeiculo.js"></script>
         <script type="text/javascript" src="js/cidade/initCidade.js"></script>
@@ -20,7 +20,7 @@
         <c:choose>
             <c:when test="${sessionScope['loggedIn'] eq true}">
                 <div id="header">
-                    <h1><strong>Estacionamento Basanela</strong></h1>
+                    <h1><strong>Estacionamento Basanella</strong></h1>
                     <a href="javascript:;" onclick="efetuarLogoff()"><img src="img/logoff2.png" title="Logoff"/></a>
                     <a href="javascript:;" onclick="sobre()"><img src="img/about.png" title="Sobre"/></a>
                     <a href="javascript:;"><img src="img/operador.png"/> <strong>${sessionScope['nome']}</strong></a>                    

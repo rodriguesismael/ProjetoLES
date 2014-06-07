@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Estacionamento Basanela</title>
+        <title>Estacionamento Basanella</title>
         <!-- CSS -->
 
         <!-- JS -->
@@ -37,7 +37,7 @@
                 <div id="modal_cliente" class="modal fade" role="dialog" aria-hidden="true">
                 </div>
                 <div id="header">
-                    <h1><strong>Estacionamento Basanela</strong></h1>
+                    <h1><strong>Estacionamento Basanella</strong></h1>
                     <a href="javascript:;" onclick="efetuarLogoff()"><img src="img/logoff2.png" title="Logoff"/></a>
                     <a href="javascript:;" onclick="sobre()"><img src="img/about.png" title="Sobre"/></a>
                     <a href="javascript:;"><img src="img/operador.png"/> <strong>${sessionScope['nome']}</strong></a>
@@ -82,17 +82,29 @@
                                     <img src="img/clientes.png">
                                         <div><strong>Clientes</strong></div>
                                  </div>
-                            </a>                            
+                            </a>
                         </div>
                         <div id="bottomRight1">
                             <c:if test="${sessionScope['administrador'] eq true}">
-                                <button type="button" class="btn btn-primary" onclick="enviar('ListarOperador')">Gerenciar Operadores</button>
+                                <!--<button type="button" class="btn btn-primary" onclick="enviar('ListarOperador')">Gerenciar Operadores</button>-->
+                                <a href="javascript:;" onclick="enviar('ListarOperador')">
+                                    <div>
+                                        <img src="img/operadores.png">
+                                            <div><strong>Operadores</strong></div>
+                                     </div>
+                                </a>                                
                             </c:if>
                         </div>
                         <div id="bottomRight1">
                             <c:if test="${sessionScope['administrador'] eq true}">
-                                <form id="formGerarRelatorio" name="formGerarRelatorio" action="GerarXLSRelatorioMensal" method="POST">
-                                    <button type="button" class="btn btn-primary" onclick="gerarRelatorioMensal()">Gerar Relatório Mensal</button>
+                                <form style="width:210px; margin: 0 auto;margin-top: 0px" id="formGerarRelatorio" name="formGerarRelatorio" action="GerarXLSRelatorioMensal" method="POST">
+                                    <!--<button type="button" class="btn btn-primary" onclick="gerarRelatorioMensal()">Gerar Relatório Mensal</button>-->
+                                    <a href="javascript:;" onclick="gerarRelatorioMensal()">
+                                        <div>
+                                            <img src="img/relatorio.png">
+                                                <div><strong>Relatório Mensal</strong></div>
+                                         </div>
+                                    </a>                                      
                                 </form>
                             </c:if>
                         </div>
